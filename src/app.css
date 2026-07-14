@@ -1,0 +1,158 @@
+@import 'tailwindcss';
+
+/*
+	AI Forum Bangladesh — design tokens.
+	Anchored on the brand logo colours:
+	  electric  #3039E5  (logo blue)
+	  ink       #040940  (logo navy)
+	Plus an aqua secondary, warm paper surfaces, and a single amber
+	highlight reserved for primary CTAs.
+*/
+@theme {
+	--font-display: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+	--color-ink-950: #020523;
+	--color-ink-900: #040940;
+	--color-ink-800: #0a1155;
+	--color-ink-700: #141d6e;
+	--color-ink-100: #dfe2f5;
+	--color-ink-50: #eef0fa;
+
+	--color-electric-700: #2028b8;
+	--color-electric-600: #3039e5;
+	--color-electric-500: #4a53f0;
+	--color-electric-400: #7d84f5;
+	--color-electric-100: #e3e5fd;
+	--color-electric-50: #f1f2fe;
+
+	--color-aqua-600: #0891b2;
+	--color-aqua-500: #06b6d4;
+	--color-aqua-400: #22d3ee;
+	--color-aqua-100: #cffafe;
+
+	--color-gold-600: #d97706;
+	--color-gold-500: #f59e0b;
+	--color-gold-400: #ffb224;
+	--color-gold-100: #fef3c7;
+
+	--color-paper: #faf9f6;
+	--color-paper-deep: #f2f0ea;
+
+	--color-slate-450: #64748b;
+
+	--shadow-card: 0 1px 2px rgb(4 9 64 / 0.06), 0 8px 24px -8px rgb(4 9 64 / 0.12);
+	--shadow-card-lg: 0 2px 4px rgb(4 9 64 / 0.08), 0 20px 48px -12px rgb(4 9 64 / 0.22);
+}
+
+/* ---------- base ---------- */
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+	font-family: var(--font-sans);
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+	font-family: var(--font-display);
+	letter-spacing: -0.02em;
+}
+
+::selection {
+	background: var(--color-electric-600);
+	color: white;
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-electric-600);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+.on-dark :focus-visible {
+	outline-color: var(--color-aqua-400);
+}
+
+/* ---------- reusable primitives ---------- */
+
+/* Soft film-grain overlay used on dark hero/impact sections to kill the
+	 flat-template feel. Pure CSS noise via SVG data URI, very cheap. */
+.grain::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	opacity: 0.055;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	background-size: 160px 160px;
+}
+
+/* Gradient mesh backdrop for dark sections */
+.mesh-dark {
+	background:
+		radial-gradient(52rem 30rem at 85% -10%, rgb(48 57 229 / 0.35), transparent 60%),
+		radial-gradient(40rem 26rem at -10% 110%, rgb(6 182 212 / 0.16), transparent 60%),
+		linear-gradient(180deg, var(--color-ink-950), var(--color-ink-900));
+}
+
+/* Gradient mesh for light sections */
+.mesh-light {
+	background:
+		radial-gradient(46rem 26rem at 90% 0%, rgb(48 57 229 / 0.07), transparent 60%),
+		radial-gradient(38rem 24rem at 0% 100%, rgb(6 182 212 / 0.07), transparent 55%),
+		var(--color-paper);
+}
+
+/* Eyebrow label above headings */
+.eyebrow {
+	font-family: var(--font-display);
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--color-electric-600);
+}
+
+.on-dark .eyebrow {
+	color: var(--color-aqua-400);
+}
+
+/* Underline sweep for inline links in prose */
+.link-sweep {
+	background-image: linear-gradient(currentColor, currentColor);
+	background-size: 0% 1.5px;
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	transition: background-size 0.3s ease;
+	padding-bottom: 2px;
+}
+
+.link-sweep:hover {
+	background-size: 100% 1.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.link-sweep {
+		transition: none;
+	}
+}
+
+/* Publication wordmark placeholder (used until real logos are supplied) */
+.wordmark {
+	font-family: var(--font-display);
+	font-weight: 700;
+	letter-spacing: -0.01em;
+}
