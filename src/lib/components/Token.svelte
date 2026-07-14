@@ -14,7 +14,7 @@
 
 {#if isToken}
 	<span
-		class="inline-block rounded border border-dashed border-gold-500/70 bg-gold-100/60 px-1.5 py-0.5 font-mono text-[0.8em] text-gold-600"
+		class="inline rounded border border-dashed border-gold-500/70 bg-gold-100/60 box-decoration-clone px-1.5 py-0.5 font-mono text-[0.8em] break-all text-gold-600"
 		title="Awaiting real content, see CONTENT-TODO.md">{value}</span
 	>
 {:else}

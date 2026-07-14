@@ -11,6 +11,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:links": "node scripts/check-links.mjs"
 	},
+	"overrides": {
+		"cookie": "^0.7.2"
+	},
 	"devDependencies": {
 		"@fontsource-variable/inter": "^5.2.5",
 		"@fontsource-variable/space-grotesk": "^5.2.5",
