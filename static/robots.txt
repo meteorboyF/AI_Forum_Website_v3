@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meteorboyf.github.io/AI_Forum_Website_v3/sitemap.xml
