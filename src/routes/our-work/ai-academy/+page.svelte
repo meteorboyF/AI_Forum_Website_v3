@@ -47,7 +47,9 @@
 			{#each ['events/lankabangla', 'events/bsp', 'events/ogsb'] as photo, i (photo)}
 				<Reveal delay={i * 120}>
 					<img
-						src={img(photo)}
+						src={img(photo + '-sm')}
+						srcset="{img(photo + '-sm')} 700w, {img(photo)} 1400w"
+						sizes="(min-width: 640px) 32vw, 92vw"
 						alt={i === 0
 							? 'Capital market professionals during hands-on AI training at the UIU Innovation Hub'
 							: i === 1
@@ -109,7 +111,7 @@
 					<article class="flex h-full flex-col gap-5 rounded-2xl border border-ink-900/8 bg-paper p-6 sm:flex-row">
 						{#if event.image}
 							<img
-								src={img(event.image)}
+								src={img(event.image + '-sm')}
 								alt={event.imageAlt ?? ''}
 								class="aspect-[4/3] w-full rounded-xl object-cover sm:w-44 sm:shrink-0"
 								width="700"
@@ -210,7 +212,7 @@
 			</p>
 			<div class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
 				{#each trainingClients as client (client.name)}
-					<span class="wordmark text-lg text-slate-400 transition-colors hover:text-ink-900" title={client.name}>
+					<span class="wordmark text-lg text-slate-500 transition-colors hover:text-ink-900" title={client.name}>
 						{client.lockup}
 					</span>
 				{/each}

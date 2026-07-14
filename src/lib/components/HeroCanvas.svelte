@@ -116,8 +116,22 @@
 		resize();
 		frame(); // static first paint, also the only paint when reduced
 
+		// Defer the animation loop until the browser is idle so the canvas
+		// never competes with LCP / hydration on page load.
+		let idle = false;
+		const idleCb: (fn: () => void) => void =
+			'requestIdleCallback' in window
+				? window.requestIdleCallback.bind(window)
+				: (fn) => setTimeout(fn, 1500);
+		let visible = false;
+		idleCb(() => {
+			idle = true;
+			if (visible) start();
+		});
+
 		const io = new IntersectionObserver((entries) => {
-			entries[0].isIntersecting ? start() : stop();
+			visible = entries[0].isIntersecting;
+			visible && idle ? start() : stop();
 		});
 		io.observe(canvas);
 

@@ -123,7 +123,7 @@
 		</div>
 		<div class="mt-10 flex flex-wrap items-center gap-x-10 gap-y-4">
 			{#each trainingClients as client (client.name)}
-				<span class="wordmark text-lg text-slate-400" title={client.name}>{client.lockup}</span>
+				<span class="wordmark text-lg text-slate-500" title={client.name}>{client.lockup}</span>
 			{/each}
 		</div>
 	</div>
@@ -140,13 +140,13 @@
 				{ n: '03', t: 'Hands-on delivery', d: 'Practical sessions with real tools and your own working context, not slideware. On site, at the UIU Innovation Hub, or online.' },
 				{ n: '04', t: 'Certification & follow-up', d: 'Participants receive certificates, and we stay available for follow-up questions as your team applies what they learned.' }
 			] as step, i (step.n)}
-				<Reveal delay={i * 100}>
-					<li>
+				<li>
+					<Reveal delay={i * 100}>
 						<span class="font-display text-4xl font-bold text-electric-100">{step.n}</span>
 						<h3 class="mt-3 font-bold">{step.t}</h3>
 						<p class="mt-2 text-sm leading-relaxed text-slate-600">{step.d}</p>
-					</li>
-				</Reveal>
+					</Reveal>
+				</li>
 			{/each}
 		</ol>
 	</div>

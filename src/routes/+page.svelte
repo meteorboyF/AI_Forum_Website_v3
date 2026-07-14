@@ -132,11 +132,13 @@
 					<article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-lg">
 						<div class="overflow-hidden">
 							<img
-								src={img(prog.image)}
+								src={img(prog.image + '-sm')}
+								srcset="{img(prog.image + '-sm')} 640w, {img(prog.image)} 1200w"
+								sizes="(min-width: 768px) 30vw, 92vw"
 								alt=""
 								class="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-								width="1200"
-								height="750"
+								width="640"
+								height="400"
 								loading="lazy"
 							/>
 						</div>
@@ -172,13 +174,13 @@
 			<Marquee speed={42}>
 				{#each partners as partner (partner.name)}
 					<span
-						class="wordmark text-xl whitespace-nowrap text-slate-400 grayscale transition-colors hover:text-ink-900 sm:text-2xl"
+						class="wordmark text-xl whitespace-nowrap text-slate-500 grayscale transition-colors hover:text-ink-900 sm:text-2xl"
 						title={partner.name}>{partner.lockup}</span
 					>
 				{/each}
 			</Marquee>
 		</div>
-		<p class="mt-6 text-center text-xs text-slate-400">
+		<p class="mt-6 text-center text-xs text-slate-500">
 			Text lockups shown until official logo files are supplied by each organisation.
 		</p>
 	</div>
@@ -253,7 +255,7 @@
 					<article class="group overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-card">
 						{#if latestEvent.image}
 							<img
-								src={img(latestEvent.image)}
+								src={img(latestEvent.image + '-sm')}
 								alt={latestEvent.imageAlt ?? latestEvent.title}
 								class="aspect-[16/8] w-full object-cover"
 								width="1400"

@@ -60,10 +60,10 @@
 					<h3 class="font-display text-xs font-semibold tracking-widest text-white/50 uppercase">
 						{col.heading}
 					</h3>
-					<ul class="mt-4 space-y-2.5">
+					<ul class="mt-4 space-y-1.5">
 						{#each col.links as link (link.href)}
 							<li>
-								<a href="{base}{link.href}" class="text-sm font-medium text-white/80 transition-colors hover:text-white">
+								<a href="{base}{link.href}" class="inline-block py-1 text-sm font-medium text-white/80 transition-colors hover:text-white">
 									{link.label}
 								</a>
 							</li>
