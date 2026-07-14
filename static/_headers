@@ -1,0 +1,10 @@
+# Security headers for Netlify (and Cloudflare Pages) deployments.
+# GitHub Pages cannot set response headers; there the CSP ships via the
+# <meta http-equiv> tag SvelteKit injects into every prerendered page,
+# and the headers below simply do not apply.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()

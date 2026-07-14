@@ -60,7 +60,10 @@ for (const file of htmlFiles) {
 		let path = url.split('#')[0].split('?')[0];
 		if (BASE && path.startsWith(BASE)) path = path.slice(BASE.length);
 		if (path === '' || path === '/') continue;
-		const target = join(BUILD, decodeURIComponent(path));
+		// Relative links resolve against the containing file's directory
+		const target = path.startsWith('/')
+			? join(BUILD, decodeURIComponent(path))
+			: resolve(join(file, '..'), decodeURIComponent(path));
 		const candidates = [
 			target,
 			join(target, 'index.html'),

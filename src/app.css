@@ -150,6 +150,105 @@ h4,
 	}
 }
 
+/* ---------- buttons ---------- */
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 0.9375rem;
+	letter-spacing: 0.02em;
+	padding: 0.8rem 1.6rem;
+	border-radius: 0.5rem;
+	transition:
+		transform 0.2s ease,
+		background-color 0.2s ease,
+		color 0.2s ease,
+		box-shadow 0.2s ease;
+	cursor: pointer;
+}
+
+.btn:active {
+	transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.btn {
+		transition: none;
+	}
+}
+
+.btn-primary {
+	background: var(--color-gold-400);
+	color: var(--color-ink-900);
+	box-shadow: 0 4px 14px -4px rgb(255 178 36 / 0.5);
+}
+
+.btn-primary:hover {
+	background: var(--color-gold-500);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px -6px rgb(255 178 36 / 0.55);
+}
+
+.btn-electric {
+	background: var(--color-electric-600);
+	color: white;
+	box-shadow: 0 4px 14px -4px rgb(48 57 229 / 0.5);
+}
+
+.btn-electric:hover {
+	background: var(--color-electric-700);
+	transform: translateY(-2px);
+}
+
+.btn-ghost-dark {
+	border: 1px solid rgb(255 255 255 / 0.35);
+	color: white;
+	background: rgb(255 255 255 / 0.06);
+	backdrop-filter: blur(4px);
+}
+
+.btn-ghost-dark:hover {
+	background: white;
+	color: var(--color-ink-900);
+}
+
+.btn-ghost-light {
+	border: 1px solid rgb(4 9 64 / 0.2);
+	color: var(--color-ink-900);
+	background: transparent;
+}
+
+.btn-ghost-light:hover {
+	background: var(--color-ink-900);
+	color: white;
+}
+
+/* ---------- forms ---------- */
+
+.field {
+	width: 100%;
+	border: 1px solid rgb(4 9 64 / 0.15);
+	background: white;
+	border-radius: 0.5rem;
+	padding: 0.75rem 1rem;
+	font-size: 0.9375rem;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field:focus {
+	outline: none;
+	border-color: var(--color-electric-600);
+	box-shadow: 0 0 0 3px rgb(48 57 229 / 0.15);
+}
+
+.field[aria-invalid='true'] {
+	border-color: #dc2626;
+}
+
 /* Publication wordmark placeholder (used until real logos are supplied) */
 .wordmark {
 	font-family: var(--font-display);

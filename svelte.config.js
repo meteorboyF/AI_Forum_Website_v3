@@ -15,7 +15,9 @@ const config = {
 			assets: 'build',
 			strict: true
 		}),
-		paths: { base },
+		// relative: false makes every URL absolute (with base), so the
+		// GitHub Pages 404.html works when served from any missing path.
+		paths: { base, relative: false },
 		prerender: {
 			handleHttpError: 'fail',
 			handleMissingId: 'fail'
