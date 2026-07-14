@@ -59,20 +59,20 @@
 			<SectionHead eyebrow="Direct" title="Reach us anywhere" />
 			<div class="mt-8 space-y-5">
 				<a href="mailto:{CONTACT_EMAIL}" class="block rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
-					<p class="text-xs font-bold tracking-widest text-slate-400 uppercase">Email</p>
+					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Email</p>
 					<p class="mt-1 font-display font-bold text-electric-600">{CONTACT_EMAIL}</p>
 				</a>
 				<a href={SOCIALS.facebook} target="_blank" rel="noopener noreferrer" class="block rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
-					<p class="text-xs font-bold tracking-widest text-slate-400 uppercase">Facebook</p>
+					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Facebook</p>
 					<p class="mt-1 font-display font-bold text-ink-900">aiforumbd.official ↗</p>
 					<p class="mt-1 text-sm text-slate-500">Where events and programmes are announced first.</p>
 				</a>
 				<a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" class="block rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
-					<p class="text-xs font-bold tracking-widest text-slate-400 uppercase">LinkedIn</p>
+					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">LinkedIn</p>
 					<p class="mt-1 font-display font-bold text-ink-900">AI Forum Bangladesh ↗</p>
 				</a>
 				<div class="rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card">
-					<p class="text-xs font-bold tracking-widest text-slate-400 uppercase">Booking a training?</p>
+					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Booking a training?</p>
 					<p class="mt-1 text-sm leading-relaxed text-slate-600">
 						Use the dedicated
 						<a href="{base}/corporate-training/#proposal" class="link-sweep font-semibold text-electric-600">proposal request form</a>

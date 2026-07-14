@@ -142,7 +142,7 @@
 
 							{#if event.links.length > 0}
 								<div class="mt-5">
-									<p class="text-xs font-bold tracking-widest text-slate-400 uppercase">Official updates</p>
+									<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Official updates</p>
 									<div class="mt-2 flex flex-wrap gap-2">
 										{#each event.links as link (link.url)}
 											<a
@@ -160,7 +160,7 @@
 
 							{#if event.pressSlugs && event.pressSlugs.length > 0}
 								<div class="mt-4">
-									<p class="text-xs font-bold tracking-widest text-slate-400 uppercase">Press coverage</p>
+									<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Press coverage</p>
 									<div class="mt-2 flex flex-wrap gap-2">
 										{#each event.pressSlugs as slug (slug)}
 											{@const p = pressBySlug.get(slug)}

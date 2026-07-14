@@ -76,8 +76,8 @@
 		<SectionHead eyebrow="Archive" title="All coverage, newest first" />
 		<ol class="mt-10 divide-y divide-ink-900/8 rounded-2xl border border-ink-900/8 bg-white shadow-card">
 			{#each press as item, i (item.slug)}
-				<Reveal delay={Math.min(i, 3) * 60}>
-					<li>
+				<li>
+					<Reveal delay={Math.min(i, 3) * 60}>
 						<a
 							href={item.url}
 							target="_blank"
@@ -93,20 +93,20 @@
 							<p class="flex-1 font-medium text-slate-700 group-hover:text-ink-900">
 								{item.headline}
 							</p>
-							<span class="text-xs font-bold tracking-wide text-slate-400 uppercase group-hover:text-electric-600">
+							<span class="text-xs font-bold tracking-wide text-slate-500 uppercase group-hover:text-electric-600">
 								Read the article ↗
 							</span>
 						</a>
 						{#if item.about && eventBySlug.has(item.about)}
-							<p class="px-6 pb-4 -mt-2 text-xs text-slate-400">
+							<p class="px-6 pb-4 -mt-2 text-xs text-slate-500">
 								Related programme:
 								<a href="{base}/events/#{item.about}" class="font-semibold text-slate-500 hover:text-electric-600">
 									{eventBySlug.get(item.about)?.title}
 								</a>
 							</p>
 						{/if}
-					</li>
-				</Reveal>
+					</Reveal>
+				</li>
 			{/each}
 		</ol>
 		<p class="mt-6 text-sm text-slate-500">

@@ -67,14 +67,14 @@
 		<SectionHead eyebrow="Milestones" title="A short history of momentum" />
 		<ol class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-5">
 			{#each milestones as m, i (m.title)}
-				<Reveal delay={i * 100}>
-					<li class="relative border-l-2 border-electric-100 pl-5 lg:border-l-0 lg:border-t-2 lg:pt-5 lg:pl-0">
+				<li>
+					<Reveal delay={i * 100} class="relative border-l-2 border-electric-100 pl-5 lg:border-l-0 lg:border-t-2 lg:pt-5 lg:pl-0">
 						<span class="absolute -left-[7px] top-0 h-3 w-3 rounded-full bg-electric-600 lg:-top-[7px] lg:left-0" aria-hidden="true"></span>
 						<p class="font-display text-sm font-bold text-electric-600"><Token value={m.dateLabel} /></p>
 						<h3 class="mt-1.5 font-bold">{m.title}</h3>
 						<p class="mt-1.5 text-sm leading-relaxed text-slate-600">{m.detail}</p>
-					</li>
-				</Reveal>
+					</Reveal>
+				</li>
 			{/each}
 		</ol>
 	</div>
