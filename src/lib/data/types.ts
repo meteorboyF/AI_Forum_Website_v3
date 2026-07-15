@@ -64,6 +64,10 @@ export interface EventItem {
 	/** Rough sort key, newest first. 0 = unknown, sinks to the end. */
 	sortKey: number;
 	summary: string;
+	/** Confirmed programme topics, rendered only when documented. */
+	highlights?: string[];
+	/** Confirmed attendee or speaker detail, rendered only when documented. */
+	attendees?: string;
 	image?: string;
 	imageAlt?: string;
 	links: { label: string; url: string }[];
