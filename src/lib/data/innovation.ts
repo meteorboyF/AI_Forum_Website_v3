@@ -24,7 +24,7 @@ export const initiatives: Initiative[] = [
 	{
 		slug: 'innovation-challenge',
 		name: 'Innovation Challenge',
-		desc: 'AI festivals where ideas solve real problems and shape an innovative Bangladesh, including the CodeCure hackathon series.',
+		desc: 'AI festivals where ideas solve real problems and shape an innovative Bangladesh.',
 		status: 'active'
 	},
 	{

@@ -26,7 +26,6 @@ const pages = [
 	['about', '/about-us/'],
 	['events', '/events/'],
 	['academy', '/our-work/ai-academy/'],
-	['hackathon', '/hackathon/'],
 	['innovation', '/our-work/innovation-ecosystem/'],
 	['career', '/our-work/career-care/'],
 	['news', '/news/'],

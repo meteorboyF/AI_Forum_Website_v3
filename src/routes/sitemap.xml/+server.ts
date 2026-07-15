@@ -11,7 +11,6 @@ const routes = [
 	'/events/',
 	'/corporate-training/',
 	'/news/',
-	'/hackathon/',
 	'/contact-us/',
 	'/terms/',
 	'/privacy/',

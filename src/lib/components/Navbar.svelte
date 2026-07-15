@@ -14,7 +14,6 @@
 		{ href: '/about-us/', label: 'About Us' },
 		{ href: '/events/', label: 'Events & Training' },
 		{ href: '/news/', label: 'News & Media' },
-		{ href: '/hackathon/', label: 'Hackathon' },
 		{ href: '/contact-us/', label: 'Contact' }
 	];
 

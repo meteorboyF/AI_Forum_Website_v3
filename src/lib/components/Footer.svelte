@@ -20,7 +20,6 @@
 				{ href: '/our-work/ai-academy/', label: 'AI Academy' },
 				{ href: '/our-work/innovation-ecosystem/', label: 'Innovation Ecosystem' },
 				{ href: '/our-work/career-care/', label: 'Career Care' },
-				{ href: '/hackathon/', label: 'Hackathons' }
 			]
 		},
 		{

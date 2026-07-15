@@ -40,7 +40,7 @@ Security headers ship via `vercel.json` (Vercel) or `static/_headers`
 
 | Path | What |
 |---|---|
-| `src/lib/data/` | All site content as typed modules: events, press, courses, advisors, team, partners, hackathons, etc. Edit content here, not in pages. |
+| `src/lib/data/` | All site content as typed modules: events, press, courses, advisors, team, and partners. Edit content here, not in pages. |
 | `src/lib/components/` | Shared UI: nav, footer, SEO tags, forms, motion primitives (Reveal, CountUp, Marquee, HeroCanvas). |
 | `src/routes/` | One folder per page. |
 | `static/images/` | Optimised WebP assets (originals were converted at ~80 quality, capped widths). |
