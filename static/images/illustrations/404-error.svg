@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+  <style>
+    .bg { fill: none; }
+    .num { font-family: 'Space Grotesk Variable', sans-serif; font-weight: 700; font-size: 72px; fill: #040940; letter-spacing: -0.05em; }
+    .stroke-electric { stroke: #3039e5; stroke-width: 1.5; fill: none; }
+    .stroke-aqua { stroke: #06b6d4; stroke-width: 1.5; fill: none; }
+    .fill-aqua { fill: #06b6d4; }
+    .fill-gold { fill: #f59e0b; }
+    .thin { stroke-width: 0.75; opacity: 0.4; stroke: #040940; }
+    .dashed { stroke-dasharray: 3 3; }
+  </style>
+  <rect width="240" height="200" class="bg" />
+
+  <!-- Coordinates / Blueprint grid -->
+  <line x1="20" y1="100" x2="220" y2="100" class="thin" />
+  <line x1="120" y1="20" x2="120" y2="180" class="thin" />
+  <circle cx="120" cy="100" r="60" class="stroke-electric thin dashed" />
+  
+  <!-- Text Lockup with Geometric Zero -->
+  <g transform="translate(30, 125)">
+    <text x="0" y="0" class="num">4</text>
+    <!-- Geometric Zero (Diamond Grid with missing center) -->
+    <g transform="translate(58, -52)">
+      <!-- Outer diamond outline -->
+      <path d="M 30,0 L 60,30 L 30,60 L 0,30 Z" stroke="#3039e5" stroke-width="3" fill="none" />
+      <!-- Inner diamond dashed -->
+      <path d="M 30,12 L 48,30 L 30,48 L 12,30 Z" class="stroke-aqua dashed" />
+      <!-- Small gold diamond float in center representing search/missing -->
+      <polygon points="30,24 36,30 30,36 24,30" class="fill-gold" />
+    </g>
+    <text x="125" y="0" class="num">4</text>
+  </g>
+
+  <!-- Glitch / warning particles -->
+  <polygon points="40,50 45,45 40,40 35,45" class="fill-aqua" />
+  <polygon points="205,150 210,145 205,140 200,145" class="fill-aqua" />
+  <circle cx="190" cy="60" r="3" class="fill-gold" />
+</svg>

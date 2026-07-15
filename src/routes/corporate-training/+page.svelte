@@ -9,6 +9,7 @@
 	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
 	import { CONTACT_EMAIL } from '$lib/config';
+	import Icons from '$lib/components/Icons.svelte';
 
 	const trackRecord = [
 		{
@@ -76,7 +77,10 @@
 
 <!-- ============ PITCH ============ -->
 <section class="on-dark mesh-dark grain relative overflow-hidden pt-36 pb-20 text-white lg:pb-28">
-	<div class="relative mx-auto grid max-w-[88rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
+	<!-- Jamdani pattern overlay integrated into dark hero band -->
+	<div class="absolute inset-0 z-5 bg-jamdani-dark opacity-[0.08] pointer-events-none"></div>
+
+	<div class="relative z-10 mx-auto grid max-w-[88rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
 		<Reveal>
 			<p class="eyebrow mb-5">Corporate & institutional training</p>
 			<h1 class="font-display text-[clamp(2.4rem,5vw,4.25rem)] leading-[1.0] font-bold tracking-[-0.03em] text-balance">
@@ -93,11 +97,11 @@
 			</div>
 		</Reveal>
 		<Reveal delay={150}>
-			<div class="photo rounded-xl">
+			<div class="card-hover-trigger image-zoom-container rounded-2xl border border-white/10 shadow-card-lg">
 				<img
 					src={img('events/sonali-intellect')}
 					alt="Banking and FinTech professionals during a hands-on AI training session"
-					class="w-full rounded-xl"
+					class="image-zoom-img w-full rounded-2xl"
 					width="1400"
 					height="1050"
 				/>
@@ -107,7 +111,7 @@
 </section>
 
 <!-- ============ TRACK RECORD ============ -->
-<section class="bg-paper py-24 lg:py-28">
+<section class="bg-paper py-24 lg:py-28 bg-jamdani-light">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="01"
@@ -117,16 +121,23 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each trackRecord as item, i (item.org)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="h-full rounded-xl border border-ink-900/10 bg-white p-6 shadow-card">
-						<h3 class="font-display text-lg font-bold text-electric-600">{item.org}</h3>
-						<p class="mt-2 text-sm leading-relaxed text-slate-600">{item.what}</p>
+					<article class="card-hover-trigger h-full rounded-2xl border border-ink-900/10 bg-white p-7 shadow-sm">
+						<h3 class="font-display text-lg font-bold text-electric-600 text-underline-reveal">{item.org}</h3>
+						<p class="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-500">{item.what}</p>
 					</article>
 				</Reveal>
 			{/each}
 		</div>
-		<div class="mt-10 flex flex-wrap items-center gap-x-10 gap-y-4">
+		<div class="mt-14 flex flex-wrap items-center gap-x-12 gap-y-6 justify-center lg:justify-start border-t border-ink-900/5 pt-8">
 			{#each trainingClients as client (client.name)}
-				<span class="wordmark text-lg text-slate-500" title={client.name}>{client.lockup}</span>
+				<img
+					src="{base}/images/brand/partners/{client.lockup.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}.svg"
+					alt={client.name}
+					class="h-8 w-auto opacity-35 filter contrast-125 select-none hover:opacity-75 transition-opacity"
+					loading="lazy"
+					width="160"
+					height="55"
+				/>
 			{/each}
 		</div>
 	</div>
@@ -136,7 +147,7 @@
 <section class="border-y border-ink-900/8 bg-white py-20 lg:py-24">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead number="02" eyebrow="How it works" title="From enquiry to delivery in four steps" />
-		<ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+		<ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 			{#each [
 				{ n: '01', t: 'Scoping call', d: 'We learn what your team does, their current AI exposure, and what you want them to be able to do afterwards.' },
 				{ n: '02', t: 'Tailored proposal', d: 'A curriculum built for your sector, with duration, delivery mode, and outcomes set out clearly.' },
@@ -145,9 +156,11 @@
 			] as step, i (step.n)}
 				<li>
 					<Reveal delay={i * 100}>
-						<span class="font-display text-4xl font-bold text-electric-100">{step.n}</span>
-						<h3 class="mt-3 font-bold">{step.t}</h3>
-						<p class="mt-2 text-sm leading-relaxed text-slate-600">{step.d}</p>
+						<div class="card-hover-trigger h-full rounded-2xl border border-ink-900/6 bg-paper-deep/20 p-6 shadow-sm">
+							<span class="font-display text-5xl font-bold text-transparent" style="-webkit-text-stroke: 1.5px var(--color-electric-400)">{step.n}</span>
+							<h3 class="mt-4 font-display font-bold text-ink-900 text-base leading-snug">{step.t}</h3>
+							<p class="mt-2 text-xs sm:text-sm leading-relaxed text-slate-500">{step.d}</p>
+						</div>
 					</Reveal>
 				</li>
 			{/each}
@@ -165,22 +178,25 @@
 				title="Tell us about your team"
 				lede="Two working days is our usual turnaround for a first response. Prefer email? Write to us directly."
 			/>
-			<a href="mailto:{CONTACT_EMAIL}" class="link-sweep mt-4 inline-block font-semibold text-electric-600">
+			<a href="mailto:{CONTACT_EMAIL}" class="link-sweep mt-4 inline-block font-semibold text-electric-600 font-mono">
 				{CONTACT_EMAIL}
 			</a>
 		</Reveal>
 
 		<Reveal delay={120}>
 			{#if status === 'success'}
-				<div class="rounded-xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
-					<h3 class="text-xl font-bold text-ink-900">Request received</h3>
-					<p class="mt-2 leading-relaxed text-slate-600">
+				<div class="rounded-2xl border border-aqua-400/40 bg-aqua-100/50 p-8 shadow-sm" role="status">
+					<h3 class="text-xl font-bold text-ink-900 flex items-center gap-2">
+						<Icons name="check" class="h-6 w-6 text-aqua-600" />
+						Request received
+					</h3>
+					<p class="mt-3 leading-relaxed text-slate-600">
 						Thank you, {name.split(' ')[0]}. We will review what you have told us about
 						{organisation} and come back to you with a scoping call slot and a first outline.
 					</p>
 				</div>
 			{:else}
-				<form class="rounded-xl border border-ink-900/10 bg-white p-7 shadow-card" onsubmit={submit} novalidate>
+				<form class="rounded-2xl border border-ink-900/10 bg-white p-8 shadow-card" onsubmit={submit} novalidate>
 					<div class="grid gap-5 sm:grid-cols-2">
 						<div>
 							<label for="ct-name" class="mb-1.5 block text-sm font-semibold">Your name</label>
