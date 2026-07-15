@@ -10,9 +10,11 @@
 	import { pressBySlug } from '$lib/data/press';
 	import { sectors } from '$lib/data/courses';
 	import { testimonials } from '$lib/data/testimonials';
+	import type { EventItem } from '$lib/data/types';
 	import Icons from '$lib/components/Icons.svelte';
 
 	const quotes = testimonials.slice(0, 2);
+	let selectedEvent = $state<EventItem | null>(null);
 </script>
 
 <Seo
@@ -102,7 +104,14 @@
 						class="card-hover-trigger scroll-mt-24 overflow-hidden rounded-2xl border border-ink-900/10 bg-paper lg:grid lg:grid-cols-[1fr_1.1fr] shadow-card {i % 2 === 1 ? 'lg:[direction:rtl]' : ''}"
 					>
 						{#if event.image}
-							<div class="image-zoom-container min-h-64 lg:min-h-full" style="direction: ltr">
+							<button
+								type="button"
+								class="image-zoom-container group relative block min-h-64 w-full overflow-hidden text-left lg:min-h-full"
+								style="direction: ltr"
+								onclick={() => event.gallery && (selectedEvent = event)}
+								aria-label={event.gallery ? `Open ${event.title} photo gallery` : undefined}
+								disabled={!event.gallery}
+							>
 								<img
 									src={img(event.image)}
 									alt={event.imageAlt ?? event.title}
@@ -111,7 +120,13 @@
 									height="1050"
 									loading="lazy"
 								/>
-							</div>
+								{#if event.gallery}
+									<span class="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-lg bg-ink-900/80 px-4 py-3 text-left text-xs font-bold tracking-wide text-white opacity-100 backdrop-blur-sm transition-all sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
+										<span>View session gallery</span>
+										<span class="text-aqua-300">{event.gallery.count} photos →</span>
+									</span>
+								{/if}
+							</button>
 						{:else}
 							<div class="hidden items-center justify-center bg-ink-50 lg:flex" style="direction: ltr">
 								<span class="font-display text-6xl font-bold text-ink-100">AIFB</span>
@@ -203,6 +218,42 @@
 		</div>
 	</div>
 </section>
+
+{#if selectedEvent?.gallery}
+	<div
+		class="fixed inset-0 z-[100] flex items-end bg-ink-900/75 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+		role="presentation"
+		onclick={(event) => event.target === event.currentTarget && (selectedEvent = null)}
+	>
+		<div
+			class="max-h-[92vh] w-full overflow-y-auto rounded-t-2xl bg-paper shadow-2xl sm:mx-auto sm:max-w-6xl sm:rounded-2xl"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="gallery-title"
+		>
+			<div class="sticky top-0 z-10 flex items-start justify-between gap-6 border-b border-ink-900/10 bg-paper/95 px-6 py-5 backdrop-blur sm:px-9">
+				<div>
+					<p class="eyebrow">Photo gallery · {selectedEvent.gallery.count} photographs</p>
+					<h2 id="gallery-title" class="mt-2 font-display text-2xl font-bold text-ink-900 sm:text-3xl">{selectedEvent.title}</h2>
+				</div>
+				<button type="button" class="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-900/15 bg-white text-xl font-medium text-ink-900 transition-colors hover:bg-ink-900 hover:text-white" onclick={() => (selectedEvent = null)} aria-label="Close photo gallery">×</button>
+			</div>
+			<div class="px-6 py-7 sm:px-9 sm:py-9">
+				<div class="max-w-3xl border-l-2 border-aqua-500 pl-4">
+					<p class="text-sm font-bold text-ink-900">{selectedEvent.client ?? selectedEvent.format}{selectedEvent.dateLabel ? ` · ${selectedEvent.dateLabel}` : ''}</p>
+					<p class="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">{selectedEvent.summary}</p>
+				</div>
+				<div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+					{#each Array.from({ length: selectedEvent.gallery.count }, (_, index) => index + 1) as photo}
+						<a href={img(`events/galleries/${selectedEvent.gallery.folder}/${photo}`)} target="_blank" rel="noopener noreferrer" class="group block overflow-hidden rounded-lg bg-ink-100 focus:outline-2 focus:outline-offset-2 focus:outline-electric-600">
+							<img src={img(`events/galleries/${selectedEvent.gallery.folder}/${photo}`)} alt={`${selectedEvent.gallery.label}, photograph ${photo}`} class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+						</a>
+					{/each}
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <!-- ============ TESTIMONIALS ============ -->
 <section class="bg-paper py-20 lg:py-24">
