@@ -11,6 +11,14 @@ export const SITE_NAME = 'AI Forum Bangladesh';
 
 export const CONTACT_EMAIL = 'aiforumbd@gmail.com';
 
+/**
+ * Total professionals trained across all programmes. Set this to the
+ * real figure supplied by the team (e.g. 500) and it appears in the
+ * homepage hero and impact bar. While null, the site simply omits the
+ * figure; it is never rendered as a zero or a placeholder.
+ */
+export const PROFESSIONALS_TRAINED: number | null = null;
+
 export const SOCIALS = {
 	facebook: 'https://www.facebook.com/aiforumbd.official',
 	linkedin: 'https://www.linkedin.com/company/aiforumbd'

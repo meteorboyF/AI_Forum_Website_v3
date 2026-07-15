@@ -19,8 +19,7 @@ export const initiatives: Initiative[] = [
 		desc: 'Taking AI awareness to schools and colleges through divisional workshops across Bangladesh, reaching students across all 8 divisions.',
 		status: 'active',
 		detail:
-			'The Roadshow takes AI out of Dhaka and into classrooms across the country: hands-on demonstrations, career sessions, and awareness workshops for school and college students in every division of Bangladesh.',
-		image: 'innovation/programs/p1'
+			'The Roadshow takes AI out of Dhaka and into classrooms across the country: hands-on demonstrations, career sessions, and awareness workshops for school and college students in every division of Bangladesh.'
 	},
 	{
 		slug: 'innovation-challenge',

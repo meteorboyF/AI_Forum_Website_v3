@@ -75,12 +75,12 @@
 />
 
 <!-- ============ PITCH ============ -->
-<section class="on-dark mesh-dark grain relative overflow-hidden py-20 text-white lg:py-28">
-	<div class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2">
+<section class="on-dark mesh-dark grain relative overflow-hidden pt-36 pb-20 text-white lg:pb-28">
+	<div class="relative mx-auto grid max-w-[88rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
 		<Reveal>
-			<p class="eyebrow mb-4">Corporate & institutional training</p>
-			<h1 class="text-4xl font-bold text-balance sm:text-5xl lg:text-6xl lg:leading-[1.08]">
-				We have trained teams at Grameenphone and the Dhaka Stock Exchange
+			<p class="eyebrow mb-5">Corporate & institutional training</p>
+			<h1 class="font-display text-[clamp(2.4rem,5vw,4.25rem)] leading-[1.0] font-bold tracking-[-0.03em] text-balance">
+				<span class="line-mask"><span>We have trained teams at Grameenphone and the Dhaka Stock Exchange.</span></span>
 			</h1>
 			<p class="mt-6 text-lg leading-relaxed text-white/80">
 				Here is what a programme for your organisation would look like: a hands-on curriculum
@@ -93,28 +93,31 @@
 			</div>
 		</Reveal>
 		<Reveal delay={150}>
-			<img
-				src={img('events/sonali-intellect')}
-				alt="Banking and FinTech professionals during a hands-on AI training session"
-				class="w-full rounded-2xl border border-white/15 shadow-card-lg"
-				width="1400"
-				height="1050"
-			/>
+			<div class="photo rounded-xl">
+				<img
+					src={img('events/sonali-intellect')}
+					alt="Banking and FinTech professionals during a hands-on AI training session"
+					class="w-full rounded-xl"
+					width="1400"
+					height="1050"
+				/>
+			</div>
 		</Reveal>
 	</div>
 </section>
 
 <!-- ============ TRACK RECORD ============ -->
-<section class="mesh-light py-20 lg:py-24">
-	<div class="mx-auto max-w-7xl px-5">
+<section class="bg-paper py-24 lg:py-28">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
+			number="01"
 			eyebrow="Track record"
 			title="Organisations that have already done this with us"
 		/>
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each trackRecord as item, i (item.org)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="h-full rounded-2xl border border-ink-900/8 bg-white p-6 shadow-card">
+					<article class="h-full rounded-xl border border-ink-900/10 bg-white p-6 shadow-card">
 						<h3 class="font-display text-lg font-bold text-electric-600">{item.org}</h3>
 						<p class="mt-2 text-sm leading-relaxed text-slate-600">{item.what}</p>
 					</article>
@@ -131,8 +134,8 @@
 
 <!-- ============ HOW IT WORKS ============ -->
 <section class="border-y border-ink-900/8 bg-white py-20 lg:py-24">
-	<div class="mx-auto max-w-7xl px-5">
-		<SectionHead eyebrow="How it works" title="From enquiry to delivery in four steps" />
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<SectionHead number="02" eyebrow="How it works" title="From enquiry to delivery in four steps" />
 		<ol class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 			{#each [
 				{ n: '01', t: 'Scoping call', d: 'We learn what your team does, their current AI exposure, and what you want them to be able to do afterwards.' },
@@ -153,10 +156,11 @@
 </section>
 
 <!-- ============ PROPOSAL FORM ============ -->
-<section class="mesh-light py-20 lg:py-28" id="proposal">
-	<div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr]">
+<section class="bg-paper py-24 lg:py-32" id="proposal">
+	<div class="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
 		<Reveal>
 			<SectionHead
+				number="03"
 				eyebrow="Request a proposal"
 				title="Tell us about your team"
 				lede="Two working days is our usual turnaround for a first response. Prefer email? Write to us directly."
@@ -168,7 +172,7 @@
 
 		<Reveal delay={120}>
 			{#if status === 'success'}
-				<div class="rounded-2xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
+				<div class="rounded-xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
 					<h3 class="text-xl font-bold text-ink-900">Request received</h3>
 					<p class="mt-2 leading-relaxed text-slate-600">
 						Thank you, {name.split(' ')[0]}. We will review what you have told us about
@@ -176,7 +180,7 @@
 					</p>
 				</div>
 			{:else}
-				<form class="rounded-2xl border border-ink-900/8 bg-white p-7 shadow-card" onsubmit={submit} novalidate>
+				<form class="rounded-xl border border-ink-900/10 bg-white p-7 shadow-card" onsubmit={submit} novalidate>
 					<div class="grid gap-5 sm:grid-cols-2">
 						<div>
 							<label for="ct-name" class="mb-1.5 block text-sm font-semibold">Your name</label>

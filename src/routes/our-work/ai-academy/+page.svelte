@@ -23,43 +23,44 @@
 />
 
 <!-- ============ HEADER ============ -->
-<section class="on-dark mesh-dark grain relative overflow-hidden py-20 text-white lg:py-24">
-	<div class="relative mx-auto max-w-7xl px-5">
-		<div class="max-w-2xl">
-			<Reveal>
-				<p class="eyebrow mb-4">Our work · AI Academy</p>
-				<h1 class="text-4xl font-bold text-balance sm:text-5xl lg:text-6xl">
-					Training that has already happened, for people who need it next
-				</h1>
-				<p class="mt-6 text-lg leading-relaxed text-white/80">
-					Practical, hands-on AI programmes designed and led by Professor Khondaker A. Mamun and
-					delivered to professionals across finance, healthcare, banking, energy, and government.
-				</p>
-				<div class="mt-8 flex flex-wrap gap-4">
-					<a href="{base}/corporate-training/" class="btn btn-primary">Request a Proposal</a>
-					<a href="{base}/events/" class="btn btn-ghost-dark">See past deliveries</a>
-				</div>
-			</Reveal>
+<section class="on-dark mesh-dark grain relative overflow-hidden pt-36 pb-20 text-white lg:pb-24">
+	<div class="relative mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<div class="max-w-4xl">
+			<p class="eyebrow mb-5">Our work · AI Academy</p>
+			<h1 class="font-display text-[clamp(2.6rem,6.5vw,5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
+				<span class="line-mask"><span>Training that has already happened,</span></span>
+				<span class="line-mask" style="--line-delay: 140ms"><span class="text-aqua-400">for people who need it next.</span></span>
+			</h1>
+			<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/85">
+				Practical, hands-on AI programmes designed and led by Professor Khondaker A. Mamun and
+				delivered to professionals across finance, healthcare, banking, energy, and government.
+			</p>
+			<div class="mt-9 flex flex-wrap gap-4">
+				<a href="{base}/corporate-training/" class="btn btn-primary">Request a Proposal</a>
+				<a href="{base}/events/" class="btn btn-ghost-dark">See past deliveries</a>
+			</div>
 		</div>
 
 		<!-- Real training photos, not stock -->
 		<div class="mt-14 grid gap-4 sm:grid-cols-3">
 			{#each ['events/lankabangla', 'events/bsp', 'events/ogsb'] as photo, i (photo)}
 				<Reveal delay={i * 120}>
-					<img
-						src={img(photo + '-sm')}
-						srcset="{img(photo + '-sm')} 700w, {img(photo)} 1400w"
-						sizes="(min-width: 640px) 32vw, 92vw"
-						alt={i === 0
-							? 'Capital market professionals during hands-on AI training at the UIU Innovation Hub'
-							: i === 1
-								? 'Bangladesh Society of Physiologists members at a full-day AI workshop'
-								: 'Doctors at OGSB Hospital & IRCH during AI training'}
-						class="aspect-[4/3] w-full rounded-xl border border-white/15 object-cover"
-						width="700"
-						height="525"
-						loading={i === 0 ? 'eager' : 'lazy'}
-					/>
+					<div class="photo rounded-lg {i === 1 ? 'sm:-mt-6' : ''}">
+						<img
+							src={img(photo + '-sm')}
+							srcset="{img(photo + '-sm')} 700w, {img(photo)} 1400w"
+							sizes="(min-width: 640px) 32vw, 92vw"
+							alt={i === 0
+								? 'Capital market professionals during hands-on AI training at the UIU Innovation Hub'
+								: i === 1
+									? 'Bangladesh Society of Physiologists members at a full-day AI workshop'
+									: 'Doctors at OGSB Hospital & IRCH during AI training'}
+							class="aspect-[4/3] w-full rounded-lg object-cover"
+							width="700"
+							height="525"
+							loading={i === 0 ? 'eager' : 'lazy'}
+						/>
+					</div>
 				</Reveal>
 			{/each}
 		</div>
@@ -67,9 +68,10 @@
 </section>
 
 <!-- ============ SECTOR-SPECIFIC TRAINING ============ -->
-<section class="mesh-light py-20 lg:py-28" id="sectors">
-	<div class="mx-auto max-w-7xl px-5">
+<section class="bg-paper py-24 lg:py-32" id="sectors">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
+			number="01"
 			eyebrow="Corporate & institutional training"
 			title="Sector-specific programmes with a real track record"
 			lede="Every sector below has either a completed delivery behind it or a programme built for it. Your team gets training designed for the work they actually do."
@@ -77,7 +79,7 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each sectors as sector, i (sector.slug)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="flex h-full flex-col rounded-2xl border border-ink-900/8 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg">
+					<article class="flex h-full flex-col rounded-xl border border-ink-900/10 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg">
 						<h3 class="text-lg font-bold">{sector.name}</h3>
 						<p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600">{sector.blurb}</p>
 						<div class="mt-5 flex items-center justify-between gap-3">
@@ -98,9 +100,10 @@
 </section>
 
 <!-- ============ CASE STUDIES ============ -->
-<section class="border-y border-ink-900/8 bg-white py-20 lg:py-24">
-	<div class="mx-auto max-w-7xl px-5">
+<section class="border-y border-ink-900/8 bg-white py-24 lg:py-32">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
+			number="02"
 			eyebrow="Delivered programmes"
 			title="Proof, not promises"
 			lede="One-paragraph summaries of real programmes. Full recaps, photos, and press links live on the Events & Training page."
@@ -108,7 +111,7 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2">
 			{#each caseStudyEvents as event, i (event.slug)}
 				<Reveal delay={(i % 2) * 100}>
-					<article class="flex h-full flex-col gap-5 rounded-2xl border border-ink-900/8 bg-paper p-6 sm:flex-row">
+					<article class="flex h-full flex-col gap-5 rounded-xl border border-ink-900/10 bg-paper p-6 sm:flex-row">
 						{#if event.image}
 							<img
 								src={img(event.image + '-sm')}
@@ -135,9 +138,10 @@
 </section>
 
 <!-- ============ COURSES ============ -->
-<section class="mesh-light py-20 lg:py-28" id="courses">
-	<div class="mx-auto max-w-7xl px-5">
+<section class="bg-paper py-24 lg:py-32" id="courses">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
+			number="03"
 			eyebrow="Open programmes"
 			title="Courses in the Academy"
 			lede="Each course carries an honest status. If a course is available on request, we will scope a batch for your team or institution."
@@ -152,7 +156,7 @@
 				<div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{#each courses.filter((c) => c.category === cat.key) as course, i (course.id)}
 						<Reveal delay={(i % 3) * 100}>
-							<article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg">
+							<article class="group flex h-full flex-col overflow-hidden rounded-xl border border-ink-900/10 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg">
 								<div class="relative overflow-hidden">
 									<img
 										src={img(course.image)}
@@ -192,7 +196,7 @@
 
 <!-- ============ TESTIMONIAL + TRUSTED BY ============ -->
 <section class="border-t border-ink-900/8 bg-white py-16 lg:py-20">
-	<div class="mx-auto max-w-7xl px-5">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		{#if academyTestimonial}
 			<Reveal>
 				<figure class="mx-auto max-w-3xl text-center">

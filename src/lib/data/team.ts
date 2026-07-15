@@ -14,7 +14,8 @@ export const leadTrainer = {
 	],
 	summary:
 		'Professor Mamun leads the design and delivery of every AI Forum Bangladesh professional training programme, including engagements for Grameenphone, the Dhaka Stock Exchange, LankaBangla Securities, Sonali Intellect, and healthcare institutions across the country and abroad.',
-	quote: '{{MAMUN_MISSION_QUOTE}}',
+	/** Set to a real quote when the team supplies one; the page omits the block until then */
+	quote: null as string | null,
 	image: null as string | null
 };
 
@@ -86,12 +87,13 @@ export const values = [
 ] as const;
 
 /**
- * Milestone timeline for the About page. Dates carrying {{...}} tokens
- * await confirmation from the team; see CONTENT-TODO.md.
+ * Milestone timeline for the About page. Entries whose exact year the
+ * team has not yet confirmed use a phase label instead of a date;
+ * swap in real years via CONTENT-TODO.md. Never invent a date.
  */
 export const milestones = [
 	{
-		dateLabel: '{{FOUNDING_YEAR}}',
+		dateLabel: 'The beginning',
 		title: 'AI Forum Bangladesh founded',
 		detail: 'An independent organisation set up to bridge the gap between Bangladesh’s AI talent and real opportunity.'
 	},
@@ -101,7 +103,7 @@ export const milestones = [
 		detail: 'Hackathons hosted with universities including the University of Dhaka, BUET, BRAC University, North South University, and Rajshahi University.'
 	},
 	{
-		dateLabel: '{{FIRST_TRAINING_YEAR}}',
+		dateLabel: 'Early growth',
 		title: 'First corporate training clients',
 		detail: 'Professional AI training delivered for organisations including Grameenphone and the Dhaka Stock Exchange.'
 	},

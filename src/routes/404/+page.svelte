@@ -5,7 +5,7 @@
 
 <Seo title="Page Not Found" description="The page you were looking for does not exist." path="/404/" />
 
-<div class="mesh-light flex min-h-[60vh] items-center">
+<div class="bg-paper flex min-h-[60vh] items-center">
 	<div class="mx-auto max-w-xl px-5 py-24 text-center">
 		<p class="eyebrow mb-3">404</p>
 		<h1 class="text-4xl font-bold sm:text-5xl">This page does not exist</h1>

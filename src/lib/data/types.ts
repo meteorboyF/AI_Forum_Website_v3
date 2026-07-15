@@ -56,8 +56,11 @@ export interface EventItem {
 	sector: string;
 	format: string;
 	venue?: string;
-	/** Human-readable date; {{...}} tokens mark dates awaiting confirmation */
-	dateLabel: string;
+	/**
+	 * Human-readable date. OMIT when unconfirmed: the UI drops the date
+	 * clause entirely. Never put a placeholder string here.
+	 */
+	dateLabel?: string;
 	/** Rough sort key, newest first. 0 = unknown, sinks to the end. */
 	sortKey: number;
 	summary: string;
@@ -73,7 +76,8 @@ export interface PressItem {
 	slug: string;
 	publication: string;
 	headline: string;
-	dateLabel: string;
+	/** Omit when unconfirmed; the UI drops the date clause */
+	dateLabel?: string;
 	url: string;
 	language: 'English' | 'Bangla';
 	/** Event slug this coverage relates to */
@@ -86,10 +90,13 @@ export interface Hackathon {
 	subtitle: string;
 	dateLabel: string;
 	venue: string;
-	image: string;
+	image?: string;
 	status: 'past';
 	organiser: string;
-	/** Placeholder-tokenised recap facts awaiting confirmation */
+	/**
+	 * Recap facts (winner, team count, problems solved). Only add once
+	 * confirmed; the card omits the whole block when absent.
+	 */
 	recap?: { teams?: string; winner?: string; problems?: string };
 }
 

@@ -10,7 +10,7 @@
 	let { title, updated, children }: Props = $props();
 </script>
 
-<div class="mesh-light">
+<div class="bg-paper">
 	<div class="mx-auto max-w-3xl px-5 py-16 sm:py-24">
 		<p class="eyebrow mb-3">Legal</p>
 		<h1 class="text-4xl font-bold sm:text-5xl">{title}</h1>

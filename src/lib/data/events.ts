@@ -3,7 +3,7 @@ import type { EventItem } from './types';
 /**
  * Real, documented training programmes and events. Sourced from the
  * AI Forum Bangladesh newsletter and the official Facebook page.
- * {{...}} tokens mark facts awaiting confirmation; see CONTENT-TODO.md.
+ * Unconfirmed dates are omitted, never faked; see CONTENT-TODO.md.
  */
 export const events: EventItem[] = [
 	{
@@ -43,7 +43,6 @@ export const events: EventItem[] = [
 		sector: 'Healthcare',
 		format: 'Hands-on training for doctors and clinical staff',
 		venue: 'OGSB Hospital & IRCH, Dhaka',
-		dateLabel: '{{OGSB_EVENT_DATE}}',
 		sortKey: 20250701,
 		summary:
 			'A hands-on AI training programme for healthcare professionals at OGSB Hospital & IRCH. Doctors and clinical professionals worked with practical AI tools for improving healthcare workflows and professional efficiency.',
@@ -101,7 +100,6 @@ export const events: EventItem[] = [
 		sector: 'Healthcare',
 		format: 'Full-day hands-on workshop',
 		venue: 'UIU Innovation Hub, Dhaka',
-		dateLabel: '{{BSP_EVENT_DATE}}',
 		sortKey: 20251101,
 		summary:
 			'A full-day hands-on workshop with the Bangladesh Society of Physiologists at the UIU Innovation Hub, focused on practical AI applications for healthcare and physiology professionals.',
@@ -119,7 +117,6 @@ export const events: EventItem[] = [
 		sector: 'Business',
 		format: 'Seminar with national media coverage',
 		venue: 'United International University, Dhaka',
-		dateLabel: '{{BUSINESS_EXCELLENCE_DATE}}',
 		sortKey: 20260101,
 		summary:
 			'A seminar at UIU on AI’s role in decision-making, management efficiency, customer engagement, automation, supply chain optimisation, financial forecasting, HR, policy, and business growth. The event received coverage across major Bangladeshi media outlets including The Daily Star and The Business Standard.',
@@ -134,7 +131,6 @@ export const events: EventItem[] = [
 		client: 'Bangladesh Energy and Power Research Council (BEPRC)',
 		sector: 'Energy & Infrastructure',
 		format: 'Professional training',
-		dateLabel: '{{BEPRC_EVENT_DATE}}',
 		sortKey: 0,
 		summary:
 			'A training programme for BEPRC on using AI tools to improve productivity and employee performance, part of AI Forum Bangladesh’s work with government and public sector institutions.',
@@ -149,7 +145,6 @@ export const events: EventItem[] = [
 		client: 'UNICEF',
 		sector: 'Development',
 		format: 'Crash course',
-		dateLabel: '{{UNICEF_EVENT_DATE}}',
 		sortKey: 0,
 		summary:
 			'A crash course on AI delivered to officials of UNICEF, introducing practical AI tools and workflows for development sector professionals.',
@@ -164,7 +159,6 @@ export const events: EventItem[] = [
 		client: 'AIMS Lab, UIU',
 		sector: 'Research & Academia',
 		format: 'Hands-on training',
-		dateLabel: '{{AIMS_EVENT_DATE}}',
 		sortKey: 0,
 		summary:
 			'Hands-on essential AI training with the research engineers of the Advanced Intelligent Multidisciplinary Systems (AIMS) Lab at UIU.',

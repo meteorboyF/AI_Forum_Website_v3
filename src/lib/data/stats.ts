@@ -3,49 +3,44 @@ import { hackathons } from './hackathons';
 import { press } from './press';
 import { trainingClients } from './partners';
 import { hostUniversities } from './hackathons';
+import { PROFESSIONALS_TRAINED } from '$lib/config';
 
 /**
  * Impact numbers for the homepage bar.
  *
- * Wherever a real figure can be derived from the documented datasets
- * (events, press, partners) it is computed here, labelled honestly as
- * a "documented" count. Figures that only the team can supply are
- * placeholder tokens, rendered with a visible marker so they cannot be
- * mistaken for real numbers. Never replace a token with a guess:
- * see CONTENT-TODO.md.
+ * Every figure shown is derived from the documented datasets (events,
+ * press, partners) and grows as items are added; nothing here is
+ * invented or hand-typed. The professionals-trained figure appears
+ * only once the team sets PROFESSIONALS_TRAINED in src/lib/config.ts;
+ * until then it is omitted entirely, never shown as zero.
  */
 export interface Stat {
-	/** Numeric value drives the count-up; null renders the token */
-	value: number | null;
-	token?: string;
+	value: number;
 	suffix?: string;
 	label: string;
 }
 
-export const stats: Stat[] = [
+const derived: Stat[] = [
 	{
-		value: null,
-		token: '{{PROFESSIONALS_TRAINED}}',
-		suffix: '+',
-		label: 'Professionals trained'
+		value: events.length + hackathons.length,
+		label: 'Documented programmes & hackathons'
 	},
 	{
 		value: trainingClients.length,
-		suffix: '+',
-		label: 'Corporate & institutional clients'
-	},
-	{
-		value: events.length + hackathons.length,
-		suffix: '+',
-		label: 'Trainings, events & hackathons'
-	},
-	{
-		value: hostUniversities.length + 1, // host universities plus UIU
-		label: 'University partners'
+		label: 'Client organisations trained'
 	},
 	{
 		value: press.length,
 		suffix: '+',
-		label: 'National media features'
+		label: 'National press features'
+	},
+	{
+		value: hostUniversities.length + 1, // host universities plus UIU
+		label: 'University partners'
 	}
 ];
+
+export const stats: Stat[] =
+	PROFESSIONALS_TRAINED !== null
+		? [{ value: PROFESSIONALS_TRAINED, suffix: '+', label: 'Professionals trained' }, ...derived]
+		: derived;
