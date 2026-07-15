@@ -21,7 +21,7 @@ export interface Stat {
 const derived: Stat[] = [
 	{
 		value: events.length,
-		label: 'Documented programmes'
+		label: 'Programmes delivered'
 	},
 	{
 		value: trainingClients.length,
