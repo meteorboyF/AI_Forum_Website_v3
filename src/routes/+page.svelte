@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
@@ -18,6 +19,19 @@
 	const homePress = press.filter((p) => p.language === 'English').slice(0, 5);
 	const latestEvent = pastEvents[0];
 	const featuredStories = events.filter((event) => event.links.length > 0).slice(0, 3);
+	const heroSlides = [
+		{ image: 'hero/home', alt: 'Bangladesh Society of Physiologists participants with certificates after an AI Essentials workshop', caption: 'AI Essentials workshop · Bangladesh Society of Physiologists' },
+		{ image: 'events/galleries/beprc/20', alt: 'BEPRC professionals gathered after an AI productivity training session', caption: 'AI productivity training · BEPRC' },
+		{ image: 'events/galleries/sonali-intellect/12', alt: 'Banking and FinTech professionals taking part in an AI Forum Bangladesh session', caption: 'AI Essentials · Banking and FinTech professionals' }
+	];
+	let activeHeroSlide = $state(0);
+
+	onMount(() => {
+		const rotation = window.setInterval(() => {
+			activeHeroSlide = (activeHeroSlide + 1) % heroSlides.length;
+		}, 6500);
+		return () => window.clearInterval(rotation);
+	});
 
 	function getLogoUrl(lockup: string): string {
 		const file = lockup.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
@@ -64,20 +78,22 @@
 
 <!-- ============ HERO: kinetic type over full-bleed graded photograph ============ -->
 <section class="on-dark photo-hero scrim-hero relative flex min-h-[76svh] items-center overflow-hidden text-white bg-jamdani-dark sm:min-h-[78svh]">
-	<img
-		src={img('hero/home-sm')}
-		srcset="{img('hero/home-sm')} 960w, {img('hero/home')} 1920w"
-		sizes="100vw"
-		alt="A hall of healthcare professionals at an AI Forum Bangladesh hands-on training at the UIU Innovation Hub"
-		class="absolute inset-0 h-full w-full object-cover"
-		width="1920"
-		height="1121"
-		fetchpriority="high"
-	/>
+	{#each heroSlides as slide, index (slide.image)}
+		<img
+			src={img(slide.image)}
+			alt={slide.alt}
+			class="absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1400ms] ease-out {index === activeHeroSlide ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}"
+			width="1920"
+			height="1121"
+			fetchpriority={index === 0 ? 'high' : undefined}
+			loading={index === 0 ? 'eager' : 'lazy'}
+			aria-hidden={index !== activeHeroSlide}
+		/>
+	{/each}
 	<!-- Jamdani pattern overlay integrated into duotone photograph -->
 	<div class="absolute inset-0 z-5 bg-jamdani-dark opacity-[0.08] pointer-events-none"></div>
 	
-	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-24 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
+	<div class="relative z-10 mx-auto w-full max-w-3xl rounded-2xl border border-aqua-300/20 bg-[#061447]/80 px-5 py-24 shadow-2xl backdrop-blur-[3px] sm:px-8 sm:py-28 lg:px-12 lg:py-32">
 		<p class="eyebrow mb-6" style="--line-delay: 0ms">Training · Innovation · Careers</p>
 		<h1
 			use:weightShift
@@ -103,8 +119,16 @@
 			</div>
 		</div>
 		<p class="mt-8 border-t border-white/20 pt-4 text-xs tracking-wide text-white/65 uppercase">
-			Photograph: AI Essentials workshop with the Bangladesh Society of Physiologists, UIU Innovation Hub, Dhaka
+			{heroSlides[activeHeroSlide].caption}
 		</p>
+	</div>
+
+	<div class="absolute right-5 bottom-5 z-20 flex items-center gap-2 sm:right-8 lg:right-12">
+		{#each heroSlides as slide, index (slide.image)}
+			<button type="button" class="grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-ink-950/35 text-xs font-bold text-white backdrop-blur-sm transition-all hover:border-aqua-300 hover:bg-electric-600 {index === activeHeroSlide ? 'border-aqua-300 bg-electric-600' : ''}" onclick={() => (activeHeroSlide = index)} aria-label={`Show hero photo ${index + 1}: ${slide.caption}`} aria-pressed={index === activeHeroSlide}>
+				{String(index + 1).padStart(2, '0')}
+			</button>
+		{/each}
 	</div>
 
 	<!-- Scroll indicator cue -->
