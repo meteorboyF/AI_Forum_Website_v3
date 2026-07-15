@@ -14,10 +14,12 @@ const BASE = process.argv[3] ?? 'http://localhost:4174';
 
 const CHROME_PATHS = [
 	'C:/Program Files/Google/Chrome/Application/chrome.exe',
-	'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'
+	'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+	'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+	'C:/Program Files/Microsoft/Edge/Application/msedge.exe'
 ];
 const chrome = CHROME_PATHS.find((p) => existsSync(p));
-if (!chrome) throw new Error('Chrome not found');
+if (!chrome) throw new Error('A Chrome or Edge executable was not found');
 
 const pages = [
 	['home', '/'],
@@ -26,8 +28,10 @@ const pages = [
 	['academy', '/our-work/ai-academy/'],
 	['hackathon', '/hackathon/'],
 	['innovation', '/our-work/innovation-ecosystem/'],
+	['career', '/our-work/career-care/'],
 	['news', '/news/'],
-	['corporate', '/corporate-training/']
+	['corporate', '/corporate-training/'],
+	['contact', '/contact-us/']
 ];
 
 const widths = [
