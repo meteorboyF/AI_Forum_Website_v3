@@ -91,7 +91,6 @@ export const press: PressItem[] = [
 		slug: 'dailystar-business-excellence',
 		publication: 'The Daily Star',
 		headline: 'UIU holds seminar on AI for business excellence',
-		dateLabel: '{{BUSINESS_EXCELLENCE_DATE}}',
 		url: 'https://www.thedailystar.net/campus/noticeboard/news/uiu-holds-seminar-ai-business-excellence-4101956',
 		language: 'English',
 		about: 'ai-for-business-excellence'
@@ -100,7 +99,6 @@ export const press: PressItem[] = [
 		slug: 'tbs-business-excellence',
 		publication: 'The Business Standard',
 		headline: 'UIU seminar explores AI for business excellence',
-		dateLabel: '{{BUSINESS_EXCELLENCE_DATE}}',
 		url: 'https://www.tbsnews.net/economy/corporates/uiu-holds-seminar-ai-business-excellence-1354646',
 		language: 'English',
 		about: 'ai-for-business-excellence'
@@ -109,7 +107,6 @@ export const press: PressItem[] = [
 		slug: 'tbsgraduates-business-excellence',
 		publication: 'TBS Graduates',
 		headline: 'Seminar on AI for business excellence held at UIU',
-		dateLabel: '{{BUSINESS_EXCELLENCE_DATE}}',
 		url: 'https://tbsgraduates.net/campus/uiu-holds-seminar-on-ai-for-business-excellence/',
 		language: 'English',
 		about: 'ai-for-business-excellence'

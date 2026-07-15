@@ -38,12 +38,14 @@
 	ogImage="contact/banner"
 />
 
-<section class="on-dark mesh-dark grain relative overflow-hidden py-20 text-white lg:py-24">
-	<div class="relative mx-auto max-w-7xl px-5">
-		<div class="max-w-2xl">
+<section class="on-dark mesh-dark grain relative overflow-hidden pt-36 pb-16 text-white lg:pb-20">
+	<div class="relative mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<div class="max-w-3xl">
 			<Reveal>
-				<p class="eyebrow mb-4">Contact</p>
-				<h1 class="text-4xl font-bold text-balance sm:text-5xl lg:text-6xl">Talk to us</h1>
+				<p class="eyebrow mb-5">Contact</p>
+				<h1 class="font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.98] font-bold tracking-[-0.03em]">
+					<span class="line-mask"><span>Talk to us.</span></span>
+				</h1>
 				<p class="mt-6 text-lg leading-relaxed text-white/80">
 					Training enquiries, partnership ideas, Roadshow visits, press questions: all of it lands
 					in the same inbox and gets read.
@@ -53,25 +55,25 @@
 	</div>
 </section>
 
-<section class="mesh-light py-20 lg:py-24">
-	<div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr]">
+<section class="bg-paper py-24 lg:py-28">
+	<div class="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
 		<Reveal>
 			<SectionHead eyebrow="Direct" title="Reach us anywhere" />
 			<div class="mt-8 space-y-5">
-				<a href="mailto:{CONTACT_EMAIL}" class="block rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
+				<a href="mailto:{CONTACT_EMAIL}" class="block rounded-xl border border-ink-900/10 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Email</p>
 					<p class="mt-1 font-display font-bold text-electric-600">{CONTACT_EMAIL}</p>
 				</a>
-				<a href={SOCIALS.facebook} target="_blank" rel="noopener noreferrer" class="block rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
+				<a href={SOCIALS.facebook} target="_blank" rel="noopener noreferrer" class="block rounded-xl border border-ink-900/10 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Facebook</p>
 					<p class="mt-1 font-display font-bold text-ink-900">aiforumbd.official ↗</p>
 					<p class="mt-1 text-sm text-slate-500">Where events and programmes are announced first.</p>
 				</a>
-				<a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" class="block rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
+				<a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" class="block rounded-xl border border-ink-900/10 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">LinkedIn</p>
 					<p class="mt-1 font-display font-bold text-ink-900">AI Forum Bangladesh ↗</p>
 				</a>
-				<div class="rounded-2xl border border-ink-900/8 bg-white p-5 shadow-card">
+				<div class="rounded-xl border border-ink-900/10 bg-white p-5 shadow-card">
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Booking a training?</p>
 					<p class="mt-1 text-sm leading-relaxed text-slate-600">
 						Use the dedicated
@@ -84,7 +86,7 @@
 
 		<Reveal delay={120}>
 			{#if status === 'success'}
-				<div class="rounded-2xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
+				<div class="rounded-xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
 					<h3 class="text-xl font-bold text-ink-900">Message sent</h3>
 					<p class="mt-2 leading-relaxed text-slate-600">
 						Thanks, {name.split(' ')[0]}. Your message is in our inbox and we will reply to
@@ -92,7 +94,7 @@
 					</p>
 				</div>
 			{:else}
-				<form class="rounded-2xl border border-ink-900/8 bg-white p-7 shadow-card" onsubmit={submit} novalidate>
+				<form class="rounded-xl border border-ink-900/10 bg-white p-7 shadow-card" onsubmit={submit} novalidate>
 					<div class="grid gap-5 sm:grid-cols-2">
 						<div>
 							<label for="c-name" class="mb-1.5 block text-sm font-semibold">Your name</label>

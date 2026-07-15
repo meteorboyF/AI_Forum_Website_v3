@@ -42,7 +42,7 @@
 </script>
 
 <footer class="on-dark mesh-dark grain relative overflow-hidden text-white">
-	<div class="relative mx-auto max-w-7xl px-5 py-16">
+	<div class="relative mx-auto max-w-[88rem] px-5 py-16 sm:px-8 lg:px-12">
 		<div class="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
 			<div class="lg:col-span-2">
 				<img src={brand('aifb-logo-white.svg')} alt="AI Forum Bangladesh" class="h-10 w-auto" width="160" height="60" loading="lazy" />

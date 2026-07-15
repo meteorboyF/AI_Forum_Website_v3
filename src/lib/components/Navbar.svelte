@@ -34,7 +34,7 @@
 </script>
 
 <header class="sticky top-0 z-50 border-b border-ink-900/8 bg-paper/85 backdrop-blur-md">
-	<nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5" aria-label="Main">
+	<nav class="mx-auto flex h-16 max-w-[88rem] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Main">
 		<a href="{base}/" class="flex items-center" onclick={closeAll}>
 			<img src={brand('aifb-logo-blue.svg')} alt="AI Forum Bangladesh" class="h-9 w-auto" width="150" height="56" />
 		</a>

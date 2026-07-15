@@ -5,10 +5,11 @@ import type { Hackathon } from './types';
  * currently upcoming, so the page shows a "stay notified" prompt
  * instead of an empty upcoming section.
  *
- * The previous site listed prize pools and organisers that could not be
- * verified against public sources; those fields are omitted here rather
- * than repeated. Winner and participation figures are placeholder
- * tokens awaiting confirmation (see CONTENT-TODO.md).
+ * The previous site listed prize pools and organisers that could not
+ * be verified against public sources; those fields were not carried
+ * over. Winner and participation figures are added to `recap` only
+ * once the team confirms them (see CONTENT-TODO.md); cards omit the
+ * recap block entirely while it is absent.
  */
 export const hackathons: Hackathon[] = [
 	{
@@ -17,14 +18,8 @@ export const hackathons: Hackathon[] = [
 		subtitle: 'Tackling pressing challenges in healthcare with tech-driven solutions that make an impact.',
 		dateLabel: 'May 2025',
 		venue: 'Rajshahi University, Rajshahi',
-		image: 'hackathon/h1',
 		status: 'past',
-		organiser: 'AI Forum Bangladesh',
-		recap: {
-			teams: '{{CODECURE_2025_TEAMS}}',
-			winner: '{{CODECURE_2025_WINNER}}',
-			problems: '{{CODECURE_2025_PROBLEMS}}'
-		}
+		organiser: 'AI Forum Bangladesh'
 	},
 	{
 		id: 'codecure-2024',
@@ -32,14 +27,8 @@ export const hackathons: Hackathon[] = [
 		subtitle: 'Exploring AI’s role in revolutionising diagnostic accuracy and speed in hospitals.',
 		dateLabel: 'November 2024',
 		venue: 'University of Dhaka, Dhaka',
-		image: 'hackathon/h3',
 		status: 'past',
-		organiser: 'AI Forum Bangladesh',
-		recap: {
-			teams: '{{CODECURE_2024_TEAMS}}',
-			winner: '{{CODECURE_2024_WINNER}}',
-			problems: '{{CODECURE_2024_PROBLEMS}}'
-		}
+		organiser: 'AI Forum Bangladesh'
 	},
 	{
 		id: 'agrohack-2024',
@@ -47,10 +36,8 @@ export const hackathons: Hackathon[] = [
 		subtitle: 'Accelerating agri-tech innovations for sustainability and efficiency.',
 		dateLabel: 'October 2024',
 		venue: 'BUET, Dhaka',
-		image: 'hackathon/h4',
 		status: 'past',
-		organiser: 'AI Forum Bangladesh',
-		recap: { teams: '{{AGROHACK_TEAMS}}', winner: '{{AGROHACK_WINNER}}' }
+		organiser: 'AI Forum Bangladesh'
 	},
 	{
 		id: 'edutech-sprint-2024',
@@ -58,10 +45,8 @@ export const hackathons: Hackathon[] = [
 		subtitle: 'Creating solutions to transform education through adaptive learning and gamification.',
 		dateLabel: 'September 2024',
 		venue: 'BRAC University, Dhaka',
-		image: 'hackathon/h5',
 		status: 'past',
-		organiser: 'AI Forum Bangladesh',
-		recap: { teams: '{{EDUTECH_TEAMS}}', winner: '{{EDUTECH_WINNER}}' }
+		organiser: 'AI Forum Bangladesh'
 	},
 	{
 		id: 'finhack-2024',
@@ -69,10 +54,8 @@ export const hackathons: Hackathon[] = [
 		subtitle: 'Innovating fintech solutions to reach underbanked communities in Bangladesh.',
 		dateLabel: 'August 2024',
 		venue: 'North South University, Dhaka',
-		image: 'hackathon/h6',
 		status: 'past',
-		organiser: 'AI Forum Bangladesh',
-		recap: { teams: '{{FINHACK_TEAMS}}', winner: '{{FINHACK_WINNER}}' }
+		organiser: 'AI Forum Bangladesh'
 	}
 ];
 

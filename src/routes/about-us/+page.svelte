@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
-	import Token from '$lib/components/Token.svelte';
+	import PageIntro from '$lib/components/PageIntro.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { img } from '$lib/img';
@@ -24,55 +24,51 @@
 	title="About Us"
 	description="The story, values, advisors, lead trainer, and team behind AI Forum Bangladesh, an independent organisation building Bangladesh's AI generation."
 	path="/about-us/"
-	ogImage="about/banner"
+	ogImage="hero/about"
+/>
+
+<PageIntro
+	eyebrow="Our story"
+	title="Building Bangladesh’s AI generation"
+	lede="An independent organisation closing the gap between extraordinary AI talent and real opportunity."
+	photo="hero/about"
+	photoAlt="Participants collaborating at an AI Forum Bangladesh event"
 />
 
 <!-- ============ ORIGIN STORY ============ -->
-<section class="on-dark mesh-dark grain relative overflow-hidden py-20 text-white lg:py-28">
-	<div class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2">
-		<Reveal>
-			<p class="eyebrow mb-4">Our story</p>
-			<h1 class="text-4xl font-bold text-balance sm:text-5xl lg:text-6xl lg:leading-[1.08]">
-				We are here to build Bangladesh’s AI generation
-			</h1>
-			<p class="mt-6 text-lg leading-relaxed text-white/80">
-				AI Forum Bangladesh was founded in <Token value={'{{FOUNDING_YEAR}}'} /> by
-				<Token value={'{{FOUNDERS}}'} /> who saw the same gap from different angles: Bangladesh has
-				extraordinary AI talent and almost no structured path from that talent to real opportunity.
-				Students were winning competitions with nowhere to take their ideas. Professionals were
-				watching AI change their industries with no practical way to learn it.
-			</p>
-			<p class="mt-4 text-lg leading-relaxed text-white/80">
-				So we built the missing infrastructure: hands-on training for working professionals,
-				hackathons and roadshows that activate innovators across the country, and career support
-				that connects people to jobs and research placements. Independent, practical, and open to
-				everyone.
-			</p>
+<section class="bg-paper py-24 lg:py-32">
+	<div class="mx-auto grid max-w-[88rem] items-start gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:px-12">
+		<Reveal class="lg:col-span-5">
+			<SectionHead number="01" eyebrow="Why we exist" title="The gap we kept seeing" />
 		</Reveal>
-		<Reveal delay={150}>
-			<img
-				src={img('about/our-journey')}
-				alt="The AI Forum Bangladesh team at work"
-				class="w-full rounded-2xl border border-white/15 shadow-card-lg"
-				width="1200"
-				height="800"
-			/>
+		<Reveal delay={120} class="lg:col-span-7">
+			<div class="space-y-5 text-lg leading-relaxed text-slate-600 lg:pt-10">
+				<p>
+					AI Forum Bangladesh exists because its founders kept seeing the same gap from different
+					angles: Bangladesh has extraordinary AI talent and almost no structured path from that
+					talent to real opportunity. Students were winning competitions with nowhere to take
+					their ideas. Professionals were watching AI change their industries with no practical
+					way to learn it.
+				</p>
+				<p>
+					So we built the missing infrastructure: hands-on training for working professionals,
+					hackathons and roadshows that activate innovators across the country, and career
+					support that connects people to jobs and research placements. Independent, practical,
+					and open to everyone.
+				</p>
+			</div>
 		</Reveal>
 	</div>
-</section>
 
-<!-- ============ MILESTONES ============ -->
-<section class="border-b border-ink-900/8 bg-white py-20 lg:py-24">
-	<div class="mx-auto max-w-7xl px-5">
-		<SectionHead eyebrow="Milestones" title="A short history of momentum" />
-		<ol class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+	<!-- Milestones -->
+	<div class="mx-auto mt-20 max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<ol class="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
 			{#each milestones as m, i (m.title)}
 				<li>
-					<Reveal delay={i * 100} class="relative border-l-2 border-electric-100 pl-5 lg:border-l-0 lg:border-t-2 lg:pt-5 lg:pl-0">
-						<span class="absolute -left-[7px] top-0 h-3 w-3 rounded-full bg-electric-600 lg:-top-[7px] lg:left-0" aria-hidden="true"></span>
-						<p class="font-display text-sm font-bold text-electric-600"><Token value={m.dateLabel} /></p>
-						<h3 class="mt-1.5 font-bold">{m.title}</h3>
-						<p class="mt-1.5 text-sm leading-relaxed text-slate-600">{m.detail}</p>
+					<Reveal delay={i * 100} class="rule-tick relative pt-5">
+						<p class="font-display text-sm font-bold tracking-wide text-electric-600 uppercase">{m.dateLabel}</p>
+						<h3 class="mt-2 font-display font-bold">{m.title}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-slate-600">{m.detail}</p>
 					</Reveal>
 				</li>
 			{/each}
@@ -81,25 +77,23 @@
 </section>
 
 <!-- ============ VALUES (before the people) ============ -->
-<section class="mesh-light py-20 lg:py-24">
-	<div class="mx-auto max-w-7xl px-5">
+<section class="border-t border-ink-900/8 bg-white py-24 lg:py-32">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
+			number="02"
 			eyebrow="How we work"
 			title="Six values that guide everything"
 			lede="Our shared values keep us connected and guide us as one team."
-			align="center"
 		/>
-		<div class="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+		<div class="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
 			{#each values as v, i (v.title)}
 				<Reveal delay={(i % 3) * 100}>
-					<div class="text-center">
-						<div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-card">
-							<svg class="h-6 w-6 text-electric-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d={valueIcons[v.icon]} />
-							</svg>
-						</div>
-						<h3 class="mt-5 text-lg font-bold">{v.title}</h3>
-						<p class="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-slate-600">{v.desc}</p>
+					<div class="rule-tick pt-5">
+						<svg class="h-6 w-6 text-electric-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d={valueIcons[v.icon]} />
+						</svg>
+						<h3 class="mt-4 font-display text-lg font-bold">{v.title}</h3>
+						<p class="mt-2 max-w-sm text-sm leading-relaxed text-slate-600">{v.desc}</p>
 					</div>
 				</Reveal>
 			{/each}
@@ -108,64 +102,61 @@
 </section>
 
 <!-- ============ LEAD TRAINER ============ -->
-<section class="on-dark mesh-dark grain relative overflow-hidden py-20 text-white lg:py-24">
-	<div class="relative mx-auto max-w-7xl px-5">
-		<div class="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-			<Reveal>
-				<div class="relative mx-auto max-w-sm">
-					<div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-electric-600/40 to-aqua-500/30 blur-xl" aria-hidden="true"></div>
-					{#if leadTrainer.image}
-						<img src={img(leadTrainer.image)} alt={leadTrainer.name} class="relative w-full rounded-3xl border border-white/15" width="640" height="640" loading="lazy" />
-					{:else}
-						<div class="relative flex aspect-square w-full items-center justify-center rounded-3xl border border-white/15 bg-ink-800">
-							<span class="font-display text-7xl font-bold text-aqua-400">KM</span>
-							<span class="absolute bottom-4 rounded-full border border-dashed border-gold-500/70 bg-ink-900/80 px-3 py-1 font-mono text-xs text-gold-400">
-								{'{{MAMUN_PHOTO}}'}
-							</span>
-						</div>
-					{/if}
-				</div>
-			</Reveal>
-			<Reveal delay={120}>
-				<p class="eyebrow mb-4">Lead trainer & academic lead</p>
-				<h2 class="text-3xl font-bold sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-					{leadTrainer.name}
-				</h2>
-				<ul class="mt-6 space-y-2.5">
-					{#each leadTrainer.credentials as cred (cred)}
-						<li class="flex items-start gap-3 text-white/85">
-							<svg class="mt-1 h-4 w-4 shrink-0 text-aqua-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-								<path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-							</svg>
-							<span class="text-sm leading-relaxed sm:text-base">{cred}</span>
-						</li>
-					{/each}
-				</ul>
-				<p class="mt-6 leading-relaxed text-white/80">{leadTrainer.summary}</p>
-				<blockquote class="mt-7 border-l-2 border-aqua-400 pl-5 text-lg text-white/90 italic">
-					<Token value={leadTrainer.quote} />
+<section class="on-dark mesh-dark grain relative overflow-hidden py-24 text-white lg:py-32">
+	<div class="relative mx-auto grid max-w-[88rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-12">
+		<Reveal>
+			<div class="mx-auto max-w-sm">
+				{#if leadTrainer.image}
+					<div class="photo rounded-xl">
+						<img src={img(leadTrainer.image)} alt={leadTrainer.name} class="w-full rounded-xl" width="640" height="640" loading="lazy" />
+					</div>
+				{:else}
+					<div class="flex aspect-square w-full items-center justify-center rounded-xl border border-white/15 bg-ink-800">
+						<span class="font-display text-8xl font-bold text-aqua-400/80">KM</span>
+					</div>
+				{/if}
+			</div>
+		</Reveal>
+		<Reveal delay={120}>
+			<p class="eyebrow mb-4">Lead trainer & academic lead</p>
+			<h2 class="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.02] font-bold tracking-[-0.03em]">
+				{leadTrainer.name}
+			</h2>
+			<ul class="mt-7 space-y-2.5">
+				{#each leadTrainer.credentials as cred (cred)}
+					<li class="flex items-start gap-3 text-white/85">
+						<span class="mt-2.5 h-px w-6 shrink-0 bg-aqua-400" aria-hidden="true"></span>
+						<span class="text-sm leading-relaxed sm:text-base">{cred}</span>
+					</li>
+				{/each}
+			</ul>
+			<p class="mt-6 max-w-2xl leading-relaxed text-white/80">{leadTrainer.summary}</p>
+			{#if leadTrainer.quote}
+				<blockquote class="mt-8 max-w-2xl border-l-2 border-aqua-400 pl-6 font-display text-2xl leading-snug text-white/95">
+					“{leadTrainer.quote}”
 				</blockquote>
-			</Reveal>
-		</div>
+			{/if}
+		</Reveal>
 	</div>
 </section>
 
 <!-- ============ ADVISORS ============ -->
-<section class="mesh-light py-20 lg:py-28">
-	<div class="mx-auto max-w-7xl px-5">
+<section class="bg-paper py-24 lg:py-32">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
+			number="03"
 			eyebrow="Advisory board"
 			title="Guided by people who have built world firsts"
 			lede="From the founder and the CEO of Grameenphone to a Princeton physicist and the surgeon behind the world's first Google Glass operation."
 		/>
-		<div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 			{#each advisors as advisor, i (advisor.name)}
 				<Reveal delay={(i % 4) * 90}>
 					<article
-						class="flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg
-							{advisor.featured ? 'border-electric-400/50 ring-1 ring-electric-400/30' : 'border-ink-900/8'}"
+						class="flex h-full flex-col overflow-hidden rounded-xl border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg
+							{advisor.featured ? 'border-electric-600/40 shadow-card' : 'border-ink-900/10'}"
 					>
-						<div class="relative">
+						<div class="photo relative">
 							<img
 								src={img(advisor.image)}
 								alt="Portrait of {advisor.name}"
@@ -175,8 +166,8 @@
 								loading="lazy"
 							/>
 							{#if advisor.featured}
-								<span class="absolute top-3 left-3 rounded-full bg-electric-600 px-3 py-1 font-display text-[0.7rem] font-bold tracking-wider text-white uppercase">
-									Featured advisor
+								<span class="absolute top-3 left-3 z-10 rounded-sm bg-electric-600 px-2.5 py-1 font-display text-[0.65rem] font-bold tracking-widest text-white uppercase">
+									Featured
 								</span>
 							{/if}
 						</div>
@@ -186,7 +177,7 @@
 							</p>
 							<h3 class="mt-1.5 font-semibold text-ink-900">{advisor.name}</h3>
 							{#if advisor.callout}
-								<p class="mt-3 rounded-lg bg-aqua-100/60 px-3 py-2 text-xs leading-relaxed font-semibold text-aqua-600">
+								<p class="mt-3 border-l-2 border-aqua-500 pl-3 text-xs leading-relaxed font-semibold text-ink-900">
 									{advisor.callout}
 								</p>
 							{/if}
@@ -194,7 +185,7 @@
 								<p class="mt-3 text-sm leading-relaxed text-slate-600">{advisor.bio}</p>
 							{/if}
 							<button
-								class="mt-auto pt-4 text-left text-xs font-bold tracking-wide text-slate-500 uppercase transition-colors hover:text-electric-600"
+								class="mt-auto pt-4 text-left text-xs font-bold tracking-widest text-slate-500 uppercase transition-colors hover:text-electric-600"
 								aria-expanded={!!expanded[advisor.name]}
 								onclick={() => (expanded[advisor.name] = !expanded[advisor.name])}
 							>
@@ -209,33 +200,33 @@
 </section>
 
 <!-- ============ TEAM ============ -->
-<section class="border-t border-ink-900/8 bg-white py-20 lg:py-24">
-	<div class="mx-auto max-w-7xl px-5">
-		<SectionHead eyebrow="Core team" title="The people doing the work" />
-		<div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<section class="border-t border-ink-900/8 bg-white py-24 lg:py-32">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<SectionHead number="04" eyebrow="Core team" title="The people doing the work" />
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each team as member, i (member.name)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="flex h-full gap-5 rounded-2xl border border-ink-900/8 bg-paper p-5">
-						<img
-							src={img(member.image)}
-							alt="Portrait of {member.name}"
-							class="h-24 w-24 shrink-0 rounded-xl object-cover"
-							width="640"
-							height="640"
-							loading="lazy"
-						/>
+					<article class="flex h-full gap-5 rounded-xl border border-ink-900/10 bg-paper p-5">
+						<div class="photo h-24 w-24 shrink-0 rounded-lg">
+							<img
+								src={img(member.image)}
+								alt="Portrait of {member.name}"
+								class="h-24 w-24 rounded-lg object-cover"
+								width="640"
+								height="640"
+								loading="lazy"
+							/>
+						</div>
 						<div>
-							<h3 class="font-bold">{member.name}</h3>
-							<p class="font-display text-xs font-semibold tracking-wide text-electric-600 uppercase">
+							<h3 class="font-display font-bold">{member.name}</h3>
+							<p class="font-display text-xs font-semibold tracking-widest text-electric-600 uppercase">
 								{member.role}
 							</p>
-							{#if expanded[member.name]}
-								<p class="mt-2 text-sm leading-relaxed text-slate-600">{member.bio}</p>
-							{:else}
-								<p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600">{member.bio}</p>
-							{/if}
+							<p class="mt-2 text-sm leading-relaxed text-slate-600 {expanded[member.name] ? '' : 'line-clamp-3'}">
+								{member.bio}
+							</p>
 							<button
-								class="mt-2 text-xs font-bold tracking-wide text-slate-500 uppercase transition-colors hover:text-electric-600"
+								class="mt-2 text-xs font-bold tracking-widest text-slate-500 uppercase transition-colors hover:text-electric-600"
 								aria-expanded={!!expanded[member.name]}
 								onclick={() => (expanded[member.name] = !expanded[member.name])}
 							>
