@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import PageIntro from '$lib/components/PageIntro.svelte';
@@ -29,7 +30,7 @@
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<Reveal>
 			<div class="flex flex-col md:flex-row items-center gap-6 rounded-2xl border border-dashed border-ink-900/20 bg-white/70 p-8 shadow-sm">
-				<img src="/images/illustrations/empty-calendar.svg" alt="" class="h-28 w-28 shrink-0" loading="lazy" width="200" height="200" />
+				<img src="{base}/images/illustrations/empty-calendar.svg" alt="" class="h-28 w-28 shrink-0" loading="lazy" width="200" height="200" />
 				<div>
 					<h2 class="font-display text-lg font-bold text-ink-900">No hackathon is currently open for registration</h2>
 					<p class="mt-1.5 max-w-xl text-sm leading-relaxed text-slate-600">
