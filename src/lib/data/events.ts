@@ -134,6 +134,8 @@ export const events: EventItem[] = [
 		sortKey: 0,
 		summary:
 			'A training programme for BEPRC on using AI tools to improve productivity and employee performance, part of AI Forum Bangladesh’s work with government and public sector institutions.',
+		image: 'events/beprc',
+		imageAlt: 'BEPRC professionals taking part in an AI productivity training session',
 		links: [
 			{ label: 'Facebook: programme post', url: 'https://www.facebook.com/share/p/1Abo3wTFpT/' },
 			{ label: 'Facebook: programme photos', url: 'https://www.facebook.com/share/p/1Bq4axhYKi/' }
@@ -148,6 +150,8 @@ export const events: EventItem[] = [
 		sortKey: 0,
 		summary:
 			'A crash course on AI delivered to officials of UNICEF, introducing practical AI tools and workflows for development sector professionals.',
+		image: 'events/unicef',
+		imageAlt: 'UNICEF officials participating in an AI training session',
 		links: [
 			{ label: 'Facebook: programme post', url: 'https://www.facebook.com/share/p/18wAkpwfTH/' },
 			{ label: 'Facebook: programme photos', url: 'https://www.facebook.com/share/p/1DgthBBpvi/' }
@@ -162,6 +166,8 @@ export const events: EventItem[] = [
 		sortKey: 0,
 		summary:
 			'Hands-on essential AI training with the research engineers of the Advanced Intelligent Multidisciplinary Systems (AIMS) Lab at UIU.',
+		image: 'events/aims-lab',
+		imageAlt: 'AIMS Lab research engineers during an essential AI training session',
 		links: [{ label: 'Facebook: programme post', url: 'https://www.facebook.com/share/p/1EsFSsZMqL/' }]
 	}
 ];
