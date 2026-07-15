@@ -1,8 +1,6 @@
 import { events } from './events';
-import { hackathons } from './hackathons';
 import { press } from './press';
 import { trainingClients } from './partners';
-import { hostUniversities } from './hackathons';
 import { PROFESSIONALS_TRAINED } from '$lib/config';
 
 /**
@@ -22,8 +20,8 @@ export interface Stat {
 
 const derived: Stat[] = [
 	{
-		value: events.length + hackathons.length,
-		label: 'Documented programmes & hackathons'
+		value: events.length,
+		label: 'Documented programmes'
 	},
 	{
 		value: trainingClients.length,
@@ -34,10 +32,6 @@ const derived: Stat[] = [
 		suffix: '+',
 		label: 'National press features'
 	},
-	{
-		value: hostUniversities.length + 1, // host universities plus UIU
-		label: 'University partners'
-	}
 ];
 
 export const stats: Stat[] =

@@ -84,22 +84,6 @@ export interface PressItem {
 	about?: string;
 }
 
-export interface Hackathon {
-	id: string;
-	title: string;
-	subtitle: string;
-	dateLabel: string;
-	venue: string;
-	image?: string;
-	status: 'past';
-	organiser: string;
-	/**
-	 * Recap facts (winner, team count, problems solved). Only add once
-	 * confirmed; the card omits the whole block when absent.
-	 */
-	recap?: { teams?: string; winner?: string; problems?: string };
-}
-
 export interface Partner {
 	name: string;
 	/** Short text lockup used until a real logo file is supplied */

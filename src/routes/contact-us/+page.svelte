@@ -33,7 +33,7 @@
 
 <Seo
 	title="Contact Us"
-	description="Get in touch with AI Forum Bangladesh about training, partnerships, hackathons, the AI Roadshow, or anything else."
+	description="Get in touch with AI Forum Bangladesh about training, partnerships, the AI Roadshow, or anything else."
 	path="/contact-us/"
 	ogImage="contact/banner"
 />

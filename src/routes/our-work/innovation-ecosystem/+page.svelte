@@ -7,16 +7,14 @@
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { img } from '$lib/img';
 	import { initiatives } from '$lib/data/innovation';
-	import { hackathons } from '$lib/data/hackathons';
 	import Icons from '$lib/components/Icons.svelte';
 
 	const roadshow = initiatives.find((i) => i.slug === 'ai-roadshow');
-	const recentEvents = hackathons.slice(0, 3);
 </script>
 
 <Seo
 	title="Innovation Ecosystem"
-	description="AI Forum Bangladesh's innovation programmes: the CodeCure hackathons, the divisional AI Roadshow reaching all 8 divisions, Lab 2 Market, and initiatives in development."
+	description="AI Forum Bangladesh's innovation programmes: the divisional AI Roadshow reaching all 8 divisions, Lab 2 Market, and initiatives in development."
 	path="/our-work/innovation-ecosystem/"
 	ogImage="hero/innovation"
 />
@@ -42,41 +40,9 @@
 			<span class="line-mask"><span>Activating the people who will build Bangladesh’s AI future</span></span>
 		</h1>
 		<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/85">
-			Hackathons, roadshows, and summits that turn bold ideas into working solutions, from
+			Roadshows, summits, and innovation programmes that turn bold ideas into working solutions, from
 			university campuses to schools in every division of the country.
 		</p>
-	</div>
-</section>
-
-<!-- ============ RECENT / ONGOING (replaces the expired countdown) ============ -->
-<section class="border-b border-ink-900/8 bg-white py-20 lg:py-24 bg-jamdani-light">
-	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead
-			number="01"
-			eyebrow="Recent events"
-			title="What has been happening"
-			lede="The latest ecosystem events, no countdowns, no stale dates. New events are announced on Facebook and the newsletter first."
-		/>
-		<div class="mt-10 grid gap-6 md:grid-cols-3">
-			{#each recentEvents as event, i (event.id)}
-				<Reveal delay={i * 100}>
-					<article class="card-hover-trigger flex h-full flex-col bg-white border border-ink-900/10 p-7 rounded-2xl shadow-sm">
-						<div class="flex items-center gap-1.5 font-display text-2xl font-bold tracking-[-0.02em] text-electric-600 font-mono">
-							<Icons name="calendar" class="h-5 w-5 text-electric-600/75" strokeWidth={2.2} />
-							{event.dateLabel}
-						</div>
-						<p class="mt-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase inline-flex items-center gap-1">
-							<Icons name="map-pin" class="h-3.5 w-3.5" strokeWidth={2} />
-							{event.venue}
-						</p>
-						<h3 class="mt-4 flex-1 font-display text-lg leading-snug font-bold text-ink-900 text-underline-reveal">{event.title}</h3>
-						<a href="{base}/hackathon/" class="mt-5 inline-flex items-center gap-1 text-xs font-semibold text-electric-600 hover:text-electric-700 uppercase tracking-wider">
-							Event details <Icons name="arrow-right" class="h-3.5 w-3.5" />
-						</a>
-					</article>
-				</Reveal>
-			{/each}
-		</div>
 	</div>
 </section>
 
@@ -131,11 +97,7 @@
 						<p class="flex-1 text-xs sm:text-sm leading-relaxed text-slate-500">{item.desc}</p>
 						{#if item.status === 'active'}
 							<div class="mt-5 pt-3 border-t border-ink-900/5">
-								{#if item.slug === 'innovation-challenge'}
-									<a href="{base}/hackathon/" class="inline-flex items-center gap-1 text-xs font-bold tracking-wider text-electric-600 uppercase hover:text-electric-700">
-										See hackathons <Icons name="arrow-right" class="h-3.5 w-3.5" />
-									</a>
-								{:else if item.slug === 'ai-roadshow'}
+								{#if item.slug === 'ai-roadshow'}
 									<a href="{base}/contact-us/" class="inline-flex items-center gap-1 text-xs font-bold tracking-wider text-electric-600 uppercase hover:text-electric-700">
 										Enquire visit <Icons name="arrow-right" class="h-3.5 w-3.5" />
 									</a>

@@ -53,7 +53,7 @@
 				</p>
 				<p>
 					So we built the missing infrastructure: hands-on training for working professionals,
-					hackathons and roadshows that activate innovators across the country, and career
+					innovation programmes and roadshows that activate innovators across the country, and career
 					support that connects people to jobs and research placements. Independent, practical,
 					and open to everyone.
 				</p>

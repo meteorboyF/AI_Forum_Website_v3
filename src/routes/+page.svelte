@@ -37,10 +37,10 @@
 			title: 'Innovation Ecosystem',
 			href: '/our-work/innovation-ecosystem/',
 			image: 'hero/innovation',
-			imageAlt: 'A packed auditorium of students at an AI Forum Bangladesh hackathon',
-			desc: 'Hackathons, roadshows, and summits that turn bold ideas into working solutions.',
-			proof: 'Ran the CodeCure hackathon series at Rajshahi University, University of Dhaka, BUET, BRAC University, and North South University.',
-			latest: { label: 'Latest: CodeCure 2025 at Rajshahi University', href: '/hackathon/' }
+			imageAlt: 'Students collaborating at an AI Forum Bangladesh innovation event',
+			desc: 'Roadshows, summits, and innovation programmes that turn bold ideas into working solutions.',
+			proof: 'Connecting students, educators, and professionals through practical innovation programmes across Bangladesh.',
+			latest: { label: 'Explore the innovation ecosystem', href: '/our-work/innovation-ecosystem/' }
 		},
 		{
 			title: 'Career Care',
@@ -56,7 +56,7 @@
 
 <Seo
 	title="Responsible AI for All"
-	description="Bangladesh's AI training and innovation organisation. Hands-on AI programmes for industry, government, healthcare, and academia, hackathons across the country, and career support for the AI generation."
+	description="Bangladesh's AI training and innovation organisation. Hands-on AI programmes for industry, government, healthcare, and academia, innovation programmes across the country, and career support for the AI generation."
 	path="/"
 	ogImage="hero/home"
 />
@@ -220,7 +220,7 @@
 		src={img('hero/band-sm')}
 		srcset="{img('hero/band-sm')} 960w, {img('hero/band')} 1920w"
 		sizes="100vw"
-		alt="Students collaborating at an AI Forum Bangladesh hackathon"
+		alt="Students collaborating at an AI Forum Bangladesh innovation event"
 		class="absolute inset-0 h-full w-full object-cover"
 		width="1920"
 		height="1280"

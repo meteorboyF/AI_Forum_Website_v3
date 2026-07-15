@@ -98,8 +98,8 @@ export const milestones = [
 	},
 	{
 		dateLabel: '2024',
-		title: 'CodeCure hackathon series',
-		detail: 'Hackathons hosted with universities including the University of Dhaka, BUET, BRAC University, North South University, and Rajshahi University.'
+		title: 'Innovation programmes across Bangladesh',
+		detail: 'Innovation programmes delivered with universities and communities across Bangladesh.'
 	},
 	{
 		dateLabel: 'Early growth',
