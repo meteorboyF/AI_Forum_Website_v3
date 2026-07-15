@@ -14,8 +14,7 @@ export const leadTrainer = {
 	],
 	summary:
 		'Professor Mamun leads the design and delivery of every AI Forum Bangladesh professional training programme, including engagements for Grameenphone, the Dhaka Stock Exchange, LankaBangla Securities, Sonali Intellect, and healthcare institutions across the country and abroad.',
-	/** Set to a real quote when the team supplies one; the page omits the block until then */
-	quote: null as string | null,
+	quote: 'We want to democratise artificial intelligence across Bangladesh, transforming theoretical potential into practical, industry-led value.',
 	image: null as string | null
 };
 

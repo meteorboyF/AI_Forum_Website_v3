@@ -6,6 +6,7 @@
 	import Marquee from '$lib/components/Marquee.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
+	import Icons from '$lib/components/Icons.svelte';
 	import { weightShift } from '$lib/actions/weightShift';
 	import { img } from '$lib/img';
 	import { stats } from '$lib/data/stats';
@@ -16,6 +17,11 @@
 
 	const homePress = press.filter((p) => p.language === 'English').slice(0, 5);
 	const latestEvent = pastEvents[0];
+
+	function getLogoUrl(lockup: string): string {
+		const file = lockup.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+		return `${base}/images/brand/partners/${file}.svg`;
+	}
 
 	const programmes = [
 		{
@@ -56,7 +62,7 @@
 />
 
 <!-- ============ HERO: kinetic type over full-bleed graded photograph ============ -->
-<section class="on-dark photo-duo scrim-b relative flex min-h-[92svh] items-end overflow-hidden text-white">
+<section class="on-dark photo-duo scrim-b relative flex min-h-[92svh] items-end overflow-hidden text-white bg-jamdani-dark">
 	<img
 		src={img('hero/home-sm')}
 		srcset="{img('hero/home-sm')} 960w, {img('hero/home')} 1920w"
@@ -67,7 +73,10 @@
 		height="1121"
 		fetchpriority="high"
 	/>
-	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 pt-40 pb-12 sm:px-8 lg:px-12 lg:pb-16">
+	<!-- Jamdani pattern overlay integrated into duotone photograph -->
+	<div class="absolute inset-0 z-5 bg-jamdani-dark opacity-[0.08] pointer-events-none"></div>
+	
+	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 pt-40 pb-16 sm:px-8 lg:px-12 lg:pb-20">
 		<p class="eyebrow mb-6" style="--line-delay: 0ms">Training · Innovation · Careers</p>
 		<h1
 			use:weightShift
@@ -87,9 +96,7 @@
 			<div class="flex flex-wrap gap-4">
 				<a href="{base}/events/" class="btn btn-primary">
 					See Our Training Programmes
-					<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="M5 12h14M12 5l7 7-7 7" />
-					</svg>
+					<Icons name="arrow-right" class="h-4.5 w-4.5" strokeWidth={2.5} />
 				</a>
 				<a href="{base}/about-us/" class="btn btn-ghost-dark">Explore Our Team</a>
 			</div>
@@ -98,14 +105,21 @@
 			Photograph: AI Essentials workshop with the Bangladesh Society of Physiologists, UIU Innovation Hub, Dhaka
 		</p>
 	</div>
+
+	<!-- Scroll indicator cue -->
+	<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block">
+		<div class="h-8 w-5 rounded-full border border-white/30 flex items-start justify-center p-1.5 opacity-60">
+			<div class="w-1.5 h-1.5 rounded-full bg-white animate-bounce"></div>
+		</div>
+	</div>
 </section>
 
 <!-- ============ IMPACT: documented numbers only ============ -->
 <section class="bg-paper" aria-label="Impact in numbers">
-	<div class="mx-auto grid max-w-[88rem] grid-cols-2 gap-y-12 px-5 py-16 sm:px-8 lg:grid-cols-4 lg:py-20 lg:px-12">
+	<div class="mx-auto grid grid-cols-2 gap-y-12 px-5 py-16 sm:px-8 lg:grid-cols-4 lg:py-20 lg:px-12 border-b border-ink-900/8">
 		{#each stats as stat, i (stat.label)}
 			<Reveal delay={i * 90} class="border-l border-ink-900/10 pl-6 lg:pl-8 {i === 0 ? 'border-l-0 pl-0 lg:pl-0' : ''}">
-				<p class="font-display text-5xl font-bold tracking-[-0.03em] text-ink-900 lg:text-6xl">
+				<p class="font-display text-5xl font-bold tracking-[-0.03em] text-ink-900 lg:text-6xl font-mono">
 					<CountUp value={stat.value} suffix={stat.suffix ?? ''} />
 				</p>
 				<p class="mt-3 max-w-[16ch] text-sm leading-snug font-medium text-slate-500">{stat.label}</p>
@@ -124,64 +138,72 @@
 			lede="Skills for professionals, momentum for innovators, and pathways for the next generation."
 		/>
 
-		<div class="mt-14 grid gap-6 lg:grid-cols-12">
+		<div class="mt-14 grid gap-8 lg:grid-cols-12">
 			<!-- Feature: AI Academy -->
 			<Reveal class="lg:col-span-7">
 				<a
 					href="{base}{programmes[0].href}"
-					class="group photo relative block h-full min-h-[30rem] overflow-hidden rounded-xl bg-ink-950"
+					class="card-hover-trigger image-zoom-container relative block h-full min-h-[32rem] overflow-hidden rounded-2xl bg-ink-950 shadow-card"
 				>
 					<img
 						src={img(programmes[0].image)}
 						alt={programmes[0].imageAlt}
-						class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+						class="image-zoom-img absolute inset-0 h-full w-full object-cover"
 						width="1400"
 						height="1050"
 						loading="lazy"
 					/>
-					<div class="absolute inset-0 z-10 bg-gradient-to-t from-ink-950/90 via-ink-950/25 to-transparent"></div>
-					<div class="absolute inset-x-0 bottom-0 z-20 p-7 text-white lg:p-9">
-						<p class="eyebrow !text-aqua-400">Flagship programme</p>
-						<h3 class="mt-2 font-display text-3xl font-bold tracking-[-0.02em] lg:text-4xl">
+					<div class="absolute inset-0 z-10 bg-gradient-to-t from-ink-950/95 via-ink-950/30 to-transparent"></div>
+					<div class="absolute inset-x-0 bottom-0 z-20 p-8 text-white lg:p-10">
+						<div class="flex items-center gap-3">
+							<Icons name="academy" class="h-8 w-8 text-aqua-400" />
+							<p class="eyebrow !text-aqua-400">Flagship programme</p>
+						</div>
+						<h3 class="mt-3 font-display text-3xl font-bold tracking-[-0.02em] lg:text-4xl text-underline-reveal">
 							{programmes[0].title}
 						</h3>
 						<p class="mt-3 max-w-lg leading-relaxed text-white/85">{programmes[0].desc}</p>
 						<p class="mt-4 max-w-lg border-l-2 border-aqua-400 pl-4 text-sm leading-relaxed text-white/75">
 							{programmes[0].proof}
 						</p>
-						<span class="link-sweep mt-5 inline-block text-sm font-semibold text-aqua-400">
+						<span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-aqua-400">
 							{programmes[0].latest.label}
+							<Icons name="arrow-right" class="h-4 w-4" />
 						</span>
 					</div>
 				</a>
 			</Reveal>
 
 			<!-- Two stacked -->
-			<div class="grid gap-6 lg:col-span-5">
+			<div class="grid gap-8 lg:col-span-5">
 				{#each programmes.slice(1) as prog, i (prog.title)}
 					<Reveal delay={(i + 1) * 120}>
 						<a
 							href="{base}{prog.href}"
-							class="group grid h-full overflow-hidden rounded-xl border border-ink-900/10 bg-white sm:grid-cols-[0.85fr_1.15fr]"
+							class="card-hover-trigger group grid h-full overflow-hidden rounded-2xl border border-ink-900/10 bg-white sm:grid-cols-[0.85fr_1.15fr] shadow-card"
 						>
-							<div class="photo relative min-h-44">
+							<div class="image-zoom-container relative min-h-48">
 								<img
 									src={img(prog.image + '-sm')}
 									alt={prog.imageAlt}
-									class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+									class="image-zoom-img absolute inset-0 h-full w-full object-cover"
 									width="960"
 									height="640"
 									loading="lazy"
 								/>
 							</div>
-							<div class="flex flex-col p-6 lg:p-7">
-								<h3 class="font-display text-xl font-bold tracking-[-0.01em]">{prog.title}</h3>
+							<div class="flex flex-col p-6 lg:p-8">
+								<div class="flex items-center gap-2.5">
+									<Icons name={prog.title === 'Innovation Ecosystem' ? 'ecosystem' : 'careers'} class="h-5 w-5 text-electric-600" />
+									<h3 class="font-display text-xl font-bold tracking-[-0.01em] text-underline-reveal">{prog.title}</h3>
+								</div>
 								<p class="mt-2 text-sm leading-relaxed text-slate-600">{prog.desc}</p>
 								<p class="mt-3 border-l-2 border-electric-600 pl-3 text-xs leading-relaxed font-medium text-ink-900">
 									{prog.proof}
 								</p>
-								<span class="link-sweep mt-auto pt-4 text-sm font-semibold text-electric-600">
+								<span class="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-semibold text-electric-600">
 									{prog.latest.label}
+									<Icons name="arrow-right" class="h-4 w-4" />
 								</span>
 							</div>
 						</a>
@@ -264,12 +286,18 @@
 	</div>
 	<div class="mt-12">
 		<Marquee speed={55}>
-			{#each partners as partner (partner.name)}
-				<span
-					class="wordmark text-3xl whitespace-nowrap text-ink-900/50 transition-colors hover:text-electric-600 sm:text-4xl"
-					title={partner.name}>{partner.lockup}</span
-				>
-			{/each}
+			<div class="flex items-center gap-16 py-2">
+				{#each partners as partner (partner.name)}
+					<img
+						src={getLogoUrl(partner.lockup)}
+						alt={partner.name}
+						class="h-10 w-auto opacity-40 hover:opacity-90 hover:scale-[1.03] transition-all duration-350 select-none filter contrast-125"
+						loading="lazy"
+						width="160"
+						height="55"
+					/>
+				{/each}
+			</div>
 		</Marquee>
 	</div>
 </section>
@@ -293,13 +321,16 @@
 				{/each}
 			{:else}
 				<Reveal>
-					<div class="flex h-full flex-col justify-center rounded-xl border border-dashed border-ink-900/20 bg-white/60 p-8">
-						<h3 class="font-display text-xl font-bold">The next programme is being scheduled</h3>
-						<p class="mt-2 text-sm leading-relaxed text-slate-600">
-							New trainings and events are announced first on our Facebook page and newsletter.
-							Subscribe below and you will hear about the next one before anyone else.
-						</p>
-						<a href="#newsletter" class="btn btn-electric mt-6 self-start">Get notified</a>
+					<div class="flex h-full flex-col md:flex-row items-center gap-6 rounded-2xl border border-dashed border-ink-900/20 bg-white/60 p-8 shadow-sm">
+						<img src="{base}/images/illustrations/empty-calendar.svg" alt="" class="h-28 w-28 shrink-0" loading="lazy" width="200" height="200" />
+						<div>
+							<h3 class="font-display text-xl font-bold">The next programme is being scheduled</h3>
+							<p class="mt-2 text-sm leading-relaxed text-slate-600">
+								New trainings and events are announced first on our Facebook page and newsletter.
+								Subscribe below and you will hear about the next one before anyone else.
+							</p>
+							<a href="#newsletter" class="btn btn-electric mt-4 self-start !py-2 !px-4 text-sm">Get notified</a>
+						</div>
 					</div>
 				</Reveal>
 			{/if}
