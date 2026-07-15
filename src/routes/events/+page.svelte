@@ -46,8 +46,8 @@
 
 <PageIntro
 	eyebrow="Events & Training"
-	title="Delivered, documented, covered by the press"
-	lede="Every programme here actually happened: real rooms, real professionals, with photos, official posts, and national press coverage to show for it."
+	title="Training programmes and events"
+	lede="Explore AI Forum Bangladesh programmes, including event highlights, photo galleries, official updates, and press coverage."
 	photo="hero/events"
 	photoAlt="Healthcare professionals taking part in an AI Forum Bangladesh training session"
 >
@@ -76,10 +76,9 @@
 			<Reveal>
 				<div class="mt-12 flex flex-col items-start gap-5 rounded-xl border border-dashed border-ink-900/20 bg-white/70 p-8 sm:flex-row sm:items-center sm:justify-between">
 					<div>
-						<h3 class="font-display text-lg font-bold">The next public programme is being scheduled</h3>
+						<h3 class="font-display text-lg font-bold">New public programmes will be announced soon</h3>
 						<p class="mt-1.5 max-w-xl text-sm leading-relaxed text-slate-600">
-							Institutional trainings run year-round on request. Public programmes and events are
-							announced on our Facebook page and newsletter first.
+							Institutional training is available throughout the year. Subscribe for updates on upcoming public programmes and events.
 						</p>
 					</div>
 					<a href="#newsletter" class="btn btn-electric shrink-0">Get notified</a>
@@ -114,7 +113,7 @@
 			number="02"
 			eyebrow="Delivered"
 			title="Past programmes and recaps"
-			lede="Newest first. Follow the official posts for photo albums, and the press links for third-party coverage."
+			lede="Browse programme highlights, photo galleries, official updates, and media coverage."
 		/>
 		<div class="mt-10 flex flex-col gap-3 rounded-xl border border-ink-900/8 bg-paper p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
 			<label class="relative block w-full sm:max-w-md">
@@ -136,7 +135,7 @@
 				</select>
 			</label>
 		</div>
-		<p class="mt-4 text-xs font-medium text-slate-500">{filteredPastEvents.length} {filteredPastEvents.length === 1 ? 'programme' : 'programmes'} shown</p>
+		<p class="mt-4 text-xs font-medium text-slate-500">{filteredPastEvents.length} {filteredPastEvents.length === 1 ? 'programme' : 'programmes'}</p>
 		<div class="mt-14 space-y-12">
 			{#each filteredPastEvents as event, i (event.slug)}
 				<Reveal delay={Math.min(i, 2) * 80}>

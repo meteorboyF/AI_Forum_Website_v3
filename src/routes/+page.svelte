@@ -349,10 +349,9 @@
 					<div class="flex h-full flex-col md:flex-row items-center gap-6 rounded-2xl border border-dashed border-ink-900/20 bg-white/60 p-8 shadow-sm">
 						<img src="{base}/images/illustrations/empty-calendar.svg" alt="" class="h-28 w-28 shrink-0" loading="lazy" width="200" height="200" />
 						<div>
-							<h3 class="font-display text-xl font-bold">The next programme is being scheduled</h3>
+							<h3 class="font-display text-xl font-bold">New programmes will be announced soon</h3>
 							<p class="mt-2 text-sm leading-relaxed text-slate-600">
-								New trainings and events are announced first on our Facebook page and newsletter.
-								Subscribe below and you will hear about the next one before anyone else.
+								Subscribe for updates on upcoming training programmes and events.
 							</p>
 							<a href="#newsletter" class="btn btn-electric mt-4 self-start !py-2 !px-4 text-sm">Get notified</a>
 						</div>
