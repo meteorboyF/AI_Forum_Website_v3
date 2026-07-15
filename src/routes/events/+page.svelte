@@ -15,6 +15,26 @@
 
 	const quotes = testimonials.slice(0, 2);
 	let selectedEvent = $state<EventItem | null>(null);
+	let eventSearch = $state('');
+	let eventSort = $state<'newest' | 'oldest' | 'az'>('newest');
+	let filteredPastEvents = $derived.by(() => {
+		const query = eventSearch.trim().toLocaleLowerCase();
+		const matching = pastEvents.filter((event) =>
+			[event.title, event.client, event.sector, event.format, event.venue, event.dateLabel, event.summary]
+				.filter(Boolean)
+				.join(' ')
+				.toLocaleLowerCase()
+				.includes(query)
+		);
+
+		return matching.sort((a, b) => {
+			if (eventSort === 'az') return a.title.localeCompare(b.title);
+			if (a.sortKey === 0 && b.sortKey === 0) return a.title.localeCompare(b.title);
+			if (a.sortKey === 0) return 1;
+			if (b.sortKey === 0) return -1;
+			return eventSort === 'newest' ? b.sortKey - a.sortKey : a.sortKey - b.sortKey;
+		});
+	});
 </script>
 
 <Seo
@@ -96,8 +116,29 @@
 			title="Past programmes and recaps"
 			lede="Newest first. Follow the official posts for photo albums, and the press links for third-party coverage."
 		/>
+		<div class="mt-10 flex flex-col gap-3 rounded-xl border border-ink-900/8 bg-paper p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+			<label class="relative block w-full sm:max-w-md">
+				<span class="sr-only">Search delivered programmes</span>
+				<input
+					type="search"
+					bind:value={eventSearch}
+					placeholder="Search programmes, organisations, or sectors"
+					class="w-full rounded-lg border border-ink-900/12 bg-white px-4 py-3 pr-10 text-sm text-ink-900 outline-none transition-colors placeholder:text-slate-400 focus:border-electric-600 focus:ring-2 focus:ring-electric-600/15"
+				/>
+				<span class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400" aria-hidden="true">⌕</span>
+			</label>
+			<label class="flex shrink-0 items-center gap-3 text-sm font-semibold text-slate-600">
+				<span>Sort</span>
+				<select bind:value={eventSort} class="rounded-lg border border-ink-900/12 bg-white px-3 py-3 text-sm font-semibold text-ink-900 outline-none transition-colors focus:border-electric-600 focus:ring-2 focus:ring-electric-600/15">
+					<option value="newest">Newest first</option>
+					<option value="oldest">Oldest first</option>
+					<option value="az">A–Z</option>
+				</select>
+			</label>
+		</div>
+		<p class="mt-4 text-xs font-medium text-slate-500">{filteredPastEvents.length} {filteredPastEvents.length === 1 ? 'programme' : 'programmes'} shown</p>
 		<div class="mt-14 space-y-12">
-			{#each pastEvents as event, i (event.slug)}
+			{#each filteredPastEvents as event, i (event.slug)}
 				<Reveal delay={Math.min(i, 2) * 80}>
 					<article
 						id={event.slug}
@@ -215,6 +256,13 @@
 					</article>
 				</Reveal>
 			{/each}
+			{#if filteredPastEvents.length === 0}
+				<div class="rounded-2xl border border-dashed border-ink-900/20 bg-paper p-10 text-center">
+					<p class="font-display text-xl font-bold text-ink-900">No programmes found</p>
+					<p class="mt-2 text-sm text-slate-600">Try a different organisation, sector, or programme name.</p>
+					<button type="button" class="mt-5 text-sm font-bold text-electric-600 hover:text-ink-900" onclick={() => (eventSearch = '')}>Clear search</button>
+				</div>
+			{/if}
 		</div>
 	</div>
 </section>
