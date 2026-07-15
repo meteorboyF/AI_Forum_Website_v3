@@ -49,7 +49,7 @@
 	title="Delivered, documented, covered by the press"
 	lede="Every programme here actually happened: real rooms, real professionals, with photos, official posts, and national press coverage to show for it."
 	photo="hero/events"
-	photoAlt="An online session of AI Essentials for Healthcare Professionals in Pakistan"
+	photoAlt="Healthcare professionals taking part in an AI Forum Bangladesh training session"
 >
 	<a href="{base}/corporate-training/" class="btn btn-primary">Request a Training</a>
 </PageIntro>
