@@ -139,6 +139,24 @@
 								</p>
 							{/if}
 							<p class="mt-5 text-sm sm:text-base leading-relaxed text-slate-600">{event.summary}</p>
+
+							{#if event.highlights && event.highlights.length > 0}
+								<div class="mt-6 border-l-2 border-aqua-500 pl-4">
+									<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">What the programme covered</p>
+									<ul class="mt-2 space-y-1.5 text-sm leading-relaxed text-slate-600">
+										{#each event.highlights as highlight (highlight)}
+											<li>{highlight}</li>
+										{/each}
+									</ul>
+								</div>
+							{/if}
+
+							{#if event.attendees}
+								<div class="mt-5 rounded-xl bg-white/70 p-4">
+									<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Who was there</p>
+									<p class="mt-2 text-sm leading-relaxed text-slate-600">{event.attendees}</p>
+								</div>
+							{/if}
  
 							{#if event.links.length > 0}
 								<div class="mt-6">

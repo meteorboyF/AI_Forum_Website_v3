@@ -17,6 +17,13 @@ export const events: EventItem[] = [
 		sortKey: 20251005,
 		summary:
 			'A two-day hands-on programme at the UIU Innovation Hub, organised by IRIIC-UIU with AI Forum Bangladesh. Thirty LankaBangla Securities officials trained on applying AI to financial operations, risk management, trade execution, capital market research, and strategy. The programme was covered by more than eight national news outlets.',
+		highlights: [
+			'Practical AI applications for financial operations and risk management',
+			'Trade execution, capital-market research, and strategic decision-making',
+			'Hands-on exercises, demonstrations, and cross-functional discussion'
+		],
+		attendees:
+			'Mohammed Nasir Uddin Chowdhury, Managing Director; Khandoker Saffat Reza, CEO; S.A.R. Md. Muinul Islam, CTO; Senior General Manager Mohammad Amir Hossain; AGM Md. Jahangir Hossain; and officials from management, digital transformation, finance, trade, risk, operations, and research.',
 		image: 'events/lankabangla',
 		imageAlt: 'LankaBangla Securities officials receiving certificates at the UIU Innovation Hub',
 		links: [
@@ -117,7 +124,15 @@ export const events: EventItem[] = [
 		sector: 'Business',
 		format: 'Seminar with national media coverage',
 		venue: 'United International University, Dhaka',
-		sortKey: 20260101,
+		dateLabel: '7 February 2026',
+		sortKey: 20260207,
+		highlights: [
+			'AI-driven decision-making, management efficiency, and customer engagement',
+			'Emerging AI trends, policy considerations, and human resource management',
+			'Skills and strategic planning for sustainable business growth'
+		],
+		attendees:
+			'Prof. Dr Md Abul Kashem Mia, Vice-Chancellor of UIU, attended as chief guest. Prof. Dr Hasan Sarwar and Prof. Dr Khondaker Abdullah Al Mamun were keynote speakers, and Professor Emeritus Dr M Rezwan Khan delivered the vote of thanks.',
 		summary:
 			'A seminar at UIU on AI’s role in decision-making, management efficiency, customer engagement, automation, supply chain optimisation, financial forecasting, HR, policy, and business growth. The event received coverage across major Bangladeshi media outlets including The Daily Star and The Business Standard.',
 		image: 'events/business-excellence-press',
