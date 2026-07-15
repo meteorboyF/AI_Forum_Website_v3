@@ -245,7 +245,7 @@
 		src={img('hero/band-sm')}
 		srcset="{img('hero/band-sm')} 960w, {img('hero/band')} 1920w"
 		sizes="100vw"
-		alt="Students collaborating at an AI Forum Bangladesh innovation event"
+		alt="A facilitator leading an AI Forum Bangladesh healthcare training session"
 		class="absolute inset-0 h-full w-full object-cover"
 		width="1920"
 		height="1280"
