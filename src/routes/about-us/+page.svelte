@@ -10,6 +10,15 @@
 	import Icons from '$lib/components/Icons.svelte';
 
 	let expanded = $state<Record<string, boolean>>({});
+	let activeMilestone = $state(0);
+	let activeValue = $state(0);
+	const journeyPhotos = [
+		'hero/about',
+		'events/galleries/aims-lab/1',
+		'events/galleries/ogsb/3',
+		'events/galleries/lankabangla/1',
+		'events/galleries/pill/1'
+	];
 
 	const valueIcons: Record<string, string> = {
 		people: 'M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6-1.13a4 4 0 1 0-4-6.9M16 3.13a4 4 0 0 1 0 7.75',
@@ -61,23 +70,38 @@
 		</Reveal>
 	</div>
 
-	<!-- Milestones -->
+	<!-- Milestones: interactive journey -->
 	<div class="mx-auto mt-24 max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<h3 class="eyebrow mb-8 text-center text-slate-400">Milestone timeline</h3>
-		<ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-			{#each milestones as m, i (m.title)}
-				<li>
-					<Reveal delay={i * 100} class="h-full rounded-2xl border border-ink-900/6 bg-white/60 p-6 shadow-sm hover:border-electric-600/30 transition-all duration-300 hover:shadow-card">
-						<div class="flex items-center justify-between border-b border-ink-900/6 pb-3">
-							<span class="font-display text-xs font-bold tracking-widest text-electric-600 uppercase font-mono">{m.dateLabel}</span>
-							<div class="h-2 w-2 rounded-full bg-electric-600/40"></div>
-						</div>
-						<h4 class="mt-4 font-display font-bold text-ink-900 text-base">{m.title}</h4>
-						<p class="mt-2 text-xs leading-relaxed text-slate-500">{m.detail}</p>
-					</Reveal>
-				</li>
-			{/each}
-		</ol>
+		<div class="flex flex-wrap items-end justify-between gap-4">
+			<div>
+				<p class="eyebrow">Our journey</p>
+				<h3 class="mt-2 font-display text-2xl font-bold tracking-[-0.02em] text-ink-900 sm:text-3xl">Move through the moments that shaped us</h3>
+			</div>
+			<p class="text-sm text-slate-500">Select a milestone to explore</p>
+		</div>
+		<div class="mt-9 overflow-x-auto pb-3">
+			<div class="relative flex min-w-[48rem] items-start justify-between before:absolute before:top-5 before:right-5 before:left-5 before:h-px before:bg-electric-600/20">
+				{#each milestones as milestone, index (milestone.title)}
+					<button type="button" class="relative z-10 flex w-32 flex-col items-center text-center" onclick={() => (activeMilestone = index)} aria-pressed={activeMilestone === index}>
+						<span class="grid h-10 w-10 place-items-center rounded-full border-2 transition-all duration-300 {activeMilestone === index ? 'border-electric-600 bg-electric-600 text-white shadow-lg shadow-electric-600/30' : 'border-paper bg-white text-electric-600 hover:border-electric-600'}">{String(index + 1).padStart(2, '0')}</span>
+						<span class="mt-3 text-[0.65rem] font-bold tracking-wide text-slate-500 uppercase">{milestone.dateLabel}</span>
+					</button>
+				{/each}
+			</div>
+		</div>
+		<Reveal>
+			<div class="mt-5 grid overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-card lg:grid-cols-[0.9fr_1.1fr]">
+				<div class="photo min-h-64 bg-ink-950">
+					<img src={img(journeyPhotos[activeMilestone])} alt="AI Forum Bangladesh journey milestone" class="h-full w-full object-cover" width="1200" height="800" loading="lazy" />
+				</div>
+				<div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+					<p class="font-display text-xs font-bold tracking-widest text-electric-600 uppercase">{milestones[activeMilestone].dateLabel}</p>
+					<h4 class="mt-3 font-display text-3xl leading-tight font-bold tracking-[-0.025em] text-ink-900">{milestones[activeMilestone].title}</h4>
+					<p class="mt-5 max-w-xl text-base leading-relaxed text-slate-600">{milestones[activeMilestone].detail}</p>
+					<p class="mt-8 text-xs font-bold tracking-widest text-slate-400 uppercase">Milestone {String(activeMilestone + 1).padStart(2, '0')} of {String(milestones.length).padStart(2, '0')}</p>
+				</div>
+			</div>
+		</Reveal>
 	</div>
 </section>
 
@@ -90,20 +114,29 @@
 			title="Six values that guide everything"
 			lede="Our shared values keep us connected and guide us as one team."
 		/>
-		<div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-			{#each values as v, i (v.title)}
-				<Reveal delay={(i % 3) * 100}>
-					<div class="h-full rounded-2xl border border-ink-900/10 bg-white p-7 shadow-sm transition-all duration-300 hover:border-electric-600/30 hover:shadow-card">
-						<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-electric-50 text-electric-600">
-							<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d={valueIcons[v.icon]} />
-							</svg>
-						</div>
-						<h3 class="mt-5 font-display text-lg font-bold text-ink-900">{v.title}</h3>
-						<p class="mt-2 text-sm leading-relaxed text-slate-600">{v.desc}</p>
+		<div class="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+			<Reveal>
+				<div class="sticky top-24 overflow-hidden rounded-2xl bg-ink-950 p-8 text-white shadow-card lg:p-10">
+					<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-aqua-400 text-ink-950">
+						<svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={valueIcons[values[activeValue].icon]} /></svg>
 					</div>
-				</Reveal>
-			{/each}
+					<p class="mt-10 text-xs font-bold tracking-[0.16em] text-aqua-400 uppercase">Value {String(activeValue + 1).padStart(2, '0')} / {String(values.length).padStart(2, '0')}</p>
+					<h3 class="mt-3 font-display text-4xl leading-[1.02] font-bold tracking-[-0.03em]">{values[activeValue].title}</h3>
+					<p class="mt-6 text-lg leading-relaxed text-white/80">{values[activeValue].desc}</p>
+				</div>
+			</Reveal>
+			<div class="grid gap-3 sm:grid-cols-2">
+				{#each values as value, index (value.title)}
+					<Reveal delay={(index % 2) * 80}>
+						<button type="button" class="group flex h-full w-full items-center gap-4 rounded-xl border p-5 text-left transition-all duration-300 {activeValue === index ? 'border-electric-600 bg-electric-600 text-white shadow-lg shadow-electric-600/20' : 'border-ink-900/10 bg-white text-ink-900 hover:border-electric-600/35 hover:shadow-card'}" onclick={() => (activeValue = index)} aria-pressed={activeValue === index}>
+							<span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg {activeValue === index ? 'bg-white/15 text-aqua-300' : 'bg-electric-50 text-electric-600'}">
+								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={valueIcons[value.icon]} /></svg>
+							</span>
+							<span class="font-display text-lg leading-tight font-bold">{value.title}</span>
+						</button>
+					</Reveal>
+				{/each}
+			</div>
 		</div>
 	</div>
 </section>
