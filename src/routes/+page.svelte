@@ -12,11 +12,12 @@
 	import { stats } from '$lib/data/stats';
 	import { partners } from '$lib/data/partners';
 	import { press } from '$lib/data/press';
-	import { upcomingEvents, pastEvents } from '$lib/data/events';
+	import { upcomingEvents, pastEvents, events } from '$lib/data/events';
 	import { PROFESSIONALS_TRAINED } from '$lib/config';
 
 	const homePress = press.filter((p) => p.language === 'English').slice(0, 5);
 	const latestEvent = pastEvents[0];
+	const featuredStories = events.filter((event) => event.links.length > 0).slice(0, 3);
 
 	function getLogoUrl(lockup: string): string {
 		const file = lockup.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
@@ -359,6 +360,38 @@
 					</a>
 				</Reveal>
 			{/if}
+		</div>
+	</div>
+</section>
+
+<!-- ============ DOCUMENTED STORIES ============ -->
+<section class="border-b border-ink-900/8 bg-white py-20 lg:py-24">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<SectionHead
+			eyebrow="From the field"
+			title="Stories from the work"
+			lede="Follow the official updates from programmes delivered with professionals, researchers, and public institutions across Bangladesh and beyond."
+		/>
+		<div class="mt-12 grid gap-6 lg:grid-cols-3">
+			{#each featuredStories as story, i (story.slug)}
+				<Reveal delay={i * 90}>
+					<article class="flex h-full flex-col rounded-2xl border border-ink-900/10 bg-paper p-7 shadow-card">
+						<p class="eyebrow">{story.sector}</p>
+						<h3 class="mt-3 font-display text-xl font-bold leading-snug text-ink-900">{story.title}</h3>
+						{#if story.client}
+							<p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{story.client}</p>
+						{/if}
+						<p class="mt-4 flex-1 text-sm leading-relaxed text-slate-600">{story.summary}</p>
+						<div class="mt-6 flex flex-wrap gap-2">
+							{#each story.links as link (link.url)}
+								<a href={link.url} target="_blank" rel="noopener noreferrer" class="rounded-md border border-ink-900/12 bg-white px-3 py-1.5 text-xs font-semibold text-ink-900 hover:border-electric-600 hover:text-electric-600">
+									{link.label} ↗
+								</a>
+							{/each}
+						</div>
+					</article>
+				</Reveal>
+			{/each}
 		</div>
 	</div>
 </section>
