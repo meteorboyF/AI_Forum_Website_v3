@@ -70,6 +70,12 @@ export interface EventItem {
 	attendees?: string;
 	image?: string;
 	imageAlt?: string;
+	/** Local photo set supplied for this documented programme. */
+	gallery?: {
+		folder: string;
+		count: number;
+		label: string;
+	};
 	links: { label: string; url: string }[];
 	/** Slugs into the press dataset for coverage of this event */
 	pressSlugs?: string[];

@@ -26,6 +26,7 @@ export const events: EventItem[] = [
 			'Mohammed Nasir Uddin Chowdhury, Managing Director; Khandoker Saffat Reza, CEO; S.A.R. Md. Muinul Islam, CTO; Senior General Manager Mohammad Amir Hossain; AGM Md. Jahangir Hossain; and officials from management, digital transformation, finance, trade, risk, operations, and research.',
 		image: 'events/lankabangla',
 		imageAlt: 'LankaBangla Securities officials receiving certificates at the UIU Innovation Hub',
+		gallery: { folder: 'lankabangla', count: 54, label: 'LankaBangla Securities training' },
 		links: [
 			{ label: 'Facebook: training in progress', url: 'https://www.facebook.com/share/p/1RCs2zLJp5/' },
 			{ label: 'Facebook: programme recap', url: 'https://www.facebook.com/share/p/1CkZhCWzd6/' }
@@ -55,6 +56,7 @@ export const events: EventItem[] = [
 			'A hands-on AI training programme for healthcare professionals at OGSB Hospital & IRCH. Doctors and clinical professionals worked with practical AI tools for improving healthcare workflows and professional efficiency.',
 		image: 'events/ogsb',
 		imageAlt: 'Doctors and clinical professionals with training certificates at OGSB Hospital',
+		gallery: { folder: 'ogsb', count: 29, label: 'OGSB Hospital and IRCH training' },
 		links: [
 			{ label: 'Facebook: doctors training', url: 'https://www.facebook.com/share/p/1DFhJErHes/' },
 			{ label: 'Facebook: programme photos', url: 'https://www.facebook.com/share/p/1BMzVxsVii/' }
@@ -74,6 +76,7 @@ export const events: EventItem[] = [
 			'AI Forum Bangladesh collaborated with the Pakistan Institute of Living and Learning, IRIIC, and United International University on a two-day online programme for healthcare professionals in Pakistan: the organisation’s first sector-focused AI capacity building delivered beyond Bangladesh.',
 		image: 'events/pill',
 		imageAlt: 'Online session of AI Essentials for Healthcare Professionals in Pakistan',
+		gallery: { folder: 'pill', count: 9, label: 'Pakistan healthcare professionals training' },
 		links: [
 			{ label: 'Facebook: day one recap', url: 'https://www.facebook.com/share/p/1BJL3a6Qcf/' },
 			{ label: 'Facebook: programme post', url: 'https://www.facebook.com/share/p/1GJPaB45hG/' }
@@ -93,6 +96,7 @@ export const events: EventItem[] = [
 			'A focused AI training programme for officials of Sonali Intellect Limited, designed for professionals working in digital finance, financial operations, and technology-enabled banking services.',
 		image: 'events/sonali-intellect',
 		imageAlt: 'Banking and FinTech professionals during an AI training session',
+		gallery: { folder: 'sonali-intellect', count: 17, label: 'Banking and FinTech training' },
 		links: [
 			{ label: 'Facebook: announcement', url: 'https://www.facebook.com/share/p/17z9hhUwGj/' },
 			{ label: 'Facebook: training in progress', url: 'https://www.facebook.com/share/p/1FUawMEHiJ/' },
@@ -112,6 +116,7 @@ export const events: EventItem[] = [
 			'A full-day hands-on workshop with the Bangladesh Society of Physiologists at the UIU Innovation Hub, focused on practical AI applications for healthcare and physiology professionals.',
 		image: 'events/bsp',
 		imageAlt: 'Bangladesh Society of Physiologists workshop at the UIU Innovation Hub',
+		gallery: { folder: 'bsp', count: 11, label: 'Bangladesh Society of Physiologists workshop' },
 		links: [
 			{ label: 'Facebook: workshop recap', url: 'https://www.facebook.com/share/p/1J9LeGkznG/' },
 			{ label: 'Facebook: programme photos', url: 'https://www.facebook.com/share/p/1NpvRW54jV/' }
@@ -151,6 +156,7 @@ export const events: EventItem[] = [
 			'A training programme for BEPRC on using AI tools to improve productivity and employee performance, part of AI Forum Bangladesh’s work with government and public sector institutions.',
 		image: 'events/beprc',
 		imageAlt: 'BEPRC professionals taking part in an AI productivity training session',
+		gallery: { folder: 'beprc', count: 36, label: 'BEPRC productivity training' },
 		links: [
 			{ label: 'Facebook: programme post', url: 'https://www.facebook.com/share/p/1Abo3wTFpT/' },
 			{ label: 'Facebook: programme photos', url: 'https://www.facebook.com/share/p/1Bq4axhYKi/' }
@@ -167,6 +173,7 @@ export const events: EventItem[] = [
 			'A crash course on AI delivered to officials of UNICEF, introducing practical AI tools and workflows for development sector professionals.',
 		image: 'events/unicef',
 		imageAlt: 'UNICEF officials participating in an AI training session',
+		gallery: { folder: 'unicef', count: 29, label: 'UNICEF AI crash course' },
 		links: [
 			{ label: 'Facebook: programme post', url: 'https://www.facebook.com/share/p/18wAkpwfTH/' },
 			{ label: 'Facebook: programme photos', url: 'https://www.facebook.com/share/p/1DgthBBpvi/' }
@@ -183,6 +190,7 @@ export const events: EventItem[] = [
 			'Hands-on essential AI training with the research engineers of the Advanced Intelligent Multidisciplinary Systems (AIMS) Lab at UIU.',
 		image: 'events/aims-lab',
 		imageAlt: 'AIMS Lab research engineers during an essential AI training session',
+		gallery: { folder: 'aims-lab', count: 11, label: 'AIMS Lab research engineers training' },
 		links: [{ label: 'Facebook: programme post', url: 'https://www.facebook.com/share/p/1EsFSsZMqL/' }]
 	}
 ];
