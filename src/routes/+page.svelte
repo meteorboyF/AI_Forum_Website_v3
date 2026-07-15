@@ -93,7 +93,7 @@
 	<!-- Jamdani pattern overlay integrated into duotone photograph -->
 	<div class="absolute inset-0 z-5 bg-jamdani-dark opacity-[0.08] pointer-events-none"></div>
 	
-	<div class="relative z-10 mx-auto w-full max-w-3xl rounded-2xl border border-aqua-300/20 bg-[#061447]/80 px-5 py-24 shadow-2xl backdrop-blur-[3px] sm:px-8 sm:py-28 lg:px-12 lg:py-32">
+	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-24 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
 		<p class="eyebrow mb-6" style="--line-delay: 0ms">Training · Innovation · Careers</p>
 		<h1
 			use:weightShift
