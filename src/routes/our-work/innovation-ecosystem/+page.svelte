@@ -3,11 +3,9 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import StatusTag from '$lib/components/StatusTag.svelte';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { img } from '$lib/img';
 	import { initiatives } from '$lib/data/innovation';
-	import Icons from '$lib/components/Icons.svelte';
 
 	const roadshow = initiatives.find((i) => i.slug === 'ai-roadshow');
 </script>
@@ -82,37 +80,30 @@
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="02"
-			eyebrow="The programmes"
-			title="Eight initiatives, honestly labelled"
-			lede="Initiatives marked as coming soon are in development; there is nothing behind those names to click yet, and we would rather say so than link you to an empty page."
+			eyebrow="Coming soon"
+			title="More ways to learn, build, and connect"
+			lede="We are shaping the next set of AI Forum Bangladesh programmes now. When each one is ready, you will find the details here."
 		/>
-		<div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-			{#each initiatives as item, i (item.slug)}
-				<Reveal delay={(i % 4) * 80}>
-					<article class="card-hover-trigger flex h-full flex-col rounded-2xl border border-ink-900/10 bg-white p-7 shadow-sm">
-						<div class="flex items-start justify-between gap-3 pb-3 border-b border-ink-900/5 mb-4">
-							<h3 class="font-display font-bold text-ink-900 text-base leading-tight">{item.name}</h3>
-							<StatusTag status={item.status === 'active' ? 'Active' : 'Coming soon'} />
-						</div>
-						<p class="flex-1 text-xs sm:text-sm leading-relaxed text-slate-500">{item.desc}</p>
-						{#if item.status === 'active'}
-							<div class="mt-5 pt-3 border-t border-ink-900/5">
-								{#if item.slug === 'ai-roadshow'}
-									<a href="{base}/contact-us/" class="inline-flex items-center gap-1 text-xs font-bold tracking-wider text-electric-600 uppercase hover:text-electric-700">
-										Enquire visit <Icons name="arrow-right" class="h-3.5 w-3.5" />
-									</a>
-								{:else}
-									<a href="{base}/contact-us/" class="inline-flex items-center gap-1 text-xs font-bold tracking-wider text-electric-600 uppercase hover:text-electric-700">
-										Work with us <Icons name="arrow-right" class="h-3.5 w-3.5" />
-									</a>
-								{/if}
-							</div>
-						{/if}
-					</article>
-				</Reveal>
-			{/each}
+		<div class="mt-14 grid items-center gap-8 rounded-[1.5rem] border border-ink-900/8 bg-white p-5 shadow-card sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
+			<Reveal>
+				<div class="grid grid-cols-2 gap-3 sm:gap-4">
+					<img src={img('events/galleries/sonali-intellect/12')} alt="Professionals taking part in an AI Forum Bangladesh training session" class="col-span-2 aspect-[16/8] w-full rounded-xl object-cover" loading="lazy" />
+					<img src={img('events/galleries/unicef/1')} alt="Participants learning together during an AI Forum Bangladesh session" class="aspect-[4/3] w-full rounded-xl object-cover" loading="lazy" />
+					<img src={img('events/galleries/aims-lab/1')} alt="Research engineers working together during an AI Forum Bangladesh training" class="aspect-[4/3] w-full rounded-xl object-cover" loading="lazy" />
+				</div>
+			</Reveal>
+			<Reveal delay={120}>
+				<div class="max-w-xl lg:pl-4">
+					<p class="text-xs font-bold tracking-[0.14em] text-electric-600 uppercase">In the works</p>
+					<h3 class="mt-3 font-display text-3xl leading-[1.05] font-bold tracking-[-0.025em] text-ink-900 sm:text-4xl">The next chapter is taking shape.</h3>
+					<p class="mt-5 text-base leading-relaxed text-slate-600">We are developing new opportunities for students, professionals, and organisations to work with AI in practical ways. We will share the programmes, dates, and ways to take part here once they are confirmed.</p>
+					<a href="#newsletter" class="btn btn-electric mt-7">Get programme updates</a>
+				</div>
+			</Reveal>
 		</div>
 	</div>
 </section>
 
-<NewsletterForm />
+<div id="newsletter">
+	<NewsletterForm />
+</div>
