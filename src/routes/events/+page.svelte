@@ -10,6 +10,7 @@
 	import { pressBySlug } from '$lib/data/press';
 	import { sectors } from '$lib/data/courses';
 	import { testimonials } from '$lib/data/testimonials';
+	import Icons from '$lib/components/Icons.svelte';
 
 	const quotes = testimonials.slice(0, 2);
 </script>
@@ -73,8 +74,9 @@
 				{#each sectors as sector (sector.slug)}
 					<a
 						href="{base}/our-work/ai-academy/#sectors"
-						class="rounded-full border border-ink-900/15 bg-white px-4 py-2 text-sm font-semibold text-ink-900 transition-colors hover:border-electric-600 hover:text-electric-600"
+						class="inline-flex items-center gap-2.5 rounded-full border border-ink-900/10 bg-white px-4 py-2 text-xs font-semibold text-ink-900 transition-all duration-300 hover:border-electric-600/40 hover:text-electric-600 hover:shadow-sm"
 					>
+						<Icons name={sector.slug} class="h-4 w-4 text-electric-600/80" />
 						{sector.name}
 					</a>
 				{/each}
@@ -92,19 +94,19 @@
 			title="Past programmes and recaps"
 			lede="Newest first. Follow the official posts for photo albums, and the press links for third-party coverage."
 		/>
-		<div class="mt-14 space-y-10">
+		<div class="mt-14 space-y-12">
 			{#each pastEvents as event, i (event.slug)}
 				<Reveal delay={Math.min(i, 2) * 80}>
 					<article
 						id={event.slug}
-						class="scroll-mt-24 overflow-hidden rounded-xl border border-ink-900/10 bg-paper lg:grid lg:grid-cols-[1fr_1.1fr] {i % 2 === 1 ? 'lg:[direction:rtl]' : ''}"
+						class="card-hover-trigger scroll-mt-24 overflow-hidden rounded-2xl border border-ink-900/10 bg-paper lg:grid lg:grid-cols-[1fr_1.1fr] shadow-card {i % 2 === 1 ? 'lg:[direction:rtl]' : ''}"
 					>
 						{#if event.image}
-							<div class="photo min-h-64 lg:min-h-full" style="direction: ltr">
+							<div class="image-zoom-container min-h-64 lg:min-h-full" style="direction: ltr">
 								<img
 									src={img(event.image)}
 									alt={event.imageAlt ?? event.title}
-									class="h-full max-h-96 w-full object-cover lg:absolute lg:inset-0 lg:max-h-none"
+									class="image-zoom-img h-full max-h-96 w-full object-cover lg:absolute lg:inset-0 lg:max-h-none"
 									width="1400"
 									height="1050"
 									loading="lazy"
@@ -115,35 +117,39 @@
 								<span class="font-display text-6xl font-bold text-ink-100">AIFB</span>
 							</div>
 						{/if}
-						<div class="p-7 lg:p-11" style="direction: ltr">
-							<div class="flex flex-wrap items-center gap-3">
-								<span class="rounded-sm bg-electric-600 px-2.5 py-1 font-display text-[0.65rem] font-bold tracking-widest text-white uppercase">
+						<div class="p-8 lg:p-12 flex flex-col justify-center" style="direction: ltr">
+							<div class="flex flex-wrap items-center gap-4">
+								<span class="rounded bg-electric-600 px-2.5 py-1 font-display text-[0.65rem] font-bold tracking-widest text-white uppercase shadow-sm">
 									{event.sector}
 								</span>
 								{#if event.dateLabel}
-									<span class="text-sm font-medium text-slate-500">{event.dateLabel}</span>
+									<span class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400">
+										<Icons name="calendar" class="h-4 w-4" strokeWidth={2} />
+										{event.dateLabel}
+									</span>
 								{/if}
 							</div>
-							<h3 class="mt-4 font-display text-2xl leading-tight font-bold tracking-[-0.015em] text-balance lg:text-3xl">
+							<h3 class="mt-4 font-display text-2xl leading-tight font-bold tracking-[-0.015em] text-balance lg:text-3xl text-ink-900 text-underline-reveal">
 								{event.title}
 							</h3>
 							{#if event.client}
-								<p class="mt-2 font-display text-sm font-semibold text-slate-500">
+								<p class="mt-2.5 font-display text-xs font-bold tracking-wide text-slate-400 inline-flex items-center gap-1.5 uppercase">
+									<Icons name="map-pin" class="h-3.5 w-3.5" strokeWidth={2} />
 									{event.client}{event.venue ? ` · ${event.venue}` : ''}
 								</p>
 							{/if}
-							<p class="mt-4 leading-relaxed text-slate-600">{event.summary}</p>
-
+							<p class="mt-5 text-sm sm:text-base leading-relaxed text-slate-600">{event.summary}</p>
+ 
 							{#if event.links.length > 0}
 								<div class="mt-6">
-									<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Official updates</p>
-									<div class="mt-2 flex flex-wrap gap-2">
+									<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Official updates</p>
+									<div class="mt-2.5 flex flex-wrap gap-2">
 										{#each event.links as link (link.url)}
 											<a
 												href={link.url}
 												target="_blank"
 												rel="noopener noreferrer"
-												class="rounded-md border border-ink-900/12 bg-white px-3 py-1.5 text-xs font-semibold text-ink-900 transition-colors hover:border-electric-600 hover:text-electric-600"
+												class="rounded-md border border-ink-900/12 bg-white px-3 py-1.5 text-xs font-semibold text-ink-900 transition-all hover:border-electric-600 hover:text-electric-600 hover:shadow-sm"
 											>
 												{link.label} ↗
 											</a>
@@ -151,11 +157,11 @@
 									</div>
 								</div>
 							{/if}
-
+ 
 							{#if event.pressSlugs && event.pressSlugs.length > 0}
-								<div class="mt-4">
-									<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Press coverage</p>
-									<div class="mt-2 flex flex-wrap gap-2">
+								<div class="mt-5">
+									<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">Press coverage</p>
+									<div class="mt-2.5 flex flex-wrap gap-2">
 										{#each event.pressSlugs as slug (slug)}
 											{@const p = pressBySlug.get(slug)}
 											{#if p}
@@ -163,7 +169,7 @@
 													href={p.url}
 													target="_blank"
 													rel="noopener noreferrer"
-													class="rounded-md bg-ink-50 px-3 py-1.5 text-xs font-semibold text-ink-900 transition-colors hover:bg-electric-600 hover:text-white"
+													class="rounded-md bg-ink-50 px-3 py-1.5 text-xs font-semibold text-ink-900 transition-all hover:bg-electric-600 hover:text-white"
 												>
 													{p.publication} ↗
 												</a>
