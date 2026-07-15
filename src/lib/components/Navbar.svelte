@@ -39,7 +39,7 @@
 <header class="sticky top-0 z-50 border-b transition-all duration-300 {isScrolled ? 'border-ink-900/12 bg-paper/95 shadow-sm' : 'border-ink-900/6 bg-paper/80 backdrop-blur-md'}">
 	<nav class="mx-auto flex max-w-[88rem] items-center justify-between px-5 sm:px-8 lg:px-12 transition-all duration-300 {isScrolled ? 'h-14' : 'h-16'}" aria-label="Main">
 		<a href="{base}/" class="flex items-center" onclick={closeAll}>
-			<img src={brand('aifb-logo-blue.svg')} alt="AI Forum Bangladesh" class="h-9 w-auto" width="150" height="56" />
+			<img src={brand('aifb-logo-blue.svg')} alt="AI Forum Bangladesh" class="h-10 w-auto sm:h-11" width="176" height="66" />
 		</a>
 
 		<!-- Desktop nav -->
