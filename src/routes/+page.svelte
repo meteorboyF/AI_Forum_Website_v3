@@ -85,7 +85,7 @@
 			<span class="line-mask" style="--line-delay: 80ms"><span>Responsible AI</span></span>
 			<span class="line-mask" style="--line-delay: 220ms"><span class="text-aqua-400">for All.</span></span>
 		</h1>
-		<div class="mt-7 flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
+		<div class="mt-7 flex max-w-2xl flex-col gap-7">
 			<p class="max-w-xl text-lg leading-relaxed text-white/85">
 				Bangladesh’s independent AI training and innovation organisation, working hands-on with
 				industry, government, healthcare, and academia.

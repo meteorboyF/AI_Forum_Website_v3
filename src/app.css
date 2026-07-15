@@ -163,7 +163,7 @@ h4,
 }
 
 .photo-hero > img {
-	filter: saturate(0.9) contrast(1.06) brightness(0.86);
+	filter: saturate(0.86) contrast(1.08) brightness(0.76);
 	display: block;
 }
 
@@ -199,13 +199,17 @@ h4,
 	z-index: 1;
 	pointer-events: none;
 	background:
-		linear-gradient(90deg, rgb(2 5 35 / 0.88) 0%, rgb(2 5 35 / 0.68) 42%, rgb(2 5 35 / 0.25) 72%, rgb(2 5 35 / 0.1) 100%),
-		linear-gradient(0deg, rgb(2 5 35 / 0.48), transparent 42%);
+		linear-gradient(90deg, rgb(2 5 35 / 0.94) 0%, rgb(2 5 35 / 0.84) 46%, rgb(2 5 35 / 0.48) 66%, rgb(2 5 35 / 0.16) 100%),
+		linear-gradient(0deg, rgb(2 5 35 / 0.62), transparent 48%);
+}
+
+.scrim-hero h1 {
+	text-shadow: 0 3px 18px rgb(2 5 35 / 0.32);
 }
 
 @media (max-width: 639px) {
 	.scrim-hero::before {
-		background: linear-gradient(180deg, rgb(2 5 35 / 0.72), rgb(2 5 35 / 0.58) 65%, rgb(2 5 35 / 0.82));
+		background: linear-gradient(180deg, rgb(2 5 35 / 0.86), rgb(2 5 35 / 0.72) 65%, rgb(2 5 35 / 0.9));
 	}
 }
 
