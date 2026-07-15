@@ -10,7 +10,6 @@
 	import { caseStudyEvents } from '$lib/data/events';
 	import { trainingClients } from '$lib/data/partners';
 	import { testimonials } from '$lib/data/testimonials';
-	import Icons from '$lib/components/Icons.svelte';
 
 	const academyTestimonial = testimonials.find((t) => t.text.includes('Healthcare'));
 	const eventBySlug = new Map(caseStudyEvents.map((e) => [e.slug, e]));
@@ -25,10 +24,7 @@
 
 <!-- ============ HEADER ============ -->
 <section class="on-dark mesh-dark grain relative overflow-hidden pt-36 pb-20 text-white lg:pb-24">
-	<!-- Jamdani pattern overlay integrated into dark header band -->
-	<div class="absolute inset-0 z-1 bg-jamdani-dark opacity-[0.06] pointer-events-none"></div>
-
-	<div class="relative z-10 mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+	<div class="relative mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<div class="max-w-4xl">
 			<p class="eyebrow mb-5">Our work · AI Academy</p>
 			<h1 class="font-display text-[clamp(2.6rem,6.5vw,5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
@@ -46,10 +42,10 @@
 		</div>
 
 		<!-- Real training photos, not stock -->
-		<div class="mt-16 grid gap-6 sm:grid-cols-3">
+		<div class="mt-14 grid gap-4 sm:grid-cols-3">
 			{#each ['events/lankabangla', 'events/bsp', 'events/ogsb'] as photo, i (photo)}
 				<Reveal delay={i * 120}>
-					<div class="image-zoom-container rounded-2xl shadow-card-lg border border-white/10 {i === 1 ? 'sm:-mt-6' : ''}">
+					<div class="photo rounded-lg {i === 1 ? 'sm:-mt-6' : ''}">
 						<img
 							src={img(photo + '-sm')}
 							srcset="{img(photo + '-sm')} 700w, {img(photo)} 1400w"
@@ -59,7 +55,7 @@
 								: i === 1
 									? 'Bangladesh Society of Physiologists members at a full-day AI workshop'
 									: 'Doctors at OGSB Hospital & IRCH during AI training'}
-							class="image-zoom-img aspect-[4/3] w-full rounded-2xl object-cover"
+							class="aspect-[4/3] w-full rounded-lg object-cover"
 							width="700"
 							height="525"
 							loading={i === 0 ? 'eager' : 'lazy'}
@@ -72,7 +68,7 @@
 </section>
 
 <!-- ============ SECTOR-SPECIFIC TRAINING ============ -->
-<section class="bg-paper py-24 lg:py-32 bg-jamdani-light" id="sectors">
+<section class="bg-paper py-24 lg:py-32" id="sectors">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="01"
@@ -83,18 +79,15 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each sectors as sector, i (sector.slug)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="card-hover-trigger flex h-full flex-col rounded-2xl border border-ink-900/10 bg-white p-7 shadow-sm">
-						<div class="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-electric-50 text-electric-600">
-							<Icons name={sector.slug} class="h-6 w-6" />
-						</div>
-						<h3 class="font-display text-lg font-bold text-ink-900 text-underline-reveal">{sector.name}</h3>
-						<p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-500">{sector.blurb}</p>
-						<div class="mt-6 flex items-center justify-between gap-3 border-t border-ink-900/5 pt-4">
-							<a href="{base}/corporate-training/#proposal" class="text-xs font-bold tracking-wider text-electric-600 uppercase inline-flex items-center gap-1 hover:text-electric-700">
-								Request Proposal <Icons name="arrow-right" class="h-3.5 w-3.5" />
+					<article class="flex h-full flex-col rounded-xl border border-ink-900/10 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg">
+						<h3 class="text-lg font-bold">{sector.name}</h3>
+						<p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600">{sector.blurb}</p>
+						<div class="mt-5 flex items-center justify-between gap-3">
+							<a href="{base}/corporate-training/#proposal" class="text-sm font-bold text-electric-600 link-sweep">
+								Request a Proposal
 							</a>
 							{#if sector.caseStudies.length > 0 && eventBySlug.has(sector.caseStudies[0])}
-								<a href="{base}/events/#{sector.caseStudies[0]}" class="text-[10px] font-bold tracking-widest text-slate-400 uppercase hover:text-ink-900">
+								<a href="{base}/events/#{sector.caseStudies[0]}" class="text-xs font-semibold tracking-wide text-slate-500 uppercase hover:text-ink-900">
 									Case study →
 								</a>
 							{/if}
@@ -118,25 +111,23 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2">
 			{#each caseStudyEvents as event, i (event.slug)}
 				<Reveal delay={(i % 2) * 100}>
-					<article class="card-hover-trigger flex h-full flex-col gap-6 rounded-2xl border border-ink-900/10 bg-paper p-6 sm:flex-row shadow-sm">
+					<article class="flex h-full flex-col gap-5 rounded-xl border border-ink-900/10 bg-paper p-6 sm:flex-row">
 						{#if event.image}
-							<div class="image-zoom-container aspect-[4/3] w-full rounded-xl sm:w-44 sm:shrink-0 bg-ink-950">
-								<img
-									src={img(event.image + '-sm')}
-									alt={event.imageAlt ?? ''}
-									class="image-zoom-img h-full w-full object-cover"
-									width="700"
-									height="525"
-									loading="lazy"
-								/>
-							</div>
+							<img
+								src={img(event.image + '-sm')}
+								alt={event.imageAlt ?? ''}
+								class="aspect-[4/3] w-full rounded-xl object-cover sm:w-44 sm:shrink-0"
+								width="700"
+								height="525"
+								loading="lazy"
+							/>
 						{/if}
-						<div class="flex flex-col justify-center flex-1">
-							<p class="eyebrow !text-[0.65rem]">{event.sector}</p>
-							<h3 class="mt-1.5 font-display text-lg font-bold text-ink-900 text-underline-reveal">{event.client ?? event.title}</h3>
-							<p class="mt-2 line-clamp-3 text-xs sm:text-sm leading-relaxed text-slate-500">{event.summary}</p>
-							<a href="{base}/events/#{event.slug}" class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-electric-600 hover:text-electric-700">
-								Full recap <Icons name="arrow-right" class="h-3.5 w-3.5" />
+						<div>
+							<p class="eyebrow !text-xs">{event.sector}</p>
+							<h3 class="mt-1 font-bold">{event.client ?? event.title}</h3>
+							<p class="mt-2 line-clamp-4 text-sm leading-relaxed text-slate-600">{event.summary}</p>
+							<a href="{base}/events/#{event.slug}" class="link-sweep mt-3 inline-block text-sm font-semibold text-electric-600">
+								Full recap
 							</a>
 						</div>
 					</article>
@@ -156,42 +147,42 @@
 			lede="Each course carries an honest status. If a course is available on request, we will scope a batch for your team or institution."
 		/>
 		{#each courseCategories as cat (cat.key)}
-			<div class="mt-16">
+			<div class="mt-14">
 				<Reveal>
-					<h3 class="font-display text-sm font-bold tracking-widest text-slate-400 uppercase">
+					<h3 class="font-display text-sm font-bold tracking-widest text-slate-500 uppercase">
 						{cat.label}
 					</h3>
 				</Reveal>
 				<div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{#each courses.filter((c) => c.category === cat.key) as course, i (course.id)}
 						<Reveal delay={(i % 3) * 100}>
-							<article class="card-hover-trigger group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-900/10 bg-white shadow-sm">
-								<div class="image-zoom-container relative overflow-hidden">
+							<article class="group flex h-full flex-col overflow-hidden rounded-xl border border-ink-900/10 bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-lg">
+								<div class="relative overflow-hidden">
 									<img
 										src={img(course.image)}
 										alt=""
-										class="image-zoom-img aspect-[16/9] w-full object-cover"
+										class="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
 										width="1000"
 										height="563"
 										loading="lazy"
 									/>
-									<div class="absolute top-3 left-3 z-10">
+									<div class="absolute top-3 left-3">
 										<StatusTag status={course.status} />
 									</div>
 								</div>
-								<div class="flex flex-1 flex-col p-6">
-									<h4 class="font-display text-lg font-bold text-ink-900 text-underline-reveal">{course.title}</h4>
-									<p class="mt-2.5 flex-1 text-xs sm:text-sm leading-relaxed text-slate-500">{course.description}</p>
+								<div class="flex flex-1 flex-col p-5">
+									<h4 class="text-lg font-bold">{course.title}</h4>
+									<p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{course.description}</p>
 									{#if course.deliveredTo}
-										<p class="mt-4 border-l-2 border-aqua-500 pl-3 text-xs leading-relaxed font-semibold text-ink-900 bg-paper/50 py-1 pr-2">
+										<p class="mt-3 border-l-2 border-aqua-500 pl-3 text-xs leading-relaxed font-medium text-ink-900">
 											Delivered for {course.deliveredTo.join(', ')}
 										</p>
 									{/if}
 									<a
 										href="{base}/corporate-training/#proposal"
-										class="mt-5 inline-flex items-center gap-1 text-xs font-bold tracking-wider text-electric-600 uppercase hover:text-electric-700"
+										class="link-sweep mt-4 inline-block text-sm font-semibold text-electric-600"
 									>
-										Enquire about course <Icons name="arrow-right" class="h-3.5 w-3.5" />
+										Enquire about this course
 									</a>
 								</div>
 							</article>
