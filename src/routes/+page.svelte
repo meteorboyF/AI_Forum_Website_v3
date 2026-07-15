@@ -62,7 +62,7 @@
 />
 
 <!-- ============ HERO: kinetic type over full-bleed graded photograph ============ -->
-<section class="on-dark photo-duo scrim-b relative flex min-h-[92svh] items-end overflow-hidden text-white bg-jamdani-dark">
+<section class="on-dark photo-hero scrim-hero relative flex min-h-[76svh] items-center overflow-hidden text-white bg-jamdani-dark sm:min-h-[78svh]">
 	<img
 		src={img('hero/home-sm')}
 		srcset="{img('hero/home-sm')} 960w, {img('hero/home')} 1920w"
@@ -76,7 +76,7 @@
 	<!-- Jamdani pattern overlay integrated into duotone photograph -->
 	<div class="absolute inset-0 z-5 bg-jamdani-dark opacity-[0.08] pointer-events-none"></div>
 	
-	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 pt-40 pb-16 sm:px-8 lg:px-12 lg:pb-20">
+	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-24 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
 		<p class="eyebrow mb-6" style="--line-delay: 0ms">Training · Innovation · Careers</p>
 		<h1
 			use:weightShift
@@ -85,7 +85,7 @@
 			<span class="line-mask" style="--line-delay: 80ms"><span>Responsible AI</span></span>
 			<span class="line-mask" style="--line-delay: 220ms"><span class="text-aqua-400">for All.</span></span>
 		</h1>
-		<div class="mt-9 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+		<div class="mt-7 flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
 			<p class="max-w-xl text-lg leading-relaxed text-white/85">
 				Bangladesh’s independent AI training and innovation organisation, working hands-on with
 				industry, government, healthcare, and academia.
@@ -101,13 +101,13 @@
 				<a href="{base}/about-us/" class="btn btn-ghost-dark">Explore Our Team</a>
 			</div>
 		</div>
-		<p class="mt-10 border-t border-white/15 pt-4 text-xs tracking-wide text-white/55 uppercase">
+		<p class="mt-8 border-t border-white/20 pt-4 text-xs tracking-wide text-white/65 uppercase">
 			Photograph: AI Essentials workshop with the Bangladesh Society of Physiologists, UIU Innovation Hub, Dhaka
 		</p>
 	</div>
 
 	<!-- Scroll indicator cue -->
-	<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block">
+	<div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 hidden lg:block">
 		<div class="h-8 w-5 rounded-full border border-white/30 flex items-start justify-center p-1.5 opacity-60">
 			<div class="w-1.5 h-1.5 rounded-full bg-white animate-bounce"></div>
 		</div>
@@ -291,7 +291,7 @@
 					<img
 						src={getLogoUrl(partner.lockup)}
 						alt={partner.name}
-						class="h-10 w-auto opacity-40 hover:opacity-90 hover:scale-[1.03] transition-all duration-350 select-none filter contrast-125"
+						class="h-10 w-auto opacity-70 hover:opacity-100 hover:scale-[1.03] transition-all duration-350 select-none filter contrast-125"
 						loading="lazy"
 						width="160"
 						height="55"
