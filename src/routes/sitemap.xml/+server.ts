@@ -1,10 +1,12 @@
 import { SITE_URL } from '$lib/config';
+import { events } from '$lib/data/events';
 
 export const prerender = true;
 
 const routes = [
 	'/',
 	'/about-us/',
+	'/our-work/',
 	'/our-work/ai-academy/',
 	'/our-work/innovation-ecosystem/',
 	'/our-work/career-care/',
@@ -14,7 +16,8 @@ const routes = [
 	'/contact-us/',
 	'/terms/',
 	'/privacy/',
-	'/cookies/'
+	'/cookies/',
+	...events.map((event) => `/events/${event.slug}/`)
 ];
 
 export function GET() {
