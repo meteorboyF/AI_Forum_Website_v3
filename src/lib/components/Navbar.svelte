@@ -122,7 +122,7 @@
 
 	<!-- Mobile menu -->
 	{#if mobileOpen}
-		<div id="mobile-menu" class="border-t border-ink-900/8 bg-paper px-5 pt-2 pb-6 lg:hidden">
+		<div id="mobile-menu" class="mobile-menu-enter max-h-[calc(100svh-3.5rem)] overflow-y-auto border-t border-ink-900/8 bg-paper px-5 pt-2 pb-6 shadow-card-lg lg:hidden">
 			{#each links.slice(0, 2) as link (link.href)}
 				<a href="{base}{link.href}" class="block rounded-lg px-3 py-3 text-base font-medium text-ink-900" onclick={closeAll}>{link.label}</a>
 			{/each}

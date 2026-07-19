@@ -61,5 +61,5 @@
 {/if}
 
 {#if data.coverage.length || event.links.length}
-	<section class="bg-paper py-16 lg:py-20"><div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12"><h2 class="font-display text-2xl font-bold">Coverage and official updates</h2><div class="mt-6 flex flex-wrap gap-3">{#each data.coverage as item}<a href={item.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">{item.publication} ↗</a>{/each}{#each event.links as link}<a href={link.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">{link.label} ↗</a>{/each}</div></div></section>
+	<section class="bg-paper py-16 lg:py-20"><div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12"><h2 class="font-display text-2xl font-bold">Coverage and official updates</h2><div class="mt-6 flex flex-wrap gap-3">{#each data.coverage as item}<a href={item.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">{item.publication} ↗</a>{/each}{#each event.links as link}<a href={link.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">{link.label} ↗</a>{/each}</div></div></section>
 {/if}
