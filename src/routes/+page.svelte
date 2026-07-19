@@ -47,27 +47,27 @@
 		{
 			title: 'Innovation Ecosystem',
 			href: '/our-work/innovation-ecosystem/',
-			image: 'hero/innovation',
-			imageAlt: 'Students collaborating at an AI Forum Bangladesh innovation event',
-			desc: 'Roadshows, summits, and innovation programmes that turn bold ideas into working solutions.',
-			proof: 'Connecting students, educators, and professionals through practical innovation programmes across Bangladesh.',
-			latest: { label: 'Explore the innovation ecosystem', href: '/our-work/innovation-ecosystem/' }
+			image: 'events/galleries/unicef/11',
+			imageAlt: 'Participants working together during an AI Forum Bangladesh programme',
+			desc: 'Roadshows and collaborative sessions that introduce applied AI to students and institutions.',
+			proof: 'See the programmes already delivered and the institutions that hosted them.',
+			latest: { label: 'See the Roadshow', href: '/our-work/innovation-ecosystem/' }
 		},
 		{
 			title: 'Career Care',
 			href: '/our-work/career-care/',
-			image: 'hero/about',
-			imageAlt: 'Participants working together at an AI Forum Bangladesh event',
-			desc: 'Mentorship and placement support that link talent to jobs, internships, and research degrees.',
-			proof: 'Guiding graduates and professionals into AI roles and international research placements.',
-			latest: { label: 'Career support programmes', href: '/our-work/career-care/' }
+			image: 'events/galleries/aims-lab/5',
+			imageAlt: 'Students and mentors during an AI Forum Bangladesh session',
+			desc: 'Mentoring and practical career sessions for people preparing to work and study in AI.',
+			proof: 'Advice grounded in technical study, research, and the realities of entering the field.',
+			latest: { label: 'See career support', href: '/our-work/career-care/' }
 		}
 	];
 </script>
 
 <Seo
 	title="Responsible AI for All"
-	description="Bangladesh's AI training and innovation organisation. Hands-on AI programmes for industry, government, healthcare, and academia, innovation programmes across the country, and career support for the AI generation."
+	description="AI Forum Bangladesh delivers practical AI training and programmes with businesses, public institutions, healthcare professionals, researchers, and students."
 	path="/"
 	ogImage="hero/home"
 />
@@ -100,18 +100,18 @@
 		</h1>
 		<div class="mt-7 flex max-w-2xl flex-col gap-7">
 				<p class="hero-support max-w-xl text-lg leading-relaxed text-white">
-				Bangladesh’s independent AI training and innovation organisation, working hands-on with
-				industry, government, healthcare, and academia.
+				We deliver practical AI programmes with businesses, public institutions, healthcare
+				professionals, researchers, and students in Bangladesh.
 				{#if PROFESSIONALS_TRAINED !== null}
 					More than {PROFESSIONALS_TRAINED.toLocaleString('en-GB')} professionals trained.
 				{/if}
 			</p>
 			<div class="flex flex-wrap gap-4">
 				<a href="{base}/events/" class="btn btn-primary">
-					See Our Training Programmes
+					See Delivered Programmes
 					<Icons name="arrow-right" class="h-4.5 w-4.5" strokeWidth={2.5} />
 				</a>
-				<a href="{base}/about-us/" class="btn btn-ghost-dark">Explore Our Team</a>
+				<a href="{base}/our-work/" class="btn btn-ghost-dark">Explore Programmes</a>
 			</div>
 		</div>
 			<p class="hero-support mt-8 border-t border-white/30 pt-4 text-xs tracking-wide text-white/85 uppercase">
@@ -155,8 +155,8 @@
 		<SectionHead
 			number="01"
 			eyebrow="What we do"
-			title="Three programmes, one mission"
-			lede="Skills for professionals, momentum for innovators, and pathways for the next generation."
+			title="Practical AI, built for the room"
+			lede="Training for working teams, programmes for students and institutions, and guidance for people entering the field."
 		/>
 
 		<div class="mt-14 grid gap-8 lg:grid-cols-12">
@@ -251,8 +251,8 @@
 		<Reveal>
 			<p class="eyebrow mb-5">On the ground</p>
 			<p class="max-w-4xl font-display text-[clamp(1.9rem,4.5vw,3.6rem)] leading-[1.08] font-bold tracking-[-0.025em] text-balance">
-				Real rooms, real professionals: from trading floors and hospital wards to student halls
-				across the divisions of Bangladesh.
+				From capital markets and public institutions to healthcare and university classrooms, every
+				programme begins with the people who will use the technology.
 			</p>
 			<a href="{base}/events/" class="btn btn-ghost-dark mt-9">See the delivered programmes</a>
 		</Reveal>
@@ -321,7 +321,7 @@
 <!-- ============ WHAT'S COMING UP ============ -->
 <section class="bg-paper py-24 lg:py-28">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead eyebrow="What’s coming up" title="Upcoming events and training" />
+		<SectionHead eyebrow="Programmes" title="Recent work and new enquiries" />
 		<div class="mt-12 grid gap-6 lg:grid-cols-2">
 			{#if upcomingEvents.length > 0}
 				{#each upcomingEvents as event (event.slug)}
@@ -340,11 +340,11 @@
 					<div class="flex h-full flex-col md:flex-row items-center gap-6 rounded-2xl border border-dashed border-ink-900/20 bg-white/60 p-8 shadow-sm">
 						<img src="{base}/images/illustrations/empty-calendar.svg" alt="" class="h-28 w-28 shrink-0" loading="lazy" width="200" height="200" />
 						<div>
-							<h3 class="font-display text-xl font-bold">New programmes will be announced soon</h3>
+							<h3 class="font-display text-xl font-bold">Planning training for your organisation?</h3>
 							<p class="mt-2 text-sm leading-relaxed text-slate-600">
-								Subscribe for updates on upcoming training programmes and events.
+								Tell us about your team, sector, and the problem you want the programme to address.
 							</p>
-							<a href="#newsletter" class="btn btn-electric mt-4 self-start !py-2 !px-4 text-sm">Get notified</a>
+							<a href="{base}/corporate-training/" class="btn btn-electric mt-4 self-start !py-2 !px-4 text-sm">Discuss a programme</a>
 						</div>
 					</div>
 				</Reveal>
@@ -383,8 +383,8 @@
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			eyebrow="From the field"
-			title="Stories from the work"
-			lede="Follow the official updates from programmes delivered with professionals, researchers, and public institutions across Bangladesh and beyond."
+			title="What happened in the room"
+			lede="Programme notes, photographs, and official updates from sessions delivered with participating organisations."
 		/>
 		<div class="mt-12 grid gap-6 lg:grid-cols-3">
 			{#each featuredStories as story, i (story.slug)}

@@ -2,11 +2,13 @@
 	import { base } from '$app/paths';
 	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
+	import { WEB3FORMS_ACCESS_KEY } from '$lib/config';
 
 	let email = $state('');
 	let honeypot = $state('');
 	let status = $state<FormStatus>('idle');
 	let emailError = $state('');
+	const subscriptionsEnabled = !WEB3FORMS_ACCESS_KEY.includes('WEB3FORMS_ACCESS_KEY');
 
 	async function subscribe(e: SubmitEvent) {
 		e.preventDefault();
@@ -29,13 +31,14 @@
 
 <section class="border-t border-ink-900/8 bg-paper relative overflow-hidden py-16 sm:py-24">
 	<div class="mx-auto max-w-xl px-5 text-center">
-		<h2 class="font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">Stay in the Loop</h2>
+		<h2 class="font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">Programme updates</h2>
 		<p class="mt-4 text-slate-600">
-			Get updates on upcoming events, new programmes, and inspiring stories from Bangladesh’s AI
-			future.
+			Follow new programme dates, delivered-work notes, and announcements from AI Forum Bangladesh.
 		</p>
 
-		{#if status === 'success'}
+		{#if !subscriptionsEnabled}
+			<a href="{base}/contact-us/" class="btn btn-electric mt-8">Contact the team</a>
+		{:else if status === 'success'}
 			<div
 				class="mt-8 flex items-center justify-center gap-3 rounded-lg border border-aqua-400/40 bg-aqua-100/60 px-5 py-4 text-left"
 				role="status"
