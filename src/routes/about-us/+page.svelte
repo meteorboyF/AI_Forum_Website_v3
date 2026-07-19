@@ -32,15 +32,15 @@
 
 <Seo
 	title="About Us"
-	description="The story, values, advisors, lead trainer, and team behind AI Forum Bangladesh, an independent organisation building Bangladesh's AI generation."
+	description="Meet the team and advisors behind AI Forum Bangladesh and learn how its practical AI programmes are designed and delivered."
 	path="/about-us/"
 	ogImage="hero/about"
 />
 
 <PageIntro
 	eyebrow="Our story"
-	title="Building Bangladesh’s AI generation"
-	lede="An independent organisation closing the gap between extraordinary AI talent and real opportunity."
+	title="The people behind the programmes"
+	lede="AI Forum Bangladesh brings educators, technologists, and partner organisations together to make applied AI easier to understand and use responsibly."
 	photo="hero/about"
 	photoAlt="Participants collaborating at an AI Forum Bangladesh event"
 />
@@ -49,22 +49,19 @@
 <section class="bg-paper py-24 lg:py-32">
 	<div class="mx-auto grid max-w-[88rem] items-start gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:px-12">
 		<Reveal class="lg:col-span-5">
-			<SectionHead number="01" eyebrow="Why we exist" title="The gap we kept seeing" />
+			<SectionHead number="01" eyebrow="Why we exist" title="AI training needs context" />
 		</Reveal>
 		<Reveal delay={120} class="lg:col-span-7">
 			<div class="space-y-5 text-lg leading-relaxed text-slate-600 lg:pt-10">
 				<p>
-					AI Forum Bangladesh exists because its founders kept seeing the same gap from different
-					angles: Bangladesh has extraordinary AI talent and almost no structured path from that
-					talent to real opportunity. Students were winning competitions with nowhere to take
-					their ideas. Professionals were watching AI change their industries with no practical
-					way to learn it.
+					AI is changing how people research, communicate, analyse information, and make decisions.
+					Most professionals do not need another abstract introduction. They need to understand what
+					the technology can do in their own field, how to test it, and where its limits matter.
 				</p>
 				<p>
-					So we built the missing infrastructure: hands-on training for working professionals,
-					innovation programmes and roadshows that activate innovators across the country, and career
-					support that connects people to jobs and research placements. Independent, practical,
-					and open to everyone.
+					The Forum works with companies, professional bodies, universities, and public institutions
+					to design practical sessions around those questions. Our archive records programmes in
+					capital markets, healthcare, business, research, and public service.
 				</p>
 			</div>
 		</Reveal>
@@ -75,9 +72,9 @@
 		<div class="flex flex-wrap items-end justify-between gap-4">
 			<div>
 				<p class="eyebrow">Our journey</p>
-				<h3 class="mt-2 font-display text-2xl font-bold tracking-[-0.02em] text-ink-900 sm:text-3xl">Move through the moments that shaped us</h3>
+			<h3 class="mt-2 font-display text-2xl font-bold tracking-[-0.02em] text-ink-900 sm:text-3xl">Programme milestones</h3>
 			</div>
-			<p class="text-sm text-slate-500">Select a milestone to explore</p>
+			<p class="text-sm text-slate-500">Select a point on the timeline</p>
 		</div>
 		<div class="mt-9 overflow-x-auto pb-3">
 			<div class="relative flex min-w-[48rem] items-start justify-between before:absolute before:top-5 before:right-5 before:left-5 before:h-px before:bg-electric-600/20">
@@ -111,8 +108,8 @@
 		<SectionHead
 			number="02"
 			eyebrow="How we work"
-			title="Six values that guide everything"
-			lede="Our shared values keep us connected and guide us as one team."
+			title="How we design a programme"
+			lede="Six working principles used when a session moves from an initial conversation to the room."
 		/>
 		<div class="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
 			<Reveal>
@@ -190,8 +187,8 @@
 		<SectionHead
 			number="03"
 			eyebrow="Advisory board"
-			title="Guided by people who have built world firsts"
-			lede="From the founder and the CEO of Grameenphone to a Princeton physicist and the surgeon behind the world's first Google Glass operation."
+			title="Experience across research and industry"
+			lede="The advisory board brings perspectives from telecommunications, engineering, physics, healthcare, education, sustainability, and communications."
 		/>
 		<div class="mt-14 grid gap-5 lg:grid-cols-2 lg:gap-7">
 			{#each advisors as advisor (advisor.name)}
