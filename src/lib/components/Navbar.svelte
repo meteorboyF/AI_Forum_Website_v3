@@ -12,8 +12,8 @@
 	const links = [
 		{ href: '/', label: 'Home' },
 		{ href: '/about-us/', label: 'About Us' },
-		{ href: '/events/', label: 'Events & Training' },
-		{ href: '/news/', label: 'News & Media' },
+		{ href: '/events/', label: 'Past Work' },
+		{ href: '/news/', label: 'News' },
 		{ href: '/contact-us/', label: 'Contact' }
 	];
 
@@ -53,15 +53,22 @@
 			{/each}
 
 			<!-- Our Work dropdown -->
-			<div class="relative">
+			<div class="relative flex items-center">
+				<a
+					href="{base}/our-work/"
+					class="rounded-l-md py-2 pl-3 pr-1 text-sm font-medium transition-colors hover:bg-ink-50 hover:text-ink-900 {path.startsWith('/our-work') ? 'text-electric-600' : 'text-slate-600'}"
+					aria-current={path === '/our-work/' || path === '/our-work' ? 'page' : undefined}
+				>
+					Programmes
+				</a>
 				<button
-					class="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-ink-50 hover:text-ink-900
+					class="flex items-center rounded-r-md py-2 pl-1 pr-2 text-sm font-medium transition-colors hover:bg-ink-50 hover:text-ink-900
 						{path.startsWith('/our-work') ? 'text-electric-600' : 'text-slate-600'}"
 					aria-expanded={workOpen}
 					aria-haspopup="true"
+					aria-label="Open programmes menu"
 					onclick={() => (workOpen = !workOpen)}
 				>
-					Our Work
 					<svg class="h-4 w-4 transition-transform {workOpen ? 'rotate-180' : ''}" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 						<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
 					</svg>
@@ -89,7 +96,7 @@
 			{/each}
 
 			<a href="{base}/corporate-training/" class="btn btn-primary ml-3 !px-4 !py-2 text-sm">
-				Request a Training
+				Train Your Team
 			</a>
 		</div>
 
@@ -119,14 +126,14 @@
 			{#each links.slice(0, 2) as link (link.href)}
 				<a href="{base}{link.href}" class="block rounded-lg px-3 py-3 text-base font-medium text-ink-900" onclick={closeAll}>{link.label}</a>
 			{/each}
-			<p class="px-3 pt-3 pb-1 font-display text-xs font-semibold tracking-widest text-slate-500 uppercase">Our Work</p>
+			<a href="{base}/our-work/" class="mt-2 block rounded-lg px-3 py-3 text-base font-semibold text-ink-900 {isActive('/our-work/') ? 'bg-electric-50 text-electric-700' : ''}" onclick={closeAll}>Programmes</a>
 			{#each ourWork as item (item.href)}
-				<a href="{base}{item.href}" class="block rounded-lg px-6 py-2.5 text-base font-medium text-slate-600" onclick={closeAll}>{item.label}</a>
+				<a href="{base}{item.href}" class="block rounded-lg px-6 py-2.5 text-base font-medium {isActive(item.href) ? 'bg-electric-50 text-electric-700' : 'text-slate-600'}" onclick={closeAll}>{item.label}</a>
 			{/each}
 			{#each links.slice(2) as link (link.href)}
 				<a href="{base}{link.href}" class="block rounded-lg px-3 py-3 text-base font-medium text-ink-900" onclick={closeAll}>{link.label}</a>
 			{/each}
-			<a href="{base}/corporate-training/" class="btn btn-primary mt-4 w-full" onclick={closeAll}>Request a Training</a>
+			<a href="{base}/corporate-training/" class="btn btn-primary mt-4 w-full" onclick={closeAll}>Train Your Team</a>
 		</div>
 	{/if}
 </header>
