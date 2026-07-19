@@ -2,13 +2,12 @@
 	import { base } from '$app/paths';
 	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
-	import { WEB3FORMS_ACCESS_KEY } from '$lib/config';
+	import { FORMS_ENABLED } from '$lib/config';
 
 	let email = $state('');
 	let honeypot = $state('');
 	let status = $state<FormStatus>('idle');
 	let emailError = $state('');
-	const subscriptionsEnabled = !WEB3FORMS_ACCESS_KEY.includes('WEB3FORMS_ACCESS_KEY');
 
 	async function subscribe(e: SubmitEvent) {
 		e.preventDefault();
@@ -36,7 +35,7 @@
 			Follow new programme dates, delivered-work notes, and announcements from AI Forum Bangladesh.
 		</p>
 
-		{#if !subscriptionsEnabled}
+		{#if !FORMS_ENABLED}
 			<a href="{base}/contact-us/" class="btn btn-electric mt-8">Contact the team</a>
 		{:else if status === 'success'}
 			<div

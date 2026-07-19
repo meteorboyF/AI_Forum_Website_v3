@@ -9,7 +9,7 @@
 	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
 	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
-	import { CONTACT_EMAIL } from '$lib/config';
+	import { CONTACT_EMAIL, FORMS_ENABLED } from '$lib/config';
 	import Icons from '$lib/components/Icons.svelte';
 
 	const trackRecord = [
@@ -93,7 +93,7 @@
 				the UIU Innovation Hub, or online.
 			</p>
 			<div class="mt-8 flex flex-wrap gap-4">
-				<a href="#proposal" class="btn btn-primary">Request a Proposal</a>
+				<a href="#proposal" class="btn btn-primary">Discuss training</a>
 				<a href="{base}/events/" class="btn btn-ghost-dark">See delivered programmes</a>
 			</div>
 		</Reveal>
@@ -172,7 +172,7 @@
 				number="03"
 				eyebrow="Request a proposal"
 				title="Tell us about your team"
-				lede="Two working days is our usual turnaround for a first response. Prefer email? Write to us directly."
+				lede="Include the size of the group, its sector, current experience with AI, and what participants should be able to do after the programme."
 			/>
 			<a href="mailto:{CONTACT_EMAIL}" class="link-sweep mt-4 inline-block font-semibold text-electric-600 font-mono">
 				{CONTACT_EMAIL}
@@ -180,7 +180,14 @@
 		</Reveal>
 
 		<Reveal delay={120}>
-			{#if status === 'success'}
+			{#if !FORMS_ENABLED}
+				<div class="rounded-lg border border-electric-600/20 bg-white p-8 shadow-card">
+					<p class="eyebrow">Training enquiry</p>
+					<h3 class="mt-3 font-display text-3xl font-bold">Send the brief by email.</h3>
+					<p class="mt-4 leading-relaxed text-slate-600">Tell us about the organisation, audience, preferred format, and the work participants need help with. The link below opens a pre-addressed email.</p>
+					<a href="mailto:{CONTACT_EMAIL}?subject=Training%20enquiry%20for%20AI%20Forum%20Bangladesh" class="btn btn-electric mt-7">Email the training team</a>
+				</div>
+			{:else if status === 'success'}
 				<div class="rounded-2xl border border-aqua-400/40 bg-aqua-100/50 p-8 shadow-sm" role="status">
 					<h3 class="text-xl font-bold text-ink-900 flex items-center gap-2">
 						<Icons name="check" class="h-6 w-6 text-aqua-600" />

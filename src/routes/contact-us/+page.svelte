@@ -6,7 +6,7 @@
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
-	import { CONTACT_EMAIL, SOCIALS } from '$lib/config';
+	import { CONTACT_EMAIL, FORMS_ENABLED, SOCIALS } from '$lib/config';
 
 	let name = $state('');
 	let email = $state('');
@@ -47,8 +47,7 @@
 					<span class="line-mask"><span>Talk to us.</span></span>
 				</h1>
 				<p class="mt-6 text-lg leading-relaxed text-white/80">
-					Training enquiries, partnership ideas, Roadshow visits, press questions: all of it lands
-					in the same inbox and gets read.
+					Contact the team about training, institutional partnerships, programme hosting, or press enquiries.
 				</p>
 			</Reveal>
 		</div>
@@ -58,7 +57,7 @@
 <section class="bg-paper py-24 lg:py-28">
 	<div class="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
 		<Reveal>
-			<SectionHead eyebrow="Direct" title="Reach us anywhere" />
+			<SectionHead eyebrow="Direct" title="Choose the right route" />
 			<div class="mt-8 space-y-5">
 				<a href="mailto:{CONTACT_EMAIL}" class="block rounded-xl border border-ink-900/10 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Email</p>
@@ -73,19 +72,26 @@
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">LinkedIn</p>
 					<p class="mt-1 font-display font-bold text-ink-900">AI Forum Bangladesh ↗</p>
 				</a>
-				<div class="rounded-xl border border-ink-900/10 bg-white p-5 shadow-card">
+				<div class="rounded-lg border border-ink-900/10 bg-white p-5 shadow-card">
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Booking a training?</p>
 					<p class="mt-1 text-sm leading-relaxed text-slate-600">
 						Use the dedicated
-						<a href="{base}/corporate-training/#proposal" class="link-sweep font-semibold text-electric-600">proposal request form</a>
-						so we can scope it properly from the first message.
+						<a href="{base}/corporate-training/#proposal" class="link-sweep font-semibold text-electric-600">training enquiry page</a>
+						to see the delivery process and information to include.
 					</p>
 				</div>
 			</div>
 		</Reveal>
 
 		<Reveal delay={120}>
-			{#if status === 'success'}
+			{#if !FORMS_ENABLED}
+				<div class="rounded-lg border border-electric-600/20 bg-white p-8 shadow-card">
+					<p class="eyebrow">Email the team</p>
+					<h2 class="mt-3 font-display text-3xl font-bold">Start with a short brief.</h2>
+					<p class="mt-4 leading-relaxed text-slate-600">Include your organisation, the people involved, and what you would like to discuss. This contact route opens your email application directly.</p>
+					<a href="mailto:{CONTACT_EMAIL}?subject=Enquiry%20for%20AI%20Forum%20Bangladesh" class="btn btn-electric mt-7">Write to {CONTACT_EMAIL}</a>
+				</div>
+			{:else if status === 'success'}
 				<div class="rounded-xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
 					<h3 class="text-xl font-bold text-ink-900">Message sent</h3>
 					<p class="mt-2 leading-relaxed text-slate-600">
