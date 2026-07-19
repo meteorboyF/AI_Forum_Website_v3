@@ -194,50 +194,38 @@
 			lede="From the founder and the CEO of Grameenphone to a Princeton physicist and the surgeon behind the world's first Google Glass operation."
 		/>
 		<div class="mt-14 grid gap-5 lg:grid-cols-2 lg:gap-7">
-			{#each advisors as advisor, i (advisor.name)}
-				<Reveal delay={(i % 2) * 110}>
-					<article
-						class="group h-full overflow-hidden rounded-[1.35rem] border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-card
-							{advisor.featured ? 'border-electric-600/25 ring-1 ring-electric-600/10' : 'border-ink-900/8'}"
-					>
-						<div class="grid h-full grid-cols-[8.5rem_minmax(0,1fr)] sm:grid-cols-[10.5rem_minmax(0,1fr)]">
-							<div class="relative min-h-full overflow-hidden bg-ink-100">
-								<img
-									src={img(advisor.image)}
-									alt="Portrait of {advisor.name}"
-									class="h-full min-h-[14rem] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-									width="640"
-									height="640"
-									loading="lazy"
-								/>
-								{#if advisor.featured}
-									<span class="absolute bottom-3 left-3 rounded-full bg-ink-900/85 px-2.5 py-1 text-[0.58rem] font-bold tracking-[0.14em] text-white uppercase backdrop-blur-sm">Board lead</span>
-								{/if}
-							</div>
-							<div class="flex min-w-0 flex-col p-5 sm:p-6">
-								<p class="w-fit rounded-full bg-electric-50 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.08em] text-electric-700 uppercase">Advisory board</p>
-								<h3 class="mt-3 font-display text-xl leading-[1.05] font-bold tracking-[-0.02em] text-ink-900 sm:text-2xl">{advisor.name}</h3>
-								<p class="mt-2 text-sm leading-snug font-medium text-slate-500">{advisor.credential}</p>
+			{#each advisors as advisor (advisor.name)}
+				<article
+					class="group h-full overflow-hidden rounded-lg border bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-electric-600/25 hover:shadow-card
+						{advisor.featured ? 'border-electric-600/25 ring-1 ring-electric-600/10' : 'border-ink-900/8'}"
+				>
+					<div class="grid h-full grid-cols-[8.5rem_minmax(0,1fr)] sm:grid-cols-[10.5rem_minmax(0,1fr)]">
+						<div class="relative min-h-full overflow-hidden bg-ink-100">
+							<img
+								src={img(advisor.image)}
+								alt="Portrait of {advisor.name}"
+								class="h-full min-h-[14rem] w-full object-cover"
+								width="640"
+								height="640"
+								loading="lazy"
+							/>
+							{#if advisor.featured}
+								<span class="absolute bottom-3 left-3 rounded-full bg-ink-900/85 px-2.5 py-1 text-[0.58rem] font-bold tracking-[0.14em] text-white uppercase backdrop-blur-sm">Board lead</span>
+							{/if}
+						</div>
+						<div class="flex min-w-0 flex-col p-5 sm:p-6">
+							<p class="w-fit rounded-full bg-electric-50 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.08em] text-electric-700 uppercase">Advisory board</p>
+							<h3 class="mt-3 font-display text-xl leading-[1.05] font-bold tracking-[-0.02em] text-ink-900 sm:text-2xl">{advisor.name}</h3>
+							<p class="mt-2 text-sm leading-snug font-medium text-slate-500">{advisor.credential}</p>
 							{#if advisor.callout}
 								<p class="mt-4 rounded-lg bg-aqua-50 px-3 py-2 text-xs leading-relaxed font-semibold text-ink-900">
 									{advisor.callout}
 								</p>
 							{/if}
-							{#if expanded[advisor.name]}
-								<p class="mt-4 border-t border-ink-900/8 pt-4 text-sm leading-relaxed text-slate-600">{advisor.bio}</p>
-							{/if}
-							<button
-								class="mt-5 inline-flex w-fit items-center gap-2 text-left text-xs font-bold text-electric-600 transition-colors hover:text-ink-900"
-								aria-expanded={!!expanded[advisor.name]}
-								onclick={() => (expanded[advisor.name] = !expanded[advisor.name])}
-							>
-								{expanded[advisor.name] ? 'Hide profile' : 'Read profile'}
-								<span aria-hidden="true">{expanded[advisor.name] ? '↑' : '→'}</span>
-							</button>
-							</div>
+							<p class="mt-4 border-t border-ink-900/8 pt-4 text-sm leading-relaxed text-slate-600">{advisor.bio}</p>
 						</div>
-					</article>
-				</Reveal>
+						</div>
+				</article>
 			{/each}
 		</div>
 	</div>
