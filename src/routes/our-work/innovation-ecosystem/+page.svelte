@@ -3,107 +3,74 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
+	import Icons from '$lib/components/Icons.svelte';
 	import { img } from '$lib/img';
-	import { initiatives } from '$lib/data/innovation';
 
-	const roadshow = initiatives.find((i) => i.slug === 'ai-roadshow');
+	const format = [
+		{ step: '01', title: 'Set the question', text: 'The host institution identifies the audience and the problem the programme should examine.' },
+		{ step: '02', title: 'Build the room', text: 'Educators, practitioners, and participants work through demonstrations, discussion, and sector examples.' },
+		{ step: '03', title: 'Document the work', text: 'Outputs, questions, and follow-up opportunities are recorded so the programme has a life beyond the event.' }
+	];
+
+	const fieldPhotos = [
+		{ src: 'events/galleries/unicef/1', alt: 'Participants at an AI Forum Bangladesh programme' },
+		{ src: 'events/galleries/sonali-intellect/12', alt: 'Professionals in a collaborative AI session' },
+		{ src: 'events/galleries/aims-lab/1', alt: 'Researchers working together during a programme' }
+	];
 </script>
 
-<Seo
-	title="Innovation Ecosystem"
-	description="AI Forum Bangladesh's innovation programmes: the divisional AI Roadshow reaching all 8 divisions, Lab 2 Market, and initiatives in development."
-	path="/our-work/innovation-ecosystem/"
-	ogImage="hero/innovation"
-/>
+<Seo title="Innovation Ecosystem" description="Collaborative AI programmes for campuses, institutions, and professional communities in Bangladesh." path="/our-work/innovation-ecosystem/" ogImage="events/galleries/unicef/1" />
 
-<!-- ============ HEADER ============ -->
-<section class="on-dark photo-duo scrim-b relative flex min-h-[56vh] items-end overflow-hidden text-white bg-jamdani-dark">
-	<img
-		src={img('hero/innovation-sm')}
-		srcset="{img('hero/innovation-sm')} 960w, {img('hero/innovation')} 1920w"
-		sizes="100vw"
-		alt="A packed auditorium of students at an AI Forum Bangladesh event"
-		class="absolute inset-0 h-full w-full object-cover"
-		width="1920"
-		height="1280"
-		fetchpriority="high"
-	/>
-	<!-- Jamdani pattern overlay integrated into dark header band -->
-	<div class="absolute inset-0 z-5 bg-jamdani-dark opacity-[0.08] pointer-events-none"></div>
-
-	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 pt-36 pb-14 sm:px-8 lg:px-12 lg:pb-20">
-		<p class="eyebrow mb-5">Our work · Innovation Ecosystem</p>
-		<h1 class="max-w-5xl font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
-			<span class="line-mask"><span>Activating the people who will build Bangladesh’s AI future</span></span>
-		</h1>
-		<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/85">
-			Roadshows, summits, and innovation programmes that turn bold ideas into working solutions, from
-			university campuses to schools in every division of the country.
-		</p>
+<section class="on-dark relative flex min-h-[72svh] items-end overflow-hidden text-white">
+	<img src={img('events/galleries/unicef/1')} alt="Participants gathered for an AI Forum Bangladesh programme" class="absolute inset-0 h-full w-full object-cover" width="1920" height="1280" fetchpriority="high" />
+	<div class="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/80 to-ink-950/25"></div>
+	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
+		<Reveal>
+			<p class="eyebrow mb-5">Our work · Innovation Ecosystem</p>
+			<h1 class="max-w-5xl font-display text-[clamp(2.8rem,7vw,6.5rem)] leading-[0.96] font-bold">Put people, problems, and AI in the same room.</h1>
+			<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/80">We work with universities and institutions to create practical spaces for learning, discussion, and collaboration around applied AI.</p>
+			<a href="{base}/contact-us/" class="btn btn-primary mt-8">Host a programme</a>
+		</Reveal>
 	</div>
 </section>
 
-<!-- ============ AI ROADSHOW SPOTLIGHT ============ -->
-{#if roadshow}
-	<section class="on-dark mesh-dark grain relative overflow-hidden py-20 text-white lg:py-24">
-		<!-- Jamdani pattern overlay integrated into dark spotlight band -->
-		<div class="absolute inset-0 z-1 bg-jamdani-dark opacity-[0.06] pointer-events-none"></div>
-
-		<div class="relative z-10 mx-auto grid max-w-[88rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
-			<Reveal>
-				<p class="eyebrow mb-4">Spotlight</p>
-				<h2 class="text-3xl font-bold text-balance sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
-					Reaching students across all 8 divisions of Bangladesh
-				</h2>
-				<p class="mt-5 text-lg leading-relaxed text-white/80">{roadshow.detail}</p>
-				<a href="{base}/contact-us/" class="btn btn-ghost-dark mt-7">Bring the Roadshow to your institution</a>
-			</Reveal>
-			<Reveal delay={150}>
-				<div class="flex items-center justify-center gap-6 lg:justify-end">
-					<span
-						class="font-display text-[clamp(9rem,22vw,17rem)] leading-none font-bold tracking-[-0.05em] text-transparent"
-						style="-webkit-text-stroke: 2px rgb(34 211 238 / 0.6)"
-						aria-hidden="true">8</span
-					>
-					<p class="max-w-[11ch] font-display text-xl leading-snug font-bold text-white/90">
-						divisions of Bangladesh
-					</p>
-				</div>
-			</Reveal>
-		</div>
-	</section>
-{/if}
-
-<!-- ============ INITIATIVES ============ -->
-<section class="bg-paper py-24 lg:py-32">
+<section class="on-dark mesh-dark grain overflow-hidden py-20 text-white lg:py-28">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead
-			number="02"
-			eyebrow="Coming soon"
-			title="More ways to learn, build, and connect"
-			lede="We are shaping the next set of AI Forum Bangladesh programmes now. When each one is ready, you will find the details here."
-		/>
-		<div class="mt-14 grid items-center gap-8 rounded-[1.5rem] border border-ink-900/8 bg-white p-5 shadow-card sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
-			<Reveal>
-				<div class="grid grid-cols-2 gap-3 sm:gap-4">
-					<img src={img('events/galleries/sonali-intellect/12')} alt="Professionals taking part in an AI Forum Bangladesh training session" class="col-span-2 aspect-[16/8] w-full rounded-xl object-cover" loading="lazy" />
-					<img src={img('events/galleries/unicef/1')} alt="Participants learning together during an AI Forum Bangladesh session" class="aspect-[4/3] w-full rounded-xl object-cover" loading="lazy" />
-					<img src={img('events/galleries/aims-lab/1')} alt="Research engineers working together during an AI Forum Bangladesh training" class="aspect-[4/3] w-full rounded-xl object-cover" loading="lazy" />
-				</div>
-			</Reveal>
-			<Reveal delay={120}>
-				<div class="max-w-xl lg:pl-4">
-					<p class="text-xs font-bold tracking-[0.14em] text-electric-600 uppercase">In the works</p>
-					<h3 class="mt-3 font-display text-3xl leading-[1.05] font-bold tracking-[-0.025em] text-ink-900 sm:text-4xl">The next chapter is taking shape.</h3>
-					<p class="mt-5 text-base leading-relaxed text-slate-600">We are developing new opportunities for students, professionals, and organisations to work with AI in practical ways. We will share the programmes, dates, and ways to take part here once they are confirmed.</p>
-					<a href="#newsletter" class="btn btn-electric mt-7">Get programme updates</a>
-				</div>
-			</Reveal>
+		<Reveal>
+			<p class="eyebrow">Programme format</p>
+			<h2 class="mt-4 max-w-3xl font-display text-[clamp(2.2rem,5vw,4.5rem)] leading-[1] font-bold">Designed with the host, not dropped in from a template.</h2>
+		</Reveal>
+		<div class="mt-14 grid gap-px overflow-hidden rounded-lg border border-white/12 bg-white/12 lg:grid-cols-3">
+			{#each format as item, index (item.step)}
+				<Reveal delay={index * 100}>
+					<article class="h-full bg-ink-950/70 p-7 backdrop-blur-sm lg:p-9">
+						<p class="font-display text-5xl font-bold text-aqua-400/55">{item.step}</p>
+						<h3 class="mt-7 font-display text-xl font-bold">{item.title}</h3>
+						<p class="mt-3 leading-relaxed text-white/70">{item.text}</p>
+					</article>
+				</Reveal>
+			{/each}
 		</div>
 	</div>
 </section>
 
-<div id="newsletter">
-	<NewsletterForm />
-</div>
+<section class="bg-paper py-20 lg:py-28">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<SectionHead number="02" eyebrow="From the archive" title="Learning happens around a table" lede="These photographs come from programmes delivered with participating organisations and research communities." />
+		<div class="mt-12 grid auto-rows-[15rem] gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[19rem]">
+			{#each fieldPhotos as photo, index (photo.src)}
+				<Reveal delay={index * 90} class={index === 0 ? 'sm:col-span-2 lg:col-span-7 lg:row-span-2' : 'lg:col-span-5'}>
+					<div class="image-zoom-container h-full overflow-hidden rounded-lg">
+						<img src={img(photo.src)} alt={photo.alt} class="image-zoom-img h-full w-full object-cover" width="1200" height="800" loading={index === 0 ? 'eager' : 'lazy'} />
+					</div>
+				</Reveal>
+			{/each}
+		</div>
+		<Reveal>
+			<div class="mt-12 grid gap-6 border-t border-ink-900/10 pt-10 lg:grid-cols-[1fr_auto] lg:items-center">
+				<div><h2 class="font-display text-2xl font-bold">See what has already been delivered.</h2><p class="mt-2 text-slate-600">Browse programme summaries, participating organisations, press links, and complete photo galleries.</p></div>
+				<a href="{base}/events/" class="btn btn-electric">Browse past work<Icons name="arrow-right" class="h-4 w-4" /></a>
+			</div>
+		</Reveal>
+	</div>
+</section>
