@@ -4,16 +4,13 @@
 	import Reveal from '$lib/components/Reveal.svelte';
 	import PageIntro from '$lib/components/PageIntro.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { img } from '$lib/img';
 	import { pastEvents, upcomingEvents } from '$lib/data/events';
 	import { pressBySlug } from '$lib/data/press';
 	import { sectors } from '$lib/data/courses';
-	import { testimonials } from '$lib/data/testimonials';
 	import type { EventItem } from '$lib/data/types';
 	import Icons from '$lib/components/Icons.svelte';
 
-	const quotes = testimonials.slice(0, 2);
 	let selectedEvent = $state<EventItem | null>(null);
 	let eventSearch = $state('');
 	let eventSort = $state<'newest' | 'oldest' | 'az'>('newest');
@@ -38,20 +35,20 @@
 </script>
 
 <Seo
-	title="Events & Training"
+	title="Past Work"
 	description="Upcoming and delivered AI training programmes by AI Forum Bangladesh: capital markets, healthcare, banking and fintech, energy, education, and government, with recaps, photos, and press coverage."
 	path="/events/"
 	ogImage="hero/events"
 />
 
 <PageIntro
-	eyebrow="Events & Training"
-	title="Training programmes and events"
-	lede="Explore AI Forum Bangladesh programmes, including event highlights, photo galleries, official updates, and press coverage."
+	eyebrow="Past work"
+	title="Programmes, documented"
+	lede="Browse programme summaries, participating organisations, session photographs, official updates, and press coverage."
 	photo="hero/events"
 	photoAlt="Healthcare professionals taking part in an AI Forum Bangladesh training session"
 >
-	<a href="{base}/corporate-training/" class="btn btn-primary">Request a Training</a>
+	<a href="{base}/corporate-training/" class="btn btn-primary">Train your team</a>
 </PageIntro>
 
 <!-- ============ UPCOMING ============ -->
@@ -76,12 +73,12 @@
 			<Reveal>
 				<div class="mt-12 flex flex-col items-start gap-5 rounded-xl border border-dashed border-ink-900/20 bg-white/70 p-8 sm:flex-row sm:items-center sm:justify-between">
 					<div>
-						<h3 class="font-display text-lg font-bold">New public programmes will be announced soon</h3>
+						<h3 class="font-display text-lg font-bold">Looking for a future programme?</h3>
 						<p class="mt-1.5 max-w-xl text-sm leading-relaxed text-slate-600">
-							Institutional training is available throughout the year. Subscribe for updates on upcoming public programmes and events.
+							Institutional training is scoped throughout the year. Tell us about the audience and the work the session should address.
 						</p>
 					</div>
-					<a href="#newsletter" class="btn btn-electric shrink-0">Get notified</a>
+					<a href="{base}/corporate-training/" class="btn btn-electric shrink-0">Discuss training</a>
 				</div>
 			</Reveal>
 		{/if}
@@ -194,6 +191,7 @@
 								</p>
 							{/if}
 							<p class="mt-5 text-sm sm:text-base leading-relaxed text-slate-600">{event.summary}</p>
+							<a href="{base}/events/{event.slug}/" class="btn btn-electric mt-6 self-start">Read programme recap<Icons name="arrow-right" class="h-4 w-4" /></a>
 
 							{#if event.highlights && event.highlights.length > 0}
 								<div class="mt-6 border-l-2 border-aqua-500 pl-4">
@@ -302,24 +300,6 @@
 	</div>
 {/if}
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="bg-paper py-20 lg:py-24">
-	<div class="mx-auto grid max-w-[88rem] gap-8 px-5 sm:px-8 md:grid-cols-2 lg:px-12">
-		{#each quotes as q, i (q.name)}
-			<Reveal delay={i * 120}>
-				<figure class="rule-tick h-full pt-6">
-					<blockquote class="font-display text-xl leading-snug font-medium text-ink-900 lg:text-2xl">
-						“{q.text}”
-					</blockquote>
-					<figcaption class="mt-5 text-sm text-slate-500">
-						<span class="font-bold text-ink-900">{q.name}</span> · {q.role}
-					</figcaption>
-				</figure>
-			</Reveal>
-		{/each}
-	</div>
-</section>
-
 <!-- ============ CTA ============ -->
 <section class="on-dark mesh-dark grain relative overflow-hidden py-20 text-white lg:py-24">
 	<div class="relative mx-auto max-w-4xl px-5 text-center">
@@ -331,11 +311,7 @@
 				We design hands-on programmes for corporate teams, sector professionals, and institutions,
 				scoped to the work your people actually do.
 			</p>
-			<a href="{base}/corporate-training/" class="btn btn-primary mt-9">Request a Training</a>
+			<a href="{base}/corporate-training/" class="btn btn-primary mt-9">Train your team</a>
 		</Reveal>
 	</div>
 </section>
-
-<div id="newsletter">
-	<NewsletterForm />
-</div>

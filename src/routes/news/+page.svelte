@@ -63,7 +63,7 @@
 				title="One seminar, a wall of coverage"
 				lede="The AI for Business Excellence seminar at UIU was reported across major outlets including The Daily Star and The Business Standard, covering AI's role in decision-making, automation, forecasting, and business growth."
 			/>
-			<a href="{base}/events/#ai-for-business-excellence" class="btn btn-electric mt-8">
+			<a href="{base}/events/ai-for-business-excellence/" class="btn btn-electric mt-8">
 				Read the event recap <Icons name="arrow-right" class="h-4 w-4" />
 			</a>
 		</Reveal>
@@ -100,7 +100,7 @@
 						{#if item.about && eventBySlug.has(item.about)}
 							<p class="-mt-1 px-6 pb-4 text-xs text-slate-400 bg-paper/30 border-b border-ink-900/5">
 								Related programme:
-								<a href="{base}/events/#{item.about}" class="font-semibold text-slate-500 hover:text-electric-600 underline">
+				<a href="{base}/events/{item.about}/" class="font-semibold text-slate-500 hover:text-electric-600 underline">
 									{eventBySlug.get(item.about)?.title}
 								</a>
 							</p>
