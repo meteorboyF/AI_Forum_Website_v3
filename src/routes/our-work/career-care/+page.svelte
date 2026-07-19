@@ -3,126 +3,95 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
-	import { img } from '$lib/img';
-	import { globalTrack, localTrack } from '$lib/data/careers';
-	import { testimonials } from '$lib/data/testimonials';
 	import Icons from '$lib/components/Icons.svelte';
+	import { img } from '$lib/img';
 
-	const careerQuotes = testimonials.filter(
-		(t) => t.text.includes('placement') || t.text.includes('data role') || t.text.includes('research')
-	).slice(0, 3);
+	const topics = [
+		{
+			title: 'Understanding AI roles',
+			description: 'A practical look at technical, research, product, and domain-specialist roles, including what each path asks you to learn.',
+			icon: 'careers'
+		},
+		{
+			title: 'Planning the next step',
+			description: 'Structured conversations about skills, portfolios, further study, and the evidence employers or research supervisors expect.',
+			icon: 'academy'
+		},
+		{
+			title: 'Learning from practitioners',
+			description: 'Sessions with researchers and professionals who can explain how their work differs from the simplified version seen online.',
+			icon: 'ecosystem'
+		}
+	];
+
+	const photos = [
+		{ src: 'events/galleries/aims-lab/5', alt: 'Students listening during an AI Forum Bangladesh session' },
+		{ src: 'events/galleries/unicef/11', alt: 'Participants working together at an AI Forum Bangladesh programme' },
+		{ src: 'events/galleries/beprc/20', alt: 'Professionals gathered after an AI Forum Bangladesh programme' }
+	];
 </script>
 
-<Seo
-	title="Career Care"
-	description="Mentorship, career guidance, global research placement, and job market support from AI Forum Bangladesh for Bangladesh's next generation of AI professionals."
-	path="/our-work/career-care/"
-	ogImage="career/banner"
-/>
+<Seo title="Career Care" description="Career conversations and mentoring sessions for students and professionals exploring work and research in AI." path="/our-work/career-care/" ogImage="events/galleries/aims-lab/5" />
 
-<!-- ============ HEADER ============ -->
-<section class="on-dark mesh-dark grain relative overflow-hidden pt-36 pb-20 text-white lg:pb-24">
-	<!-- Jamdani pattern overlay integrated into dark header band -->
-	<div class="absolute inset-0 z-1 bg-jamdani-dark opacity-[0.06] pointer-events-none"></div>
-
-	<div class="relative z-10 mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<div class="grid gap-12 lg:grid-cols-[2fr_1fr] lg:items-center">
-			<div class="max-w-4xl">
-				<Reveal>
-					<p class="eyebrow mb-5">Our work · Career Care</p>
-					<h1 class="font-display text-[clamp(2.6rem,6.8vw,5.5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
-						<span class="line-mask"><span>From talent to opportunity,</span></span>
-						<span class="line-mask" style="--line-delay: 140ms"><span class="text-aqua-400">at home and abroad.</span></span>
-					</h1>
-					<p class="mt-6 text-lg leading-relaxed text-white/80">
-						Mentorship, career profiling, and placement support that link Bangladesh’s graduates and
-						professionals to AI jobs, internships, and international research degrees.
-					</p>
-					<a href="{base}/contact-us/" class="btn btn-primary mt-8">Talk to a mentor</a>
-				</Reveal>
+<section class="on-dark mesh-dark grain relative overflow-hidden text-white">
+	<div class="mx-auto grid min-h-[70svh] max-w-[88rem] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:py-24">
+		<Reveal>
+			<p class="eyebrow mb-5">Our work · Career Care</p>
+			<h1 class="font-display text-[clamp(2.8rem,7vw,6.5rem)] leading-[0.96] font-bold">Make the next move with better information.</h1>
+			<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/75">Career Care brings students and professionals into direct conversations about AI roles, research, further study, and the skills behind them.</p>
+			<a href="{base}/contact-us/" class="btn btn-primary mt-8">Ask about a career session</a>
+		</Reveal>
+		<Reveal delay={140}>
+			<div class="relative mx-auto max-w-xl overflow-hidden rounded-lg border border-white/15 bg-white/5 p-2 shadow-card-lg">
+				<img src={img('events/galleries/aims-lab/5')} alt="Students and mentors during an AI Forum Bangladesh session" class="aspect-[4/3] w-full rounded-md object-cover" width="1000" height="750" loading="eager" />
+				<p class="absolute bottom-5 left-5 rounded-md bg-ink-950/85 px-3 py-2 text-xs font-semibold text-white backdrop-blur-sm">AIMS Lab programme</p>
 			</div>
-			<Reveal delay={180} class="hidden lg:flex justify-center lg:justify-end">
-				<img src="{base}/images/illustrations/career-path.svg" alt="" class="h-64 w-auto max-w-xs filter drop-shadow-xl" loading="eager" width="240" height="200" />
+		</Reveal>
+	</div>
+</section>
+
+<section class="bg-paper py-20 lg:py-28">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<SectionHead number="01" eyebrow="What we cover" title="Specific questions, not career promises" lede="The format is educational and advisory. It does not guarantee admission, employment, visas, or placement." />
+		<div class="mt-12 grid gap-5 lg:grid-cols-3">
+			{#each topics as topic, index (topic.title)}
+				<Reveal delay={index * 100}>
+					<article class="h-full rounded-lg border border-ink-900/10 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-electric-600/30 hover:shadow-card">
+						<Icons name={topic.icon} class="h-7 w-7 text-electric-600" />
+						<h2 class="mt-6 font-display text-xl font-bold">{topic.title}</h2>
+						<p class="mt-3 leading-relaxed text-slate-600">{topic.description}</p>
+					</article>
+				</Reveal>
+			{/each}
+		</div>
+	</div>
+</section>
+
+<section class="border-y border-ink-900/8 bg-white py-20 lg:py-28">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<div class="grid items-end gap-8 lg:grid-cols-2">
+			<Reveal>
+				<p class="eyebrow">The format</p>
+				<h2 class="mt-4 max-w-xl font-display text-[clamp(2rem,4.5vw,3.6rem)] leading-[1.03] font-bold">Bring Career Care to a campus or professional community.</h2>
+			</Reveal>
+			<Reveal delay={100}>
+				<p class="max-w-xl text-lg leading-relaxed text-slate-600">Sessions can combine a practitioner talk, moderated questions, and focused discussion around the audience’s stage of study or work. Scope and speakers are agreed with the host institution.</p>
 			</Reveal>
 		</div>
-	</div>
-</section>
-
-<!-- ============ GLOBAL TRACK ============ -->
-<section class="bg-paper py-24 lg:py-28 bg-jamdani-light">
-	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead number="01" eyebrow="Global track" title="Launch your global career" />
-		<div class="mt-10 grid gap-8 lg:grid-cols-3">
-			{#each globalTrack as item, i (item.id)}
-				<Reveal delay={i * 100} class={item.size === 'large' ? 'lg:col-span-1' : ''}>
-					<article class="card-hover-trigger flex h-full flex-col overflow-hidden rounded-2xl border border-ink-900/10 bg-white shadow-sm">
-						<div class="image-zoom-container relative">
-							<img
-								src={img(item.image)}
-								alt=""
-								class="image-zoom-img aspect-[16/9] w-full object-cover"
-								width="1000"
-								height="563"
-								loading="lazy"
-							/>
-						</div>
-						<div class="flex flex-1 flex-col p-6">
-							<h3 class="font-display text-lg font-bold text-ink-900 text-underline-reveal">{item.title}</h3>
-							<p class="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-500">{item.description}</p>
-						</div>
-					</article>
+		<div class="mt-12 grid gap-4 sm:grid-cols-3">
+			{#each photos as photo, index (photo.src)}
+				<Reveal delay={index * 80}>
+					<div class="image-zoom-container overflow-hidden rounded-lg">
+						<img src={img(photo.src)} alt={photo.alt} class="image-zoom-img aspect-[4/3] w-full object-cover" width="800" height="600" loading="lazy" />
+					</div>
 				</Reveal>
 			{/each}
 		</div>
+		<Reveal>
+			<div class="mt-12 flex flex-col items-start justify-between gap-5 rounded-lg bg-ink-950 p-7 text-white sm:flex-row sm:items-center lg:p-9">
+				<div><h2 class="font-display text-2xl font-bold">Start with the audience.</h2><p class="mt-2 text-white/70">Tell us who the session is for and what decisions they are trying to make.</p></div>
+				<a href="{base}/contact-us/" class="btn btn-primary shrink-0">Contact the team<Icons name="arrow-right" class="h-4 w-4" /></a>
+			</div>
+		</Reveal>
 	</div>
 </section>
-
-<!-- ============ LOCAL TRACK ============ -->
-<section class="border-t border-ink-900/8 bg-white py-20 lg:py-24">
-	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead number="02" eyebrow="Bangladesh track" title="Excel your career at home" />
-		<div class="mt-10 grid gap-8 lg:grid-cols-3">
-			{#each localTrack as item, i (item.id)}
-				<Reveal delay={i * 100}>
-					<article class="card-hover-trigger flex h-full flex-col overflow-hidden rounded-2xl border border-ink-900/10 bg-paper shadow-sm">
-						<div class="image-zoom-container relative">
-							<img
-								src={img(item.image)}
-								alt=""
-								class="image-zoom-img aspect-[16/9] w-full object-cover"
-								width="1000"
-								height="563"
-								loading="lazy"
-							/>
-						</div>
-						<div class="flex flex-1 flex-col p-6">
-							<h3 class="font-display text-lg font-bold text-ink-900 text-underline-reveal">{item.title}</h3>
-							<p class="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-500">{item.description}</p>
-						</div>
-					</article>
-				</Reveal>
-			{/each}
-		</div>
-	</div>
-</section>
-
-<!-- ============ TESTIMONIALS ============ -->
-{#if careerQuotes.length > 0}
-	<section class="bg-paper py-16 lg:py-20 border-t border-ink-900/8">
-		<div class="mx-auto grid max-w-[88rem] gap-6 px-5 sm:px-8 md:grid-cols-3 lg:px-12">
-			{#each careerQuotes as q, i (q.name)}
-				<Reveal delay={i * 100}>
-					<figure class="card-hover-trigger h-full rounded-2xl border border-ink-900/10 bg-white p-7 shadow-sm">
-						<blockquote class="text-xs sm:text-sm leading-relaxed font-medium text-slate-600">“{q.text}”</blockquote>
-						<figcaption class="mt-5 text-xs text-slate-400 border-t border-ink-900/5 pt-3">
-							<span class="font-bold text-ink-900 font-display">{q.name}</span> · {q.role}
-						</figcaption>
-					</figure>
-				</Reveal>
-			{/each}
-		</div>
-	</section>
-{/if}
-
-<NewsletterForm />
