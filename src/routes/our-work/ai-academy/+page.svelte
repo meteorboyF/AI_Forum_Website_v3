@@ -3,17 +3,13 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import StatusTag from '$lib/components/StatusTag.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { img } from '$lib/img';
-	import { courses, courseCategories, sectors } from '$lib/data/courses';
+	import { sectors } from '$lib/data/courses';
 	import { caseStudyEvents } from '$lib/data/events';
 	import { trainingClients } from '$lib/data/partners';
 	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
-	import { testimonials } from '$lib/data/testimonials';
 	import Icons from '$lib/components/Icons.svelte';
 
-	const academyTestimonial = testimonials.find((t) => t.text.includes('Healthcare'));
 	const eventBySlug = new Map(caseStudyEvents.map((e) => [e.slug, e]));
 </script>
 
@@ -33,15 +29,15 @@
 		<div class="max-w-4xl">
 			<p class="eyebrow mb-5">Our work · AI Academy</p>
 			<h1 class="font-display text-[clamp(2.6rem,6.5vw,5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
-				<span class="line-mask"><span>Training that has already happened,</span></span>
-				<span class="line-mask" style="--line-delay: 140ms"><span class="text-aqua-400">for people who need it next.</span></span>
+				<span class="line-mask"><span>AI training shaped around</span></span>
+				<span class="line-mask" style="--line-delay: 140ms"><span class="text-aqua-400">the work your team does.</span></span>
 			</h1>
 			<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/85">
-				Practical, hands-on AI programmes designed and led by Professor Khondaker A. Mamun and
-				delivered to professionals across finance, healthcare, banking, energy, and government.
+				Programmes designed and led by Professor Khondaker A. Mamun for professionals in finance,
+				healthcare, banking, energy, research, and public institutions.
 			</p>
 			<div class="mt-9 flex flex-wrap gap-4">
-				<a href="{base}/corporate-training/" class="btn btn-primary">Request a Proposal</a>
+				<a href="{base}/corporate-training/" class="btn btn-primary">Train your team</a>
 				<a href="{base}/events/" class="btn btn-ghost-dark">See past deliveries</a>
 			</div>
 		</div>
@@ -78,13 +74,13 @@
 		<SectionHead
 			number="01"
 			eyebrow="Corporate & institutional training"
-			title="Sector-specific programmes with a real track record"
-			lede="Every sector below has either a completed delivery behind it or a programme built for it. Your team gets training designed for the work they actually do."
+			title="Start with the sector"
+			lede="The examples below are tied to completed programmes in the archive. A new engagement is scoped around the participating team, its tools, and its responsibilities."
 		/>
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each sectors as sector, i (sector.slug)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="card-hover-trigger flex h-full flex-col rounded-2xl border border-ink-900/10 bg-white p-7 shadow-sm">
+					<article class="card-hover-trigger flex h-full flex-col rounded-lg border border-ink-900/10 bg-white p-7 shadow-sm">
 						<div class="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-electric-50 text-electric-600">
 							<Icons name={sector.slug} class="h-6 w-6" />
 						</div>
@@ -92,7 +88,7 @@
 						<p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-500">{sector.blurb}</p>
 						<div class="mt-6 flex items-center justify-between gap-3 border-t border-ink-900/5 pt-4">
 							<a href="{base}/corporate-training/#proposal" class="text-xs font-bold tracking-wider text-electric-600 uppercase inline-flex items-center gap-1 hover:text-electric-700">
-								Request Proposal <Icons name="arrow-right" class="h-3.5 w-3.5" />
+								Discuss training <Icons name="arrow-right" class="h-3.5 w-3.5" />
 							</a>
 							{#if sector.caseStudies.length > 0 && eventBySlug.has(sector.caseStudies[0])}
 								<a href="{base}/events/#{sector.caseStudies[0]}" class="text-[10px] font-bold tracking-widest text-slate-400 uppercase hover:text-ink-900">
@@ -113,13 +109,13 @@
 		<SectionHead
 			number="02"
 			eyebrow="Delivered programmes"
-			title="Proof, not promises"
-			lede="One-paragraph summaries of real programmes. Full recaps, photos, and press links live on the Events & Training page."
+			title="Programmes already delivered"
+			lede="Each summary links to the programme archive, including photographs and available press or partner coverage."
 		/>
 		<div class="mt-12 grid gap-6 md:grid-cols-2">
 			{#each caseStudyEvents as event, i (event.slug)}
 				<Reveal delay={(i % 2) * 100}>
-					<article class="card-hover-trigger flex h-full flex-col gap-6 rounded-2xl border border-ink-900/10 bg-paper p-6 sm:flex-row shadow-sm">
+					<article class="card-hover-trigger flex h-full flex-col gap-6 rounded-lg border border-ink-900/10 bg-paper p-6 sm:flex-row shadow-sm">
 						{#if event.image}
 							<div class="image-zoom-container aspect-[4/3] w-full rounded-xl sm:w-44 sm:shrink-0 bg-ink-950">
 								<img
@@ -147,80 +143,10 @@
 	</div>
 </section>
 
-<!-- ============ COURSES ============ -->
-<section class="bg-paper py-24 lg:py-32" id="courses">
-	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead
-			number="03"
-			eyebrow="Open programmes"
-			title="Courses in the Academy"
-			lede="Each course carries an honest status. If a course is available on request, we will scope a batch for your team or institution."
-		/>
-		{#each courseCategories as cat (cat.key)}
-			<div class="mt-16">
-				<Reveal>
-					<h3 class="font-display text-sm font-bold tracking-widest text-slate-400 uppercase">
-						{cat.label}
-					</h3>
-				</Reveal>
-				<div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-					{#each courses.filter((c) => c.category === cat.key) as course, i (course.id)}
-						<Reveal delay={(i % 3) * 100}>
-							<article class="card-hover-trigger group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-900/10 bg-white shadow-sm">
-								<div class="image-zoom-container relative overflow-hidden">
-									<img
-										src={img(course.image)}
-										alt=""
-										class="image-zoom-img aspect-[16/9] w-full object-cover"
-										width="1000"
-										height="563"
-										loading="lazy"
-									/>
-									<div class="absolute top-3 left-3 z-10">
-										<StatusTag status={course.status} />
-									</div>
-								</div>
-								<div class="flex flex-1 flex-col p-6">
-									<h4 class="font-display text-lg font-bold text-ink-900 text-underline-reveal">{course.title}</h4>
-									<p class="mt-2.5 flex-1 text-xs sm:text-sm leading-relaxed text-slate-500">{course.description}</p>
-									{#if course.deliveredTo}
-										<p class="mt-4 border-l-2 border-aqua-500 pl-3 text-xs leading-relaxed font-semibold text-ink-900 bg-paper/50 py-1 pr-2">
-											Delivered for {course.deliveredTo.join(', ')}
-										</p>
-									{/if}
-									<a
-										href="{base}/corporate-training/#proposal"
-										class="mt-5 inline-flex items-center gap-1 text-xs font-bold tracking-wider text-electric-600 uppercase hover:text-electric-700"
-									>
-										Enquire about course <Icons name="arrow-right" class="h-3.5 w-3.5" />
-									</a>
-								</div>
-							</article>
-						</Reveal>
-					{/each}
-				</div>
-			</div>
-		{/each}
-	</div>
-</section>
-
-<!-- ============ TESTIMONIAL + TRUSTED BY ============ -->
+<!-- ============ TRUSTED BY ============ -->
 <section class="border-t border-ink-900/8 bg-white py-16 lg:py-20">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		{#if academyTestimonial}
-			<Reveal>
-				<figure class="mx-auto max-w-3xl text-center">
-					<blockquote class="text-xl leading-relaxed font-medium text-ink-900 sm:text-2xl">
-						“{academyTestimonial.text}”
-					</blockquote>
-					<figcaption class="mt-5 text-sm text-slate-500">
-						<span class="font-bold text-ink-900">{academyTestimonial.name}</span>
-						· {academyTestimonial.role}
-					</figcaption>
-				</figure>
-			</Reveal>
-		{/if}
-		<div class="mt-14">
+		<div>
 			<p class="text-center font-display text-sm font-semibold tracking-widest text-slate-500 uppercase">
 				Organisations trained by the Academy
 			</p>
@@ -230,7 +156,6 @@
 				{/each}
 			</div>
 		</div>
+		<div class="mt-12 flex justify-center"><a href="{base}/corporate-training/" class="btn btn-electric">Plan a programme<Icons name="arrow-right" class="h-4 w-4" /></a></div>
 	</div>
 </section>
-
-<NewsletterForm />
