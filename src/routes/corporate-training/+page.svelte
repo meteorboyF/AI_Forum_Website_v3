@@ -6,6 +6,7 @@
 	import { img } from '$lib/img';
 	import { sectors } from '$lib/data/courses';
 	import { trainingClients } from '$lib/data/partners';
+	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
 	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
 	import { CONTACT_EMAIL } from '$lib/config';
@@ -130,14 +131,9 @@
 		</div>
 		<div class="mt-14 flex flex-wrap items-center gap-x-12 gap-y-6 justify-center lg:justify-start border-t border-ink-900/5 pt-8">
 			{#each trainingClients as client (client.name)}
-				<img
-					src="{base}/images/brand/partners/{client.lockup.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}.svg"
-					alt={client.name}
-					class="h-8 w-auto opacity-35 filter contrast-125 select-none hover:opacity-75 transition-opacity"
-					loading="lazy"
-					width="160"
-					height="55"
-				/>
+				<div class="opacity-70 transition-opacity hover:opacity-100">
+					<PartnerLogo partner={client} compact />
+				</div>
 			{/each}
 		</div>
 	</div>

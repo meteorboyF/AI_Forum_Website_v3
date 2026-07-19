@@ -13,6 +13,9 @@ const OUT = process.argv[2] ?? 'shots';
 const BASE = process.argv[3] ?? 'http://localhost:4174';
 
 const CHROME_PATHS = [
+	'/usr/bin/google-chrome',
+	'/usr/bin/chromium',
+	'/usr/bin/chromium-browser',
 	'C:/Program Files/Google/Chrome/Application/chrome.exe',
 	'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
 	'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',

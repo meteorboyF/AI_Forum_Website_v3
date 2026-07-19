@@ -7,6 +7,7 @@
 	import Marquee from '$lib/components/Marquee.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
 	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
+	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
 	import Icons from '$lib/components/Icons.svelte';
 	import { weightShift } from '$lib/actions/weightShift';
 	import { img } from '$lib/img';
@@ -32,11 +33,6 @@
 		}, 6500);
 		return () => window.clearInterval(rotation);
 	});
-
-	function getLogoUrl(lockup: string): string {
-		const file = lockup.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
-		return `${base}/images/brand/partners/${file}.svg`;
-	}
 
 	const programmes = [
 		{
@@ -77,7 +73,7 @@
 />
 
 <!-- ============ HERO: kinetic type over full-bleed graded photograph ============ -->
-<section class="on-dark photo-hero scrim-hero relative flex min-h-[76svh] items-center overflow-hidden text-white bg-jamdani-dark sm:min-h-[78svh]">
+<section class="on-dark photo-duo scrim-hero relative flex min-h-[76svh] items-center overflow-hidden text-white bg-jamdani-dark sm:min-h-[78svh]">
 	{#each heroSlides as slide, index (slide.image)}
 		<img
 			src={img(slide.image)}
@@ -90,8 +86,8 @@
 			aria-hidden={index !== activeHeroSlide}
 		/>
 	{/each}
-	<!-- Jamdani pattern overlay integrated into duotone photograph -->
-	<div class="absolute inset-0 z-5 bg-jamdani-dark opacity-[0.08] pointer-events-none"></div>
+	<!-- Deepen the duotone so bright source photos retain the navy-blue grade. -->
+	<div class="hero-legibility pointer-events-none absolute inset-0 z-5"></div>
 	
 	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-24 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
 		<p class="eyebrow mb-6" style="--line-delay: 0ms">Training · Innovation · Careers</p>
@@ -103,7 +99,7 @@
 			<span class="line-mask" style="--line-delay: 220ms"><span class="text-aqua-400">for All.</span></span>
 		</h1>
 		<div class="mt-7 flex max-w-2xl flex-col gap-7">
-			<p class="max-w-xl text-lg leading-relaxed text-white/85">
+				<p class="hero-support max-w-xl text-lg leading-relaxed text-white">
 				Bangladesh’s independent AI training and innovation organisation, working hands-on with
 				industry, government, healthcare, and academia.
 				{#if PROFESSIONALS_TRAINED !== null}
@@ -118,7 +114,7 @@
 				<a href="{base}/about-us/" class="btn btn-ghost-dark">Explore Our Team</a>
 			</div>
 		</div>
-		<p class="mt-8 border-t border-white/20 pt-4 text-xs tracking-wide text-white/65 uppercase">
+			<p class="hero-support mt-8 border-t border-white/30 pt-4 text-xs tracking-wide text-white/85 uppercase">
 			{heroSlides[activeHeroSlide].caption}
 		</p>
 	</div>
@@ -313,14 +309,9 @@
 		<Marquee speed={55}>
 			<div class="flex items-center gap-16 py-2">
 				{#each partners as partner (partner.name)}
-					<img
-						src={getLogoUrl(partner.lockup)}
-						alt={partner.name}
-						class="h-10 w-auto opacity-70 hover:opacity-100 hover:scale-[1.03] transition-all duration-350 select-none filter contrast-125"
-						loading="lazy"
-						width="160"
-						height="55"
-					/>
+					<div class="opacity-80 transition-all duration-350 hover:scale-[1.03] hover:opacity-100">
+						<PartnerLogo {partner} />
+					</div>
 				{/each}
 			</div>
 		</Marquee>
