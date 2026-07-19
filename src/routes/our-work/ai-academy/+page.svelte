@@ -91,7 +91,7 @@
 								Discuss training <Icons name="arrow-right" class="h-3.5 w-3.5" />
 							</a>
 							{#if sector.caseStudies.length > 0 && eventBySlug.has(sector.caseStudies[0])}
-								<a href="{base}/events/#{sector.caseStudies[0]}" class="text-[10px] font-bold tracking-widest text-slate-400 uppercase hover:text-ink-900">
+								<a href="{base}/events/{sector.caseStudies[0]}/" class="text-[10px] font-bold tracking-widest text-slate-400 uppercase hover:text-ink-900">
 									Case study →
 								</a>
 							{/if}
@@ -132,7 +132,7 @@
 							<p class="eyebrow !text-[0.65rem]">{event.sector}</p>
 							<h3 class="mt-1.5 font-display text-lg font-bold text-ink-900 text-underline-reveal">{event.client ?? event.title}</h3>
 							<p class="mt-2 line-clamp-3 text-xs sm:text-sm leading-relaxed text-slate-500">{event.summary}</p>
-							<a href="{base}/events/#{event.slug}" class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-electric-600 hover:text-electric-700">
+							<a href="{base}/events/{event.slug}/" class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-electric-600 hover:text-electric-700">
 								Full recap <Icons name="arrow-right" class="h-3.5 w-3.5" />
 							</a>
 						</div>
