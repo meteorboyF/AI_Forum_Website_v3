@@ -15,18 +15,19 @@
 			]
 		},
 		{
-			heading: 'Our Work',
+			heading: 'Programmes',
 			links: [
+				{ href: '/our-work/', label: 'All programmes' },
 				{ href: '/our-work/ai-academy/', label: 'AI Academy' },
 				{ href: '/our-work/innovation-ecosystem/', label: 'Innovation Ecosystem' },
 				{ href: '/our-work/career-care/', label: 'Career Care' },
 			]
 		},
 		{
-			heading: 'Training',
+			heading: 'Delivered Work',
 			links: [
-				{ href: '/events/', label: 'Events & Training' },
-				{ href: '/corporate-training/', label: 'Corporate Training' }
+				{ href: '/events/', label: 'Past programmes' },
+				{ href: '/corporate-training/', label: 'Train your team' }
 			]
 		},
 		{
@@ -46,8 +47,8 @@
 			<div class="lg:col-span-2">
 				<img src={brand('aifb-logo-white.svg')} alt="AI Forum Bangladesh" class="h-10 w-auto" width="160" height="60" loading="lazy" />
 				<p class="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-					An independent organisation promoting responsible AI for everyone: training professionals,
-					activating innovation, and building Bangladesh’s AI generation.
+					We design and deliver practical AI programmes for professionals, institutions, and students
+					across Bangladesh.
 				</p>
 				<a href="mailto:{CONTACT_EMAIL}" class="link-sweep mt-4 inline-block text-sm font-medium text-aqua-400">
 					{CONTACT_EMAIL}
