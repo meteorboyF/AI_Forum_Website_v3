@@ -185,7 +185,7 @@
 </section>
 
 <!-- ============ ADVISORS ============ -->
-<section class="bg-paper py-24 lg:py-32">
+<section class="bg-paper pt-24 pb-16 lg:pt-32 lg:pb-20">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="03"
@@ -244,7 +244,7 @@
 </section>
 
 <!-- ============ TEAM ============ -->
-<section class="border-t border-ink-900/8 bg-white py-24 lg:py-32">
+<section class="border-t border-ink-900/8 bg-white py-20 lg:py-24">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead number="04" eyebrow="Core team" title="The people doing the work" />
 		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -264,7 +264,7 @@
 						<div class="flex flex-col justify-between flex-1">
 							<div>
 								<h3 class="font-display font-bold text-ink-900 text-lg leading-snug text-underline-reveal">{member.name}</h3>
-								<p class="font-display text-[0.68rem] font-bold tracking-widest text-electric-600 uppercase mt-0.5">
+								<p class="mt-0.5 font-display text-xs font-bold tracking-widest text-electric-600 uppercase">
 									{member.role}
 								</p>
 								<p class="mt-2.5 text-xs leading-relaxed text-slate-500 {expanded[member.name] ? '' : 'line-clamp-3'}">
@@ -272,7 +272,7 @@
 								</p>
 							</div>
 							<button
-								class="mt-3 text-[10px] font-bold tracking-widest text-slate-400 uppercase transition-colors hover:text-electric-600 self-start"
+								class="mt-3 self-start text-xs font-bold tracking-wider text-slate-500 uppercase transition-colors hover:text-electric-600"
 								aria-expanded={!!expanded[member.name]}
 								onclick={() => (expanded[member.name] = !expanded[member.name])}
 							>

@@ -96,7 +96,7 @@
 			class="font-display text-[clamp(3.2rem,10vw,8.5rem)] leading-[0.92] font-bold tracking-[-0.04em]"
 		>
 			<span class="line-mask" style="--line-delay: 80ms"><span>Responsible AI</span></span>
-			<span class="line-mask" style="--line-delay: 220ms"><span class="text-aqua-400">for All.</span></span>
+			<span class="line-mask" style="--line-delay: 220ms"><span class="text-aqua-400">for All</span></span>
 		</h1>
 		<div class="mt-7 flex max-w-2xl flex-col gap-7">
 				<p class="hero-support max-w-xl text-lg leading-relaxed text-white">

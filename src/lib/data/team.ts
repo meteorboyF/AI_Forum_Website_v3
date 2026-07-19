@@ -32,22 +32,10 @@ export const team: TeamMember[] = [
 		bio: 'Sadik E Tawheed brings a rare combination of full-stack technical depth and programme management acumen to AI Forum Bangladesh. With a background in software architecture and agile methodologies, he has delivered scalable platforms in both startups and enterprise environments. He leads the design and execution of our tech initiatives, coordinating cross-functional teams for maximum impact.'
 	},
 	{
-		name: 'Md. Shahriar Hasan',
-		role: 'Content & Learning',
-		image: 'about/team/team3',
-		bio: 'Md. Shahriar Hasan is a thoughtful communicator with academic training in English and Applied Linguistics from the University of Dhaka. He specialises in crafting clear, impactful narratives and educational content. Within AI Forum Bangladesh, Shahriar develops programme materials, curates research summaries, and facilitates learning workshops to ensure effective knowledge transfer.'
-	},
-	{
 		name: 'Md. Rasel Parvez',
 		role: 'Design',
 		image: 'about/team/team4',
 		bio: 'Md. Rasel Parvez leads the design vision at AI Forum Bangladesh, bringing expertise in user experience, branding, and visual storytelling. A graduate of the National University in Graphic Design, he has created high-impact digital and print assets for NGOs and startups. His design leadership ensures our programmes are both functional and visually inspiring.'
-	},
-	{
-		name: 'Abrar Hasin Kabbo',
-		role: 'Operations',
-		image: 'about/team/team5',
-		bio: 'Abrar Hasin Kabbo brings a structured and strategic mindset to AI Forum Bangladesh, coordinating operations and programme delivery. With a background in project coordination and organisational development, he has implemented systems for event management, volunteer onboarding, and impact measurement. He ensures our initiatives run smoothly and achieve measurable results.'
 	}
 ];
 
