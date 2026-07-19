@@ -42,7 +42,7 @@
 			imageAlt: 'Capital market professionals receiving certificates after AI training at the UIU Innovation Hub',
 			desc: 'Hands-on AI training for working professionals: sector-focused, practical, and led by Professor Khondaker A. Mamun.',
 			proof: 'Delivered for Grameenphone, the Dhaka Stock Exchange, LankaBangla Securities, and healthcare professionals across multiple institutions.',
-			latest: { label: 'Latest: AI Essentials for Capital Market Professionals', href: '/events/#lankabangla-capital-markets' }
+			latest: { label: 'Latest: AI Essentials for Capital Market Professionals', href: '/events/lankabangla-capital-markets/' }
 		},
 		{
 			title: 'Innovation Ecosystem',
@@ -205,7 +205,7 @@
 						>
 							<div class="image-zoom-container relative min-h-48">
 								<img
-									src={img(prog.image + '-sm')}
+									src={img(prog.image)}
 									alt={prog.imageAlt}
 									class="image-zoom-img absolute inset-0 h-full w-full object-cover"
 									width="960"
@@ -351,7 +351,7 @@
 			{/if}
 			{#if latestEvent}
 				<Reveal delay={120}>
-					<a href="{base}/events/#{latestEvent.slug}" class="group block h-full overflow-hidden rounded-xl border border-ink-900/10 bg-white">
+					<a href="{base}/events/{latestEvent.slug}/" class="group block h-full overflow-hidden rounded-xl border border-ink-900/10 bg-white">
 						{#if latestEvent.image}
 							<div class="photo">
 								<img
