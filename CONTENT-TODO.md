@@ -45,8 +45,9 @@ crash course, AIMS Lab training. Same for the matching press items in
 
 ## Nice to have
 
-- **Partner/client logos**: everything renders as text lockups from
-  `src/lib/data/partners.ts`; supply SVG/PNG files to upgrade.
+- **Remaining partner/client logos**: Grameenphone and North South
+  University use text fallbacks in `src/lib/data/partners.ts`; supply
+  official logo files to upgrade them.
 - **Publication wordmarks** for News & Media, same approach.
 - **Course statuses** in `src/lib/data/courses.ts`: institutional
   courses say "Available on Request", startup track says "Upcoming";

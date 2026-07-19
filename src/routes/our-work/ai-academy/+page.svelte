@@ -9,6 +9,7 @@
 	import { courses, courseCategories, sectors } from '$lib/data/courses';
 	import { caseStudyEvents } from '$lib/data/events';
 	import { trainingClients } from '$lib/data/partners';
+	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
 	import { testimonials } from '$lib/data/testimonials';
 	import Icons from '$lib/components/Icons.svelte';
 
@@ -223,11 +224,9 @@
 			<p class="text-center font-display text-sm font-semibold tracking-widest text-slate-500 uppercase">
 				Organisations trained by the Academy
 			</p>
-			<div class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+			<div class="mt-6 flex flex-wrap items-center justify-center gap-4">
 				{#each trainingClients as client (client.name)}
-					<span class="wordmark text-lg text-slate-500 transition-colors hover:text-ink-900" title={client.name}>
-						{client.lockup}
-					</span>
+					<PartnerLogo partner={client} compact />
 				{/each}
 			</div>
 		</div>

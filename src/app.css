@@ -145,6 +145,10 @@ h4,
 	display: block;
 }
 
+.photo-duo.scrim-hero > img {
+	filter: grayscale(1) contrast(1.12) brightness(0.72);
+}
+
 .photo-duo::after {
 	content: '';
 	position: absolute;
@@ -204,12 +208,40 @@ h4,
 }
 
 .scrim-hero h1 {
-	text-shadow: 0 3px 18px rgb(2 5 35 / 0.32);
+	text-shadow: 0 3px 22px rgb(2 5 35 / 0.58);
+}
+
+.hero-legibility {
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	background:
+		linear-gradient(
+			90deg,
+			rgb(2 5 35 / 0.92) 0%,
+			rgb(2 5 35 / 0.86) 46%,
+			rgb(2 5 35 / 0.58) 70%,
+			rgb(2 5 35 / 0.34) 100%
+		),
+		linear-gradient(180deg, rgb(2 5 35 / 0.18), rgb(2 5 35 / 0.48));
+}
+
+.bg-jamdani-dark > .hero-legibility {
+	position: absolute;
+	z-index: 5;
+}
+
+.hero-support {
+	text-shadow: 0 2px 12px rgb(2 5 35 / 0.82);
 }
 
 @media (max-width: 639px) {
 	.scrim-hero::before {
 		background: linear-gradient(180deg, rgb(5 20 80 / 0.88), rgb(13 43 144 / 0.68) 65%, rgb(5 20 80 / 0.88));
+	}
+
+	.hero-legibility {
+		background: linear-gradient(180deg, rgb(2 5 35 / 0.72), rgb(2 5 35 / 0.88));
 	}
 }
 
@@ -522,4 +554,3 @@ h4,
 	transform: scaleX(1);
 	transform-origin: bottom left;
 }
-

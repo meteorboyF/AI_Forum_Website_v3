@@ -96,8 +96,10 @@ export interface PressItem {
 
 export interface Partner {
 	name: string;
-	/** Short text lockup used until a real logo file is supplied */
+	/** Short text lockup used as the accessible fallback */
 	lockup: string;
+	/** Filename under static/images/brand/partners */
+	logo?: string;
 	kind: 'client' | 'partner' | 'host-university';
 }
 
