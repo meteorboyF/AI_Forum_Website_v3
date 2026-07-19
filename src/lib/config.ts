@@ -31,5 +31,6 @@ export const SOCIALS = {
  * restriction. See CONTENT-TODO.md.
  */
 export const WEB3FORMS_ACCESS_KEY = '{{WEB3FORMS_ACCESS_KEY}}';
+export const FORMS_ENABLED = !WEB3FORMS_ACCESS_KEY.includes('WEB3FORMS_ACCESS_KEY');
 
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
