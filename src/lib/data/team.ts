@@ -23,19 +23,19 @@ export const team: TeamMember[] = [
 		name: 'Sumaiya Mutiatur',
 		role: 'Marketing & Partnerships',
 		image: 'about/team/team1',
-		bio: 'Sumaiya Mutiatur is a strategic leader with over 15 years of experience in brand communication, innovation management, and stakeholder engagement. She has led communications campaigns across industries, building strong brand identities and driving audience growth. At AI Forum Bangladesh, she oversees marketing strategy, partnership outreach, and public engagement initiatives, ensuring our mission resonates with key communities and stakeholders.'
+		bio: 'Sumaiya Mutiatur leads partnership outreach, programme communications, and engagement with participating organisations.'
 	},
 	{
 		name: 'Sadik E Tawheed',
 		role: 'Technology & Programmes',
 		image: 'about/team/team2',
-		bio: 'Sadik E Tawheed brings a rare combination of full-stack technical depth and programme management acumen to AI Forum Bangladesh. With a background in software architecture and agile methodologies, he has delivered scalable platforms in both startups and enterprise environments. He leads the design and execution of our tech initiatives, coordinating cross-functional teams for maximum impact.'
+		bio: 'Sadik E Tawheed works across programme delivery and technology, coordinating digital initiatives and the teams that support them.'
 	},
 	{
 		name: 'Md. Rasel Parvez',
 		role: 'Design',
 		image: 'about/team/team4',
-		bio: 'Md. Rasel Parvez leads the design vision at AI Forum Bangladesh, bringing expertise in user experience, branding, and visual storytelling. A graduate of the National University in Graphic Design, he has created high-impact digital and print assets for NGOs and startups. His design leadership ensures our programmes are both functional and visually inspiring.'
+		bio: 'Md. Rasel Parvez is responsible for visual design across the Forum’s programmes, communications, and digital presence.'
 	}
 ];
 
@@ -43,33 +43,33 @@ export const team: TeamMember[] = [
 export const values = [
 	{
 		icon: 'people',
-		title: 'Empower People First',
-		desc: 'We champion youth, founders, and professionals with the support, resources, and belief they need to thrive in an AI-driven world.'
+		title: 'Start with the people',
+		desc: 'We begin with the work participants already do, then show where AI can help and where human judgement must remain in charge.'
 	},
 	{
 		icon: 'heart',
-		title: 'Build with Purpose',
-		desc: 'We create what matters: real-world solutions that solve deep challenges, spark inclusive innovation, and empower the people who need it most.'
+		title: 'Teach through practice',
+		desc: 'Sessions use relevant tools, exercises, and sector examples so participants leave with methods they can apply.'
 	},
 	{
 		icon: 'trend',
-		title: 'Impact Globally',
-		desc: 'We connect grassroots innovation with global standards, blending context, creativity, and strategic reach.'
+		title: 'Design for context',
+		desc: 'A programme for clinicians should not look like one for capital-market professionals. The audience shapes the curriculum.'
 	},
 	{
 		icon: 'flash',
-		title: 'Chase Curiosity',
-		desc: 'We do not settle for answers, we chase questions. We test, tinker, and dive deep until something clicks. Curiosity is our method, discovery our habit.'
+		title: 'Ask better questions',
+		desc: 'We treat AI literacy as the ability to test outputs, examine assumptions, and recognise uncertainty, not simply operate a tool.'
 	},
 	{
 		icon: 'smile',
-		title: 'Keep It Human',
-		desc: 'Tech is only powerful when it is meaningful. We build solutions that respect ethics, reflect empathy, and serve people.'
+		title: 'Use AI responsibly',
+		desc: 'Privacy, accountability, bias, and professional responsibility are part of the work, not an optional final module.'
 	},
 	{
 		icon: 'flag',
-		title: 'Collaborate Over Compete',
-		desc: 'We do not gatekeep ideas. We share, co-create, and grow with partners, teams, and communities around us.'
+		title: 'Work with institutions',
+		desc: 'We build programmes with host organisations and subject specialists so that the material reflects real needs.'
 	}
 ] as const;
 
