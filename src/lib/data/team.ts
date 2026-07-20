@@ -9,6 +9,7 @@ export const leadTrainer = {
 	role: 'Lead Trainer & Academic Lead',
 	credentials: [
 		'Professor of Artificial Intelligence, United International University (UIU)',
+		'Vice President, AI, Innovation & Entrepreneurship, Washington University of Science and Technology (WUST), USA',
 		'Founder and Director, Institute of Research, Innovation, Incubation and Commercialisation (IRIIC)',
 		'Co-founder, CMED Health'
 	],
