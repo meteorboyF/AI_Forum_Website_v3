@@ -14,7 +14,7 @@ export const leadTrainer = {
 		'Co-founder, CMED Health'
 	],
 	summary:
-		'Professor Mamun leads the design and delivery of every AI Forum Bangladesh professional training programme, including engagements for Grameenphone, the Dhaka Stock Exchange, LankaBangla Securities, Sonali Intellect, and healthcare institutions across the country and abroad.',
+		'Professor Mamun leads the design and delivery of every AI Forum Bangladesh professional training programme, including engagements for the Dhaka Stock Exchange, LankaBangla Securities, Sonali Intellect, and healthcare institutions across the country and abroad.',
 	quote: 'We want to democratise artificial intelligence across Bangladesh, transforming theoretical potential into practical, industry-led value.',
 	image: 'about/mamun'
 };
@@ -93,7 +93,7 @@ export const milestones = [
 	{
 		dateLabel: 'Early growth',
 		title: 'First corporate training clients',
-		detail: 'Professional AI training delivered for organisations including Grameenphone and the Dhaka Stock Exchange.'
+		detail: 'Professional AI training delivered for organisations including the Dhaka Stock Exchange and LankaBangla Securities.'
 	},
 	{
 		dateLabel: 'October 2025',

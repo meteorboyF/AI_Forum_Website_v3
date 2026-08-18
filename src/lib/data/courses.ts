@@ -86,7 +86,7 @@ export const courses: Course[] = [
 		image: 'events/lankabangla',
 		category: 'professional',
 		status: 'Available on Request',
-		deliveredTo: ['Grameenphone', 'LankaBangla Securities PLC', 'Sonali Intellect Limited'],
+		deliveredTo: ['LankaBangla Securities PLC', 'Sonali Intellect Limited'],
 		outline: [
 			{
 				module: 'Module 1',

@@ -41,7 +41,7 @@
 			image: 'events/lankabangla',
 			imageAlt: 'Capital market professionals receiving certificates after AI training at the UIU Innovation Hub',
 			desc: 'Hands-on AI training for working professionals: sector-focused, practical, and led by Professor Khondaker A. Mamun.',
-			proof: 'Delivered for Grameenphone, the Dhaka Stock Exchange, LankaBangla Securities, and healthcare professionals across multiple institutions.',
+			proof: 'Delivered for the Dhaka Stock Exchange, LankaBangla Securities, and healthcare professionals across multiple institutions.',
 			latest: { label: 'Latest: AI Essentials for Capital Market Professionals', href: '/events/lankabangla-capital-markets/' }
 		},
 		{

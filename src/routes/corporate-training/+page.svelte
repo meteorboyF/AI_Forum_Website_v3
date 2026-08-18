@@ -14,10 +14,6 @@
 
 	const trackRecord = [
 		{
-			org: 'Grameenphone',
-			what: 'Corporate AI training for staff at Bangladesh’s largest telecom operator.'
-		},
-		{
 			org: 'Dhaka Stock Exchange',
 			what: 'Two-day specialist training for the Investigation & Enforcement Department.'
 		},
@@ -71,7 +67,7 @@
 
 <Seo
 	title="Corporate & B2B Training"
-	description="Book hands-on AI training for your team. AI Forum Bangladesh has trained Grameenphone, the Dhaka Stock Exchange, LankaBangla Securities, banks, hospitals, and government departments."
+	description="Book hands-on AI training for your team. AI Forum Bangladesh has trained the Dhaka Stock Exchange, LankaBangla Securities, banks, hospitals, and government departments."
 	path="/corporate-training/"
 	ogImage="events/lankabangla"
 />
@@ -85,7 +81,7 @@
 		<Reveal>
 			<p class="eyebrow mb-5">Corporate & institutional training</p>
 			<h1 class="font-display text-[clamp(2.4rem,5vw,4.25rem)] leading-[1.0] font-bold tracking-[-0.03em] text-balance">
-				<span class="line-mask"><span>We have trained teams at Grameenphone and the Dhaka Stock Exchange.</span></span>
+				<span class="line-mask"><span>We have trained teams at the Dhaka Stock Exchange and LankaBangla Securities.</span></span>
 			</h1>
 			<p class="mt-6 text-lg leading-relaxed text-white/80">
 				Here is what a programme for your organisation would look like: a hands-on curriculum
