@@ -85,13 +85,15 @@
 	<div class="relative z-10 mx-auto grid max-w-[88rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
 		<Reveal>
 			<p class="eyebrow mb-5">Corporate & institutional training</p>
-			<h1 class="font-display text-[clamp(2.4rem,5vw,4.25rem)] leading-[1.0] font-bold tracking-[-0.03em] text-balance">
-				<span class="line-mask"><span>We have trained teams at the Dhaka Stock Exchange and LankaBangla Securities.</span></span>
+			<h1 class="font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
+				<span class="line-mask"><span>Training built</span></span>
+				<span class="line-mask" style="--line-delay: 140ms"><span class="text-aqua-400">for your sector.</span></span>
 			</h1>
 			<p class="mt-6 text-lg leading-relaxed text-white/80">
-				Here is what a programme for your organisation would look like: a hands-on curriculum
-				scoped to your sector, led by Professor Khondaker A. Mamun, delivered in your offices, at
-				the UIU Innovation Hub, or online.
+				We have trained teams at the Dhaka Stock Exchange, LankaBangla Securities, and hospitals
+				across the country. A programme for your organisation is a hands-on curriculum scoped to
+				your sector, led by Professor Khondaker A. Mamun — in your offices, at the UIU Innovation
+				Hub, or online.
 			</p>
 			<div class="mt-8 flex flex-wrap gap-4">
 				<a href="#proposal" class="btn btn-primary">Discuss training</a>
@@ -99,7 +101,7 @@
 			</div>
 		</Reveal>
 		<Reveal delay={150}>
-			<div class="card-hover-trigger image-zoom-container rounded-2xl border border-white/10 shadow-card-lg">
+			<div class="overflow-hidden rounded-2xl border border-white/10 shadow-card-lg">
 				<img
 					src={img('events/sonali-intellect')}
 					alt="Banking and FinTech professionals during a hands-on AI training session"
@@ -113,7 +115,7 @@
 </section>
 
 <!-- ============ TRACK RECORD ============ -->
-<section class="bg-paper py-24 lg:py-28 bg-jamdani-light">
+<section class="bg-paper py-24 lg:py-32 bg-jamdani-light">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="01"
@@ -123,19 +125,20 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each trackRecord as item, i (item.org)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="card-hover-trigger h-full rounded-2xl border border-ink-900/10 bg-white p-7 shadow-sm">
-						<h3 class="font-display text-lg font-bold text-electric-600 text-underline-reveal">{item.org}</h3>
-						<p class="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-500">{item.what}</p>
+					<article class="h-full rounded-2xl border border-ink-900/10 bg-white p-7 shadow-card">
+						<h3 class="font-display text-lg font-bold text-ink-900">{item.org}</h3>
+						<p class="mt-2.5 text-sm leading-relaxed text-slate-600">{item.what}</p>
 					</article>
 				</Reveal>
 			{/each}
 		</div>
-		<div class="mt-14 flex flex-wrap items-center gap-x-12 gap-y-6 justify-center lg:justify-start border-t border-ink-900/5 pt-8">
-			{#each trainingClients as client (client.name)}
-				<div class="opacity-70 transition-opacity hover:opacity-100">
+		<div class="mt-14 border-t border-ink-900/5 pt-8">
+			<h3 class="font-display text-sm font-semibold tracking-widest text-slate-500 uppercase">Organisations we have trained</h3>
+			<div class="mt-5 flex flex-wrap items-center gap-x-10 gap-y-6 justify-center lg:justify-start">
+				{#each trainingClients as client (client.name)}
 					<PartnerLogo partner={client} compact />
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
 	</div>
 </section>
@@ -153,10 +156,10 @@
 			] as step, i (step.n)}
 				<li>
 					<Reveal delay={i * 100}>
-						<div class="card-hover-trigger h-full rounded-2xl border border-ink-900/6 bg-paper-deep/20 p-6 shadow-sm">
+						<div class="h-full rounded-2xl border border-ink-900/10 bg-paper-deep/20 p-6 shadow-card">
 							<span class="font-display text-5xl font-bold text-transparent" style="-webkit-text-stroke: 1.5px var(--color-electric-400)">{step.n}</span>
 							<h3 class="mt-4 font-display font-bold text-ink-900 text-base leading-snug">{step.t}</h3>
-							<p class="mt-2 text-xs sm:text-sm leading-relaxed text-slate-500">{step.d}</p>
+							<p class="mt-2 text-sm leading-relaxed text-slate-600">{step.d}</p>
 						</div>
 					</Reveal>
 				</li>

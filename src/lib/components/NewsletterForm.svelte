@@ -29,7 +29,7 @@
 	}
 </script>
 
-<section class="border-t border-ink-900/8 bg-paper relative overflow-hidden py-16 sm:py-24">
+<section class="border-t border-ink-900/8 bg-paper relative overflow-hidden py-20 lg:py-24">
 	<div class="mx-auto max-w-xl px-5 text-center">
 		{#if !FORMS_ENABLED}
 			<h2 class="font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">Stay in touch</h2>

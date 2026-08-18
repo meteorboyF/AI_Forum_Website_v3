@@ -27,14 +27,14 @@
 		display: flex;
 		overflow: hidden;
 		user-select: none;
-		gap: 3rem;
+		gap: 4rem;
 		mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
 	}
 	.marquee-track {
 		flex-shrink: 0;
 		display: flex;
 		align-items: center;
-		gap: 3rem;
+		gap: 4rem;
 		min-width: 100%;
 		justify-content: space-around;
 		animation: scroll var(--speed) linear infinite;
@@ -49,7 +49,7 @@
 			transform: translateX(0);
 		}
 		to {
-			transform: translateX(calc(-100% - 3rem));
+			transform: translateX(calc(-100% - 4rem));
 		}
 	}
 	@media (prefers-reduced-motion: reduce) {

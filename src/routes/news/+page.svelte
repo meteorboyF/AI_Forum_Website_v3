@@ -49,7 +49,7 @@
 <section class="bg-paper py-24 lg:py-32 bg-jamdani-light">
 	<div class="mx-auto grid max-w-[88rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:px-12">
 		<Reveal>
-			<div class="card-hover-trigger image-zoom-container rounded-2xl border border-ink-900/10 shadow-card">
+			<div class="overflow-hidden rounded-2xl border border-ink-900/10 shadow-card">
 				<img
 					src={img('events/business-excellence-press')}
 					alt={pressCollageAlt}

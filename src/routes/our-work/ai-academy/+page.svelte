@@ -82,11 +82,11 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each sectors as sector, i (sector.slug)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="card-hover-trigger flex h-full flex-col rounded-lg border border-ink-900/10 bg-white p-7 shadow-sm">
+					<article class="flex h-full flex-col rounded-2xl border border-ink-900/10 bg-white p-7 shadow-card">
 						<div class="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-electric-50 text-electric-600">
 							<Icons name={sector.slug} class="h-6 w-6" />
 						</div>
-						<h3 class="font-display text-lg font-bold text-ink-900 text-underline-reveal">{sector.name}</h3>
+						<h3 class="font-display text-lg font-bold text-ink-900">{sector.name}</h3>
 						<p class="mt-2.5 flex-1 text-sm leading-relaxed text-slate-500">{sector.blurb}</p>
 						<div class="mt-6 flex items-center justify-between gap-3 border-t border-ink-900/5 pt-4">
 							<a href="{base}/corporate-training/#proposal" class="text-xs font-bold tracking-wider text-electric-600 uppercase inline-flex items-center gap-1 hover:text-electric-700">
@@ -190,7 +190,7 @@
 		<div class="mt-12 grid gap-6 md:grid-cols-2">
 			{#each caseStudyEvents as event, i (event.slug)}
 				<Reveal delay={(i % 2) * 100}>
-					<article class="card-hover-trigger flex h-full flex-col gap-6 rounded-lg border border-ink-900/10 bg-paper p-6 sm:flex-row shadow-sm">
+					<article class="flex h-full flex-col gap-6 rounded-2xl border border-ink-900/10 bg-paper p-6 sm:flex-row shadow-card">
 						{#if event.image}
 							<div class="image-zoom-container aspect-[4/3] w-full rounded-xl sm:w-44 sm:shrink-0 bg-ink-950">
 								<img
@@ -205,7 +205,7 @@
 						{/if}
 						<div class="flex flex-col justify-center flex-1">
 							<p class="eyebrow !text-[0.65rem]">{event.sector}</p>
-							<h3 class="mt-1.5 font-display text-lg font-bold text-ink-900 text-underline-reveal">{event.client ?? event.title}</h3>
+							<h3 class="mt-1.5 font-display text-lg font-bold text-ink-900">{event.client ?? event.title}</h3>
 							<p class="mt-2 line-clamp-3 text-xs sm:text-sm leading-relaxed text-slate-500">{event.summary}</p>
 							<a href="{base}/events/{event.slug}/" class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-electric-600 hover:text-electric-700">
 								Full recap <Icons name="arrow-right" class="h-3.5 w-3.5" />

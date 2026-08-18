@@ -75,6 +75,17 @@
 	{:else if name === 'check'}
 		<!-- Success check -->
 		<path d="M20 6L9 17l-5-5" />
+	{:else if name === 'close'}
+		<!-- Close cross -->
+		<path d="M6 6l12 12M18 6L6 18" />
+	{:else if name === 'chevron-left'}
+		<path d="M15 18l-6-6 6-6" />
+	{:else if name === 'chevron-right'}
+		<path d="M9 18l6-6-6-6" />
+	{:else if name === 'external'}
+		<!-- External link -->
+		<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+		<path d="M15 3h6v6M10 14L21 3" />
 	{:else}
 		<!-- Default fallback search/magnifier -->
 		<circle cx="11" cy="11" r="8" />

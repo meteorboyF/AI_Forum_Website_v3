@@ -37,10 +37,7 @@
 
 <section class="on-dark mesh-dark grain overflow-hidden py-20 text-white lg:py-28">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<Reveal>
-			<p class="eyebrow">Programme format</p>
-			<h2 class="mt-4 max-w-3xl font-display text-[clamp(2.2rem,5vw,4.5rem)] leading-[1] font-bold">Designed with the host, not dropped in from a template.</h2>
-		</Reveal>
+		<SectionHead number="01" eyebrow="Programme format" title="Designed with the host, not dropped in from a template" onDark />
 		<div class="mt-14 grid gap-px overflow-hidden rounded-lg border border-white/12 bg-white/12 lg:grid-cols-3">
 			{#each format as item, index (item.step)}
 				<Reveal delay={index * 100}>

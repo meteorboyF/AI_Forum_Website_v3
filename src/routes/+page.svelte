@@ -98,7 +98,7 @@
 />
 
 <!-- ============ HERO: kinetic type over full-bleed graded photograph ============ -->
-<section class="on-dark photo-duo scrim-hero relative flex min-h-[76svh] items-center overflow-hidden text-white bg-jamdani-dark sm:min-h-[78svh]">
+<section class="on-dark photo-duo scrim-hero relative flex min-h-[76svh] items-center overflow-hidden text-white sm:min-h-[78svh]">
 	{#each heroSlides as slide, index (slide.image)}
 		<img
 			src={img(slide.image)}
@@ -297,7 +297,7 @@
 		height="1280"
 		loading="lazy"
 	/>
-	<div class="relative z-10 mx-auto max-w-[88rem] px-5 py-28 sm:px-8 lg:px-12 lg:py-40">
+	<div class="relative z-10 mx-auto max-w-[88rem] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
 		<Reveal>
 			<p class="eyebrow mb-5">On the ground</p>
 			<p class="max-w-4xl font-display text-[clamp(1.9rem,4.5vw,3.6rem)] leading-[1.08] font-bold tracking-[-0.025em] text-balance">
@@ -312,17 +312,7 @@
 <!-- ============ 02 · IN THE NEWS: typographic list ============ -->
 <section class="on-dark mesh-dark grain relative overflow-hidden py-24 text-white lg:py-32">
 	<div class="relative mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<Reveal>
-			<div class="rule-tick flex items-start gap-6 pt-6 sm:gap-10">
-				<span class="sec-num" aria-hidden="true">02</span>
-				<div class="pt-2">
-					<p class="eyebrow mb-3">In the news</p>
-					<h2 class="font-display text-[clamp(1.9rem,4vw,3.25rem)] leading-[1.05] font-bold tracking-[-0.025em]">
-						Covered by the national press
-					</h2>
-				</div>
-			</div>
-		</Reveal>
+		<SectionHead number="02" eyebrow="In the news" title="Covered by the national press" onDark />
 
 		<div class="mt-12">
 			{#each homePress as item, i (item.slug)}
@@ -415,7 +405,7 @@
 </section>
 
 <!-- ============ DOCUMENTED STORIES ============ -->
-<section class="border-b border-ink-900/8 bg-white py-20 lg:py-24">
+<section class="border-b border-ink-900/8 bg-paper py-20 lg:py-24">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			eyebrow="From the field"
@@ -425,7 +415,7 @@
 		<div class="mt-12 grid gap-6 lg:grid-cols-3">
 			{#each featuredStories as story, i (story.slug)}
 				<Reveal delay={i * 90}>
-					<article class="flex h-full flex-col rounded-2xl border border-ink-900/10 bg-paper p-7 shadow-card">
+					<article class="flex h-full flex-col rounded-2xl border border-ink-900/10 bg-white p-7 shadow-card">
 						<p class="eyebrow">{story.sector}</p>
 						<h3 class="mt-3 font-display text-xl font-bold leading-snug text-ink-900">{story.title}</h3>
 						{#if story.client}

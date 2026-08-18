@@ -8,9 +8,12 @@
 		align?: 'left' | 'center';
 		/** Oversized ghost numeral, e.g. '01' */
 		number?: string;
+		/** Set on dark section backgrounds so the lede stays readable */
+		onDark?: boolean;
 	}
 
-	let { eyebrow, title, lede, align = 'left', number }: Props = $props();
+	let { eyebrow, title, lede, align = 'left', number, onDark = false }: Props = $props();
+	const ledeColor = $derived(onDark ? 'text-white/75' : 'text-slate-600');
 </script>
 
 <Reveal class={align === 'center' ? 'text-center' : ''}>
@@ -25,7 +28,7 @@
 					{title}
 				</h2>
 				{#if lede}
-					<p class="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">{lede}</p>
+					<p class="mt-4 max-w-2xl text-lg leading-relaxed {ledeColor}">{lede}</p>
 				{/if}
 			</div>
 		</div>
@@ -37,7 +40,7 @@
 			{title}
 		</h2>
 		{#if lede}
-			<p class="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600 {align === 'center' ? 'mx-auto' : ''}">
+			<p class="mt-4 max-w-2xl text-lg leading-relaxed {ledeColor} {align === 'center' ? 'mx-auto' : ''}">
 				{lede}
 			</p>
 		{/if}

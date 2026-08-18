@@ -69,12 +69,12 @@
 			</div>
 			<p class="text-sm text-slate-500">Select a point on the timeline</p>
 		</div>
-		<div class="mt-9 overflow-x-auto pb-3">
+		<div class="mt-9 overflow-x-auto pb-3 max-lg:[mask-image:linear-gradient(90deg,black_88%,transparent)]">
 			<div class="relative flex min-w-[48rem] items-start justify-between before:absolute before:top-5 before:right-5 before:left-5 before:h-px before:bg-electric-600/20">
 				{#each milestones as milestone, index (milestone.title)}
 					<button type="button" class="relative z-10 flex w-32 flex-col items-center text-center" onclick={() => (activeMilestone = index)} aria-pressed={activeMilestone === index}>
 						<span class="grid h-10 w-10 place-items-center rounded-full border-2 transition-all duration-300 {activeMilestone === index ? 'border-electric-600 bg-electric-600 text-white shadow-lg shadow-electric-600/30' : 'border-paper bg-white text-electric-600 hover:border-electric-600'}">{String(index + 1).padStart(2, '0')}</span>
-						<span class="mt-3 text-[0.65rem] font-bold tracking-wide text-slate-500 uppercase">{milestone.dateLabel}</span>
+						<span class="mt-3 text-[0.7rem] font-bold tracking-wide text-slate-500 uppercase">{milestone.dateLabel}</span>
 					</button>
 				{/each}
 			</div>
@@ -105,7 +105,7 @@
 			lede="Six working principles used when a session moves from an initial conversation to the room."
 		/>
 		<div class="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-			<Reveal>
+			<Reveal class="order-2 lg:order-none">
 				<div class="sticky top-24 overflow-hidden rounded-2xl bg-ink-950 p-8 text-white shadow-card lg:p-10" aria-live="polite">
 					<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-aqua-400 text-ink-950">
 						<svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={valueIcons[values[activeValue].icon]} /></svg>
@@ -175,7 +175,7 @@
 </section>
 
 <!-- ============ ADVISORS ============ -->
-<section class="bg-paper pt-24 pb-16 lg:pt-32 lg:pb-20">
+<section class="bg-paper py-24 lg:py-32">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="03"
@@ -186,28 +186,22 @@
 		<div class="mt-14 grid gap-5 lg:grid-cols-2 lg:gap-7">
 			{#each advisors as advisor (advisor.name)}
 				<article
-					class="card-hover-trigger flex h-full flex-col rounded-2xl border bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-electric-600/25 hover:shadow-card sm:p-7
+					class="flex h-full flex-col rounded-2xl border bg-white p-6 shadow-card sm:p-7
 						{advisor.featured ? 'border-electric-600/25 ring-1 ring-electric-600/10' : 'border-ink-900/8'}"
 				>
 					<div class="flex items-start gap-5 sm:gap-6">
-						<div class="image-zoom-container h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-ink-100 ring-1 ring-ink-900/8 sm:h-28 sm:w-28">
+						<div class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-ink-100 ring-1 ring-ink-900/8 sm:h-28 sm:w-28">
 							<img
 								src={img(advisor.image)}
 								alt="Portrait of {advisor.name}"
-								class="image-zoom-img h-full w-full rounded-xl object-cover"
+								class="h-full w-full rounded-xl object-cover"
 								width="256"
 								height="256"
 								loading="lazy"
 							/>
 						</div>
 						<div class="min-w-0">
-							<div class="flex flex-wrap items-center gap-2">
-								<p class="rounded-full bg-electric-50 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.08em] text-electric-700 uppercase">Advisory board</p>
-								{#if advisor.featured}
-									<p class="rounded-full bg-ink-900 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.14em] text-white uppercase">Board lead</p>
-								{/if}
-							</div>
-							<h3 class="mt-3 font-display text-xl leading-[1.05] font-bold tracking-[-0.02em] text-ink-900 sm:text-2xl text-underline-reveal">{advisor.name}</h3>
+							<h3 class="font-display text-xl leading-[1.05] font-bold tracking-[-0.02em] text-ink-900 sm:text-2xl">{advisor.name}</h3>
 							<p class="mt-2 text-sm leading-snug font-medium text-slate-500">{advisor.credential}</p>
 						</div>
 					</div>
@@ -230,7 +224,7 @@
 		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each team as member, i (member.name)}
 				<Reveal delay={(i % 3) * 100}>
-					<article class="card-hover-trigger flex h-full gap-5 rounded-2xl border border-ink-900/10 bg-paper p-6 shadow-sm">
+					<article class="flex h-full gap-5 rounded-2xl border border-ink-900/10 bg-paper p-6 shadow-card">
 						<div class="image-zoom-container h-24 w-24 shrink-0 rounded-xl bg-ink-950">
 							<img
 								src={img(member.image)}
@@ -243,7 +237,7 @@
 						</div>
 						<div class="flex flex-col justify-between flex-1">
 							<div>
-								<h3 class="font-display font-bold text-ink-900 text-lg leading-snug text-underline-reveal">{member.name}</h3>
+								<h3 class="font-display font-bold text-ink-900 text-lg leading-snug">{member.name}</h3>
 								<p class="mt-0.5 font-display text-xs font-bold tracking-widest text-electric-600 uppercase">
 									{member.role}
 								</p>

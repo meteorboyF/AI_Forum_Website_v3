@@ -80,7 +80,7 @@
 				href={photo.src}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="hidden rounded-full border border-white/20 px-4 py-2 text-xs font-bold text-white/85 transition-colors hover:bg-white hover:text-ink-900 sm:inline-flex"
+				class="inline-flex rounded-full border border-white/20 px-4 py-2 text-xs font-bold text-white/85 transition-colors hover:bg-white hover:text-ink-900"
 			>
 				Open full size ↗
 			</a>
@@ -91,7 +91,7 @@
 				onclick={onclose}
 				aria-label="Close photo viewer"
 			>
-				×
+				<svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
 			</button>
 		</div>
 	</div>
@@ -119,7 +119,7 @@
 				onclick={() => (index = prevIndex)}
 				aria-label="Previous photograph"
 			>
-				←
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
 			</button>
 			<button
 				type="button"
@@ -127,7 +127,7 @@
 				onclick={() => (index = nextIndex)}
 				aria-label="Next photograph"
 			>
-				→
+				<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
 			</button>
 		{/if}
 	</div>

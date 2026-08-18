@@ -53,7 +53,7 @@
 
 <section class="bg-paper py-20 lg:py-28">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead number="01" eyebrow="What we cover" title="Specific questions, not career promises" lede="The format is educational and advisory. It does not guarantee admission, employment, visas, or placement." />
+		<SectionHead eyebrow="What we cover" title="Specific questions, not career promises" lede="The format is educational and advisory. It does not guarantee admission, employment, visas, or placement." />
 		<div class="mt-12 grid gap-5 lg:grid-cols-3">
 			{#each topics as topic, index (topic.title)}
 				<Reveal delay={index * 100}>

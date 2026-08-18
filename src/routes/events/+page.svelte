@@ -108,7 +108,7 @@
 </PageIntro>
 
 <!-- ============ PAST PROGRAMMES ============ -->
-<section class="bg-white py-20 lg:py-28">
+<section class="bg-white py-24 lg:py-32">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="01"
@@ -197,7 +197,7 @@
 						{/if}
 						<div class="p-8 lg:p-12 flex flex-col justify-center" style="direction: ltr">
 							<div class="flex flex-wrap items-center gap-4">
-								<span class="rounded bg-electric-600 px-2.5 py-1 font-display text-[0.65rem] font-bold tracking-widest text-white uppercase shadow-sm">
+								<span class="rounded-full bg-electric-600 px-3 py-1 font-display text-[0.7rem] font-bold tracking-widest text-white uppercase shadow-sm">
 									{event.sector}
 								</span>
 								{#if event.dateLabel}
@@ -310,7 +310,7 @@
 					<p class="eyebrow">Photo gallery · {selectedEvent.gallery.count} photographs</p>
 					<h2 id="gallery-title" class="mt-2 font-display text-2xl font-bold text-ink-900 sm:text-3xl">{selectedEvent.title}</h2>
 				</div>
-				<button type="button" class="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-900/15 bg-white text-xl font-medium text-ink-900 transition-colors hover:bg-ink-900 hover:text-white" onclick={closeGallery} aria-label="Close photo gallery">×</button>
+				<button type="button" class="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-900/15 bg-white text-xl font-medium text-ink-900 transition-colors hover:bg-ink-900 hover:text-white" onclick={closeGallery} aria-label="Close photo gallery"><Icons name="close" class="h-5 w-5" /></button>
 			</div>
 			<div class="px-6 py-7 sm:px-9 sm:py-9">
 				<div class="max-w-3xl border-l-2 border-aqua-500 pl-4">
