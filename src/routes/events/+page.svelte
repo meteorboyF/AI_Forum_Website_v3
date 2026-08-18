@@ -10,8 +10,38 @@
 	import { sectors } from '$lib/data/courses';
 	import type { EventItem } from '$lib/data/types';
 	import Icons from '$lib/components/Icons.svelte';
+	import Lightbox from '$lib/components/Lightbox.svelte';
 
 	let selectedEvent = $state<EventItem | null>(null);
+	let lightboxIndex = $state<number | null>(null);
+	let galleryPhotos = $derived(
+		selectedEvent?.gallery
+			? Array.from({ length: selectedEvent.gallery.count }, (_, index) => ({
+					src: img(`events/galleries/${selectedEvent!.gallery!.folder}/${index + 1}`),
+					alt: `${selectedEvent!.gallery!.label}, photograph ${index + 1}`
+				}))
+			: []
+	);
+
+	function closeGallery() {
+		lightboxIndex = null;
+		selectedEvent = null;
+	}
+
+	// Esc closes the top-most layer only: the lightbox handles its own
+	// Escape, so this ignores the key while the lightbox is open.
+	function onModalKeydown(keyEvent: KeyboardEvent) {
+		if (keyEvent.key === 'Escape' && selectedEvent && lightboxIndex === null) closeGallery();
+	}
+
+	$effect(() => {
+		if (!selectedEvent) return;
+		const previous = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = previous;
+		};
+	});
 	let eventSearch = $state('');
 	let eventSort = $state<'newest' | 'oldest' | 'az'>('newest');
 	let filteredPastEvents = $derived.by(() => {
@@ -33,6 +63,8 @@
 		});
 	});
 </script>
+
+<svelte:window onkeydown={onModalKeydown} />
 
 <Seo
 	title="Past Work"
@@ -268,7 +300,7 @@
 	<div
 		class="fixed inset-0 z-[100] flex items-end bg-ink-900/75 p-0 backdrop-blur-sm sm:items-center sm:p-6"
 		role="presentation"
-		onclick={(event) => event.target === event.currentTarget && (selectedEvent = null)}
+		onclick={(event) => event.target === event.currentTarget && closeGallery()}
 	>
 		<div
 			class="max-h-[92vh] w-full overflow-y-auto rounded-t-2xl bg-paper shadow-2xl sm:mx-auto sm:max-w-6xl sm:rounded-2xl"
@@ -281,7 +313,7 @@
 					<p class="eyebrow">Photo gallery · {selectedEvent.gallery.count} photographs</p>
 					<h2 id="gallery-title" class="mt-2 font-display text-2xl font-bold text-ink-900 sm:text-3xl">{selectedEvent.title}</h2>
 				</div>
-				<button type="button" class="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-900/15 bg-white text-xl font-medium text-ink-900 transition-colors hover:bg-ink-900 hover:text-white" onclick={() => (selectedEvent = null)} aria-label="Close photo gallery">×</button>
+				<button type="button" class="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-900/15 bg-white text-xl font-medium text-ink-900 transition-colors hover:bg-ink-900 hover:text-white" onclick={closeGallery} aria-label="Close photo gallery">×</button>
 			</div>
 			<div class="px-6 py-7 sm:px-9 sm:py-9">
 				<div class="max-w-3xl border-l-2 border-aqua-500 pl-4">
@@ -289,15 +321,29 @@
 					<p class="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">{selectedEvent.summary}</p>
 				</div>
 				<div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-					{#each Array.from({ length: selectedEvent.gallery.count }, (_, index) => index + 1) as photo}
-						<a href={img(`events/galleries/${selectedEvent.gallery.folder}/${photo}`)} target="_blank" rel="noopener noreferrer" class="group block overflow-hidden rounded-lg bg-ink-100 focus:outline-2 focus:outline-offset-2 focus:outline-electric-600">
-							<img src={img(`events/galleries/${selectedEvent.gallery.folder}/${photo}`)} alt={`${selectedEvent.gallery.label}, photograph ${photo}`} class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-						</a>
+					{#each galleryPhotos as photo, photoIndex (photo.src)}
+						<button
+							type="button"
+							class="group block cursor-zoom-in overflow-hidden rounded-lg bg-ink-100 focus:outline-2 focus:outline-offset-2 focus:outline-electric-600"
+							onclick={() => (lightboxIndex = photoIndex)}
+							aria-label={`View ${photo.alt} full screen`}
+						>
+							<img src={photo.src} alt={photo.alt} class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+						</button>
 					{/each}
 				</div>
 			</div>
 		</div>
 	</div>
+{/if}
+
+{#if selectedEvent && lightboxIndex !== null}
+	<Lightbox
+		photos={galleryPhotos}
+		bind:index={lightboxIndex}
+		title={selectedEvent.title}
+		onclose={() => (lightboxIndex = null)}
+	/>
 {/if}
 
 <!-- ============ CTA ============ -->
