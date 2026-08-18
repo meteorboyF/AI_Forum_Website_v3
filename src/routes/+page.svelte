@@ -343,7 +343,7 @@
 <!-- ============ 03 · PARTNERS: typographic marquee ============ -->
 <section class="border-b border-ink-900/8 bg-paper py-20 lg:py-24" aria-label="Partners and clients">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead number="03" eyebrow="Partners & clients" title="Trusted by organisations across Bangladesh" />
+		<SectionHead number="03" eyebrow="Partners & clients" title="Trusted by organisations in Bangladesh and beyond" />
 	</div>
 	<div class="mt-12">
 		<Marquee speed={55}>
@@ -410,7 +410,7 @@
 		<SectionHead
 			eyebrow="From the field"
 			title="What happened in the room"
-			lede="Programme notes, photographs, and official updates from sessions delivered with participating organisations."
+			lede="Programme notes and official updates from sessions delivered with participating organisations."
 		/>
 		<div class="mt-12 grid gap-6 lg:grid-cols-3">
 			{#each featuredStories as story, i (story.slug)}

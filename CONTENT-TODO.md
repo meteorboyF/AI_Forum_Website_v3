@@ -31,9 +31,9 @@ added.
 
 Add a `dateLabel` (and correct the `sortKey`, format YYYYMMDD) in
 `src/lib/data/events.ts` for: OGSB Hospital & IRCH training, BSP
-workshop, AI for Business Excellence seminar, BEPRC training, UNICEF
-crash course, AIMS Lab training. Same for the matching press items in
-`src/lib/data/press.ts` (the three Business Excellence articles).
+workshop, BEPRC training, UNICEF crash course, AIMS Lab training.
+Press items in `src/lib/data/press.ts` now carry dates and sortKeys;
+refine the three Business Excellence entries to exact days if known.
 
 ## About page
 

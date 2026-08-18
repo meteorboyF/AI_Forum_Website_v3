@@ -27,11 +27,11 @@
 		},
 		{
 			org: 'Hospitals & medical societies',
-			what: 'Programmes at OGSB Hospital & IRCH and with the Bangladesh Society of Physiologists, plus an international delivery with PILL Pakistan.'
+			what: 'Programmes at OGSB Hospital & IRCH and with the Bangladesh Society of Physiologists, plus an international delivery with the Pakistan Institute of Living and Learning (PILL).'
 		},
 		{
 			org: 'Government & development',
-			what: 'BEPRC productivity training and a crash course on AI for officials of UNICEF.'
+			what: 'BEPRC productivity training and a crash course on AI for UNICEF officials.'
 		}
 	];
 
@@ -71,8 +71,8 @@
 </script>
 
 <Seo
-	title="Corporate & B2B Training"
-	description="Book hands-on AI training for your team. AI Forum Bangladesh has trained the Dhaka Stock Exchange, LankaBangla Securities, banks, hospitals, and government departments."
+	title="Corporate & Institutional Training"
+	description="Book hands-on AI training for your team. AI Forum Bangladesh has trained teams at the Dhaka Stock Exchange, LankaBangla Securities, Sonali Intellect, hospitals, and public institutions."
 	path="/corporate-training/"
 	ogImage="events/lankabangla"
 />
@@ -151,7 +151,7 @@
 			{#each [
 				{ n: '01', t: 'Scoping call', d: 'We learn what your team does, their current AI exposure, and what you want them to be able to do afterwards.' },
 				{ n: '02', t: 'Tailored proposal', d: 'A curriculum built for your sector, with duration, delivery mode, and outcomes set out clearly.' },
-				{ n: '03', t: 'Hands-on delivery', d: 'Practical sessions with real tools and your own working context, not slideware. On site, at the UIU Innovation Hub, or online.' },
+				{ n: '03', t: 'Hands-on delivery', d: 'Practical sessions with real tools and your own working context, not slide decks. On site, at the UIU Innovation Hub, or online.' },
 				{ n: '04', t: 'Certification & follow-up', d: 'Participants receive certificates, and we stay available for follow-up questions as your team applies what they learned.' }
 			] as step, i (step.n)}
 				<li>
@@ -250,6 +250,11 @@
 					<button type="submit" class="btn btn-electric mt-6 w-full" disabled={status === 'submitting'}>
 						{status === 'submitting' ? 'Sending…' : 'Send proposal request'}
 					</button>
+					<p class="mt-4 text-xs leading-relaxed text-slate-500">
+						We use what you send only to respond to you. See our
+						<a href="{base}/privacy/" class="link-sweep font-medium text-ink-900">privacy policy</a>.
+					</p>
+
 					{#if status === 'error'}
 						<p class="mt-3 text-sm font-medium text-red-600" role="alert">
 							Sending failed. Please try again in a moment, or email

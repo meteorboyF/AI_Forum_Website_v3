@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import LegalShell from '$lib/components/LegalShell.svelte';
-	import { CONTACT_EMAIL } from '$lib/config';
+	import { CONTACT_EMAIL, LEGAL_UPDATED } from '$lib/config';
 </script>
 
 <Seo
@@ -10,7 +10,7 @@
 	path="/cookies/"
 />
 
-<LegalShell title="Cookie Policy" updated="July 2026">
+<LegalShell title="Cookie Policy" updated={LEGAL_UPDATED}>
 	<p>
 		This site is a static website and sets no cookies of its own. There are no advertising
 		cookies, no analytics cookies, and no tracking pixels.

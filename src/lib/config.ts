@@ -38,3 +38,6 @@ export const WEB3FORMS_ACCESS_KEY: string =
 export const FORMS_ENABLED = WEB3FORMS_ACCESS_KEY.length > 0;
 
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+
+/** Shown as "Last updated" on the Terms, Privacy, and Cookies pages. */
+export const LEGAL_UPDATED = 'August 2026';

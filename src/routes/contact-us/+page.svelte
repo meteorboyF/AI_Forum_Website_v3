@@ -61,7 +61,7 @@
 <section class="bg-paper py-24 lg:py-28">
 	<div class="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
 		<Reveal>
-			<SectionHead eyebrow="Direct" title="Choose the right route" />
+			<SectionHead eyebrow="Direct" title="Ways to reach us" />
 			<div class="mt-8 space-y-5">
 				<a href="mailto:{CONTACT_EMAIL}" class="block rounded-xl border border-ink-900/10 bg-white p-5 shadow-card transition-colors hover:border-electric-400">
 					<p class="text-xs font-bold tracking-widest text-slate-500 uppercase">Email</p>
@@ -132,6 +132,11 @@
 					<button type="submit" class="btn btn-electric mt-6 w-full" disabled={status === 'submitting'}>
 						{status === 'submitting' ? 'Sending…' : 'Send message'}
 					</button>
+					<p class="mt-4 text-xs leading-relaxed text-slate-500">
+						We use what you send only to respond to you. See our
+						<a href="{base}/privacy/" class="link-sweep font-medium text-ink-900">privacy policy</a>.
+					</p>
+
 					{#if status === 'error'}
 						<p class="mt-3 text-sm font-medium text-red-600" role="alert">
 							Sending failed. Please try again in a moment, or email

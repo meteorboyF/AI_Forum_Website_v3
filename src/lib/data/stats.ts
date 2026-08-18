@@ -29,7 +29,6 @@ const derived: Stat[] = [
 	},
 	{
 		value: press.length,
-		suffix: '+',
 		label: 'National press features'
 	},
 ];

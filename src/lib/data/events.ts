@@ -16,7 +16,7 @@ export const events: EventItem[] = [
 		dateLabel: 'October 2025',
 		sortKey: 20251005,
 		summary:
-			'A two-day hands-on programme at the UIU Innovation Hub, organised by IRIIC-UIU with AI Forum Bangladesh. Thirty LankaBangla Securities officials trained on applying AI to financial operations, risk management, trade execution, capital market research, and strategy. The programme was covered by more than eight national news outlets.',
+			'A two-day hands-on programme at the UIU Innovation Hub, organised by IRIIC-UIU with AI Forum Bangladesh. Thirty LankaBangla Securities officials trained in applying AI to financial operations, risk management, trade execution, capital market research, and strategy. The programme was covered by nine national news outlets.',
 		highlights: [
 			'Practical AI applications for financial operations and risk management',
 			'Trade execution, capital-market research, and strategic decision-making',
@@ -73,7 +73,7 @@ export const events: EventItem[] = [
 		dateLabel: 'October 2025',
 		sortKey: 20251025,
 		summary:
-			'AI Forum Bangladesh collaborated with the Pakistan Institute of Living and Learning, IRIIC, and United International University on a two-day online programme for healthcare professionals in Pakistan: the organisation’s first sector-focused AI capacity building delivered beyond Bangladesh.',
+			'A two-day online programme for healthcare professionals in Pakistan, delivered with the Pakistan Institute of Living and Learning (PILL), IRIIC, and United International University — the organisation’s first sector-focused AI capacity-building programme delivered outside Bangladesh.',
 		image: 'events/pill',
 		imageAlt: 'Online session of AI Essentials for Healthcare Professionals in Pakistan',
 		gallery: { folder: 'pill', count: 9, label: 'Pakistan healthcare professionals training' },
@@ -153,7 +153,7 @@ export const events: EventItem[] = [
 		format: 'Professional training',
 		sortKey: 0,
 		summary:
-			'A training programme for BEPRC on using AI tools to improve productivity and employee performance, part of AI Forum Bangladesh’s work with government and public sector institutions.',
+			'Hands-on training for the council’s officers on everyday AI tools for drafting, analysis, and reporting — part of AI Forum Bangladesh’s work with government and public sector institutions.',
 		image: 'events/beprc',
 		imageAlt: 'BEPRC professionals taking part in an AI productivity training session',
 		gallery: { folder: 'beprc', count: 36, label: 'BEPRC productivity training' },
@@ -170,7 +170,7 @@ export const events: EventItem[] = [
 		format: 'Crash course',
 		sortKey: 0,
 		summary:
-			'A crash course on AI delivered to officials of UNICEF, introducing practical AI tools and workflows for development sector professionals.',
+			'An intensive introduction for development-sector professionals: practical AI tools and workflows applied to programme delivery, documentation, and analysis.',
 		image: 'events/unicef',
 		imageAlt: 'UNICEF officials participating in an AI training session',
 		gallery: { folder: 'unicef', count: 29, label: 'UNICEF AI crash course' },

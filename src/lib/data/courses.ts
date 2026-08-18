@@ -82,7 +82,7 @@ export const courses: Course[] = [
 		id: 'ai-for-business-professionals',
 		title: 'AI for Business Professionals',
 		description:
-			'Built for C-suite leaders, innovation managers, operations heads, marketing directors, and tech-driven entrepreneurs ready to lead smarter, AI-powered organisations. Delivered to executives at leading Bangladeshi organisations.',
+			'Built for C-suite leaders, innovation managers, operations heads, marketing directors, and tech-driven entrepreneurs ready to lead smarter, AI-powered organisations.',
 		image: 'events/lankabangla',
 		category: 'professional',
 		status: 'Available on Request',
@@ -166,7 +166,7 @@ export const courses: Course[] = [
 		id: 'analytical-ai-tools',
 		title: 'Analytical AI Tools',
 		description:
-			'Master data-driven AI applications such as machine learning, automation, and decision-support systems to strengthen strategic and operational insights.',
+			'For analysts and operations teams working with data: machine learning, automation, and decision-support systems that strengthen strategic and operational insight.',
 		image: 'academy/skills2',
 		category: 'skills',
 		status: 'Available on Request'

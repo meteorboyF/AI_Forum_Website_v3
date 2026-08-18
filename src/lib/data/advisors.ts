@@ -27,7 +27,7 @@ export const advisors: Advisor[] = [
 	},
 	{
 		name: 'Professor Shafi Ahmed',
-		credential: 'The world’s first Chief Medical Metaverse Officer',
+		credential: 'Surgeon, educator, and Chief Medical Metaverse Officer',
 		callout: 'Streamed the world’s first live surgery via Google Glass',
 		image: 'about/advisors/ad1',
 		bio: 'Professor Shafi Ahmed is a colorectal surgeon and medical-technology educator. He is a consultant at The Royal London and St Bartholomew’s Hospitals and co-founded Medical Realities. His advisory work focuses on clinical education and the responsible use of emerging technology in healthcare.'

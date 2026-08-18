@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Seo from '$lib/components/Seo.svelte';
 	import LegalShell from '$lib/components/LegalShell.svelte';
-	import { CONTACT_EMAIL } from '$lib/config';
+	import { CONTACT_EMAIL, LEGAL_UPDATED } from '$lib/config';
 </script>
 
 <Seo
@@ -10,7 +10,7 @@
 	path="/terms/"
 />
 
-<LegalShell title="Terms of Use" updated="July 2026">
+<LegalShell title="Terms of Use" updated={LEGAL_UPDATED}>
 	<p>
 		These terms govern your use of the AI Forum Bangladesh website. By using this site you accept
 		these terms. If you do not agree with them, please do not use the site.
@@ -55,6 +55,12 @@
 		This site is provided on an "as is" basis. To the fullest extent permitted by law, AI Forum
 		Bangladesh accepts no liability for any loss or damage arising from your use of the site or
 		reliance on its content.
+	</p>
+
+	<h2>Governing law</h2>
+	<p>
+		These terms are governed by the laws of Bangladesh, and any dispute arising from your use of
+		this site is subject to the jurisdiction of the courts of Bangladesh.
 	</p>
 
 	<h2>Changes</h2>

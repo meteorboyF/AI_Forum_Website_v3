@@ -16,7 +16,7 @@
 
 <Seo
 	title="AI Academy"
-	description="Hands-on AI training for professionals, institutions, and startups in Bangladesh: healthcare, business, capital markets, banking, education, and government programmes delivered by AI Forum Bangladesh."
+	description="Hands-on AI training for professionals, institutions, and startups in Bangladesh: capital markets, banking and FinTech, healthcare, energy, education, and government programmes delivered by AI Forum Bangladesh."
 	path="/our-work/ai-academy/"
 	ogImage="events/bsp"
 />
@@ -35,8 +35,8 @@
 				<span class="line-mask" style="--line-delay: 140ms"><span class="text-aqua-400">the work your team does.</span></span>
 			</h1>
 			<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/85">
-				Programmes designed and led by Professor Khondaker A. Mamun for professionals in finance,
-				healthcare, banking, energy, research, and public institutions.
+				Programmes designed and led by Professor Khondaker A. Mamun for professionals in capital
+				markets, banking, healthcare, energy, education, and public institutions.
 			</p>
 			<div class="mt-9 flex flex-wrap gap-4">
 				<a href="{base}/corporate-training/" class="btn btn-primary">Train your team</a>
@@ -231,6 +231,6 @@
 				{/each}
 			</div>
 		</div>
-		<div class="mt-12 flex justify-center"><a href="{base}/corporate-training/" class="btn btn-electric">Plan a programme<Icons name="arrow-right" class="h-4 w-4" /></a></div>
+		<div class="mt-12 flex justify-center"><a href="{base}/corporate-training/" class="btn btn-electric">Train your team<Icons name="arrow-right" class="h-4 w-4" /></a></div>
 	</div>
 </section>

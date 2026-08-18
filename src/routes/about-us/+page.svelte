@@ -53,7 +53,7 @@
 				</p>
 				<p>
 					The Forum works with companies, professional bodies, universities, and public institutions
-					to design practical sessions around those questions. Our archive records programmes in
+					to design practical sessions around those questions. We have delivered programmes in
 					capital markets, healthcare, business, research, and public service.
 				</p>
 			</div>
@@ -102,7 +102,7 @@
 			number="02"
 			eyebrow="How we work"
 			title="How we design a programme"
-			lede="Six working principles used when a session moves from an initial conversation to the room."
+			lede="The working principles used when a session moves from an initial conversation to the room."
 		/>
 		<div class="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
 			<Reveal class="order-2 lg:order-none">
