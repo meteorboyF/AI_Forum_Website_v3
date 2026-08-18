@@ -90,7 +90,7 @@
 			</p>
 			<div class="mt-8 flex flex-wrap gap-4">
 				<a href="#proposal" class="btn btn-primary">Discuss training</a>
-				<a href="{base}/events/" class="btn btn-ghost-dark">See delivered programmes</a>
+				<a href="{base}/events/" class="btn btn-ghost-dark">See past work</a>
 			</div>
 		</Reveal>
 		<Reveal delay={150}>
@@ -161,7 +161,7 @@
 </section>
 
 <!-- ============ PROPOSAL FORM ============ -->
-<section class="bg-paper py-24 lg:py-32" id="proposal">
+<section class="scroll-mt-24 bg-paper py-24 lg:py-32" id="proposal">
 	<div class="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
 		<Reveal>
 			<SectionHead

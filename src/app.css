@@ -383,6 +383,13 @@ h4,
 	transform: translateY(1px);
 }
 
+/* Compact button variant (e.g. navbar CTA) */
+.btn-sm {
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	min-height: 2.25rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.btn {
 		transition: none;

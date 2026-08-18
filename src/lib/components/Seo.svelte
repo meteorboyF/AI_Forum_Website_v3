@@ -10,9 +10,11 @@
 		/** Logical image name under static/images, without extension */
 		ogImage?: string;
 		type?: 'website' | 'article';
+		/** Ask search engines not to index this page (e.g. the 404 page) */
+		noindex?: boolean;
 	}
 
-	let { title, description, path, ogImage = 'events/lankabangla', type = 'website' }: Props = $props();
+	let { title, description, path, ogImage = 'events/lankabangla', type = 'website', noindex = false }: Props = $props();
 
 	const fullTitle = $derived(`${title} | ${SITE_NAME}`);
 	const url = $derived(`${SITE_URL}${path}`);
@@ -22,7 +24,11 @@
 <svelte:head>
 	<title>{fullTitle}</title>
 	<meta name="description" content={description} />
-	<link rel="canonical" href={url} />
+	{#if noindex}
+		<meta name="robots" content="noindex" />
+	{:else}
+		<link rel="canonical" href={url} />
+	{/if}
 
 	<meta property="og:type" content={type} />
 	<meta property="og:site_name" content={SITE_NAME} />

@@ -6,13 +6,14 @@
 	const ourWork = [
 		{ href: '/our-work/ai-academy/', label: 'AI Academy' },
 		{ href: '/our-work/innovation-ecosystem/', label: 'Innovation Ecosystem' },
-		{ href: '/our-work/career-care/', label: 'Career Care' }
+		{ href: '/our-work/career-care/', label: 'Career Care' },
+		{ href: '/corporate-training/', label: 'Corporate training' }
 	];
 
 	const links = [
 		{ href: '/', label: 'Home' },
-		{ href: '/about-us/', label: 'About Us' },
-		{ href: '/events/', label: 'Past Work' },
+		{ href: '/about-us/', label: 'About us' },
+		{ href: '/events/', label: 'Past work' },
 		{ href: '/news/', label: 'News' },
 		{ href: '/contact-us/', label: 'Contact' }
 	];
@@ -21,6 +22,8 @@
 	let workOpen = $state(false);
 	let scrollY = $state(0);
 	let isScrolled = $derived(scrollY > 20);
+	let dropdownWrapper: HTMLElement | undefined = $state();
+	let dropdownToggle: HTMLButtonElement | undefined = $state();
 
 	const path = $derived(page.url.pathname.replace(base, '') || '/');
 
@@ -31,6 +34,20 @@
 	function closeAll() {
 		mobileOpen = false;
 		workOpen = false;
+	}
+
+	// Lock page scroll while the mobile menu is open.
+	$effect(() => {
+		if (!mobileOpen) return;
+		const previous = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = previous;
+		};
+	});
+
+	function onDropdownFocusOut(event: FocusEvent) {
+		if (workOpen && !dropdownWrapper?.contains(event.relatedTarget as Node)) workOpen = false;
 	}
 </script>
 
@@ -52,21 +69,23 @@
 				>
 			{/each}
 
-			<!-- Our Work dropdown -->
-			<div class="relative flex items-center">
+			<!-- Programmes dropdown -->
+			<div class="relative flex items-center" bind:this={dropdownWrapper} onfocusout={onDropdownFocusOut}>
 				<a
 					href="{base}/our-work/"
-					class="rounded-l-md py-2 pl-3 pr-1 text-sm font-medium transition-colors hover:bg-ink-50 hover:text-ink-900 {path.startsWith('/our-work') ? 'text-electric-600' : 'text-slate-600'}"
+					class="rounded-l-md py-2 pl-3 pr-1 text-sm font-medium transition-colors hover:bg-ink-50 hover:text-ink-900 {path.startsWith('/our-work') || path.startsWith('/corporate-training') ? 'text-electric-600' : 'text-slate-600'}"
 					aria-current={path === '/our-work/' || path === '/our-work' ? 'page' : undefined}
 				>
 					Programmes
 				</a>
 				<button
+					bind:this={dropdownToggle}
 					class="flex items-center rounded-r-md py-2 pl-1 pr-2 text-sm font-medium transition-colors hover:bg-ink-50 hover:text-ink-900
-						{path.startsWith('/our-work') ? 'text-electric-600' : 'text-slate-600'}"
+						{path.startsWith('/our-work') || path.startsWith('/corporate-training') ? 'text-electric-600' : 'text-slate-600'}"
 					aria-expanded={workOpen}
 					aria-haspopup="true"
-					aria-label="Open programmes menu"
+					aria-controls="programmes-menu"
+					aria-label={workOpen ? 'Close programmes menu' : 'Open programmes menu'}
 					onclick={() => (workOpen = !workOpen)}
 				>
 					<svg class="h-4 w-4 transition-transform {workOpen ? 'rotate-180' : ''}" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -74,11 +93,11 @@
 					</svg>
 				</button>
 				{#if workOpen}
-					<div class="absolute left-0 mt-2 w-60 rounded-xl border border-ink-900/8 bg-white p-2 shadow-card-lg">
+					<div id="programmes-menu" class="absolute left-0 top-full mt-2 w-60 rounded-xl border border-ink-900/8 bg-white p-2 shadow-card-lg">
 						{#each ourWork as item (item.href)}
 							<a
 								href="{base}{item.href}"
-								class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-ink-50 hover:text-ink-900"
+								class="block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-ink-50 hover:text-ink-900 {isActive(item.href) ? 'bg-electric-50 text-electric-700' : 'text-slate-600'}"
 								onclick={closeAll}>{item.label}</a
 							>
 						{/each}
@@ -95,8 +114,8 @@
 				>
 			{/each}
 
-			<a href="{base}/corporate-training/" class="btn btn-primary ml-3 !px-4 !py-2 text-sm">
-				Train Your Team
+			<a href="{base}/corporate-training/" class="btn btn-primary btn-sm ml-3">
+				Train your team
 			</a>
 		</div>
 
@@ -122,18 +141,18 @@
 
 	<!-- Mobile menu -->
 	{#if mobileOpen}
-		<div id="mobile-menu" class="mobile-menu-enter max-h-[calc(100svh-3.5rem)] overflow-y-auto border-t border-ink-900/8 bg-paper px-5 pt-2 pb-6 shadow-card-lg lg:hidden">
+		<div id="mobile-menu" class="mobile-menu-enter overflow-y-auto border-t border-ink-900/8 bg-paper px-5 pt-2 pb-6 shadow-card-lg lg:hidden {isScrolled ? 'max-h-[calc(100svh-3.5rem)]' : 'max-h-[calc(100svh-4rem)]'}">
 			{#each links.slice(0, 2) as link (link.href)}
-				<a href="{base}{link.href}" class="block rounded-lg px-3 py-3 text-base font-medium text-ink-900" onclick={closeAll}>{link.label}</a>
+				<a href="{base}{link.href}" class="block rounded-lg px-3 py-3 text-base font-medium {isActive(link.href) ? 'bg-electric-50 text-electric-700' : 'text-ink-900'}" aria-current={isActive(link.href) ? 'page' : undefined} onclick={closeAll}>{link.label}</a>
 			{/each}
-			<a href="{base}/our-work/" class="mt-2 block rounded-lg px-3 py-3 text-base font-semibold text-ink-900 {isActive('/our-work/') ? 'bg-electric-50 text-electric-700' : ''}" onclick={closeAll}>Programmes</a>
+			<a href="{base}/our-work/" class="mt-2 block rounded-lg px-3 py-3 text-base font-semibold {isActive('/our-work/') ? 'bg-electric-50 text-electric-700' : 'text-ink-900'}" onclick={closeAll}>Programmes</a>
 			{#each ourWork as item (item.href)}
 				<a href="{base}{item.href}" class="block rounded-lg px-6 py-2.5 text-base font-medium {isActive(item.href) ? 'bg-electric-50 text-electric-700' : 'text-slate-600'}" onclick={closeAll}>{item.label}</a>
 			{/each}
 			{#each links.slice(2) as link (link.href)}
-				<a href="{base}{link.href}" class="block rounded-lg px-3 py-3 text-base font-medium text-ink-900" onclick={closeAll}>{link.label}</a>
+				<a href="{base}{link.href}" class="block rounded-lg px-3 py-3 text-base font-medium {isActive(link.href) ? 'bg-electric-50 text-electric-700' : 'text-ink-900'}" aria-current={isActive(link.href) ? 'page' : undefined} onclick={closeAll}>{link.label}</a>
 			{/each}
-			<a href="{base}/corporate-training/" class="btn btn-primary mt-4 w-full" onclick={closeAll}>Train Your Team</a>
+			<a href="{base}/corporate-training/" class="btn btn-primary mt-4 w-full" onclick={closeAll}>Train your team</a>
 		</div>
 	{/if}
 </header>
@@ -141,9 +160,12 @@
 <svelte:window
 	bind:scrollY
 	onclick={(e) => {
-		if (workOpen && !(e.target as HTMLElement).closest('header')) workOpen = false;
+		if (workOpen && !dropdownWrapper?.contains(e.target as Node)) workOpen = false;
 	}}
 	onkeydown={(e) => {
-		if (e.key === 'Escape') closeAll();
+		if (e.key === 'Escape') {
+			if (workOpen) dropdownToggle?.focus();
+			closeAll();
+		}
 	}}
 />

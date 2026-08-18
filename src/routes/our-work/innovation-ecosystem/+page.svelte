@@ -26,7 +26,8 @@
 	<div class="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/80 to-ink-950/25"></div>
 	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-20 sm:px-8 lg:px-12 lg:py-24">
 		<Reveal>
-			<p class="eyebrow mb-5">Our work · Innovation Ecosystem</p>
+			<a href="{base}/our-work/" class="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-white/75 transition-colors hover:text-white">← All programmes</a>
+			<p class="eyebrow mb-5">Programmes · Innovation Ecosystem</p>
 			<h1 class="max-w-5xl font-display text-[clamp(2.8rem,7vw,6.5rem)] leading-[0.96] font-bold">Put people, problems, and AI in the same room.</h1>
 			<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/80">We work with universities and institutions to create practical spaces for learning, discussion, and collaboration around applied AI.</p>
 			<a href="{base}/contact-us/" class="btn btn-primary mt-8">Host a programme</a>
@@ -69,7 +70,7 @@
 		<Reveal>
 			<div class="mt-12 grid gap-6 border-t border-ink-900/10 pt-10 lg:grid-cols-[1fr_auto] lg:items-center">
 				<div><h2 class="font-display text-2xl font-bold">See what has already been delivered.</h2><p class="mt-2 text-slate-600">Browse programme summaries, participating organisations, press links, and complete photo galleries.</p></div>
-				<a href="{base}/events/" class="btn btn-electric">Browse past work<Icons name="arrow-right" class="h-4 w-4" /></a>
+				<a href="{base}/events/" class="btn btn-electric">See past work<Icons name="arrow-right" class="h-4 w-4" /></a>
 			</div>
 		</Reveal>
 	</div>

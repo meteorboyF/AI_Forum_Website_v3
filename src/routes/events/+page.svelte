@@ -5,9 +5,8 @@
 	import PageIntro from '$lib/components/PageIntro.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
 	import { img } from '$lib/img';
-	import { pastEvents, upcomingEvents } from '$lib/data/events';
+	import { pastEvents } from '$lib/data/events';
 	import { pressBySlug } from '$lib/data/press';
-	import { sectors } from '$lib/data/courses';
 	import type { EventItem } from '$lib/data/types';
 	import Icons from '$lib/components/Icons.svelte';
 	import Lightbox from '$lib/components/Lightbox.svelte';
@@ -44,9 +43,12 @@
 	});
 	let eventSearch = $state('');
 	let eventSort = $state<'newest' | 'oldest' | 'az'>('newest');
+	let sectorFilter = $state<string | null>(null);
+	const eventSectors = [...new Set(pastEvents.map((event) => event.sector))];
 	let filteredPastEvents = $derived.by(() => {
 		const query = eventSearch.trim().toLocaleLowerCase();
 		const matching = pastEvents.filter((event) =>
+			(sectorFilter === null || event.sector === sectorFilter) &&
 			[event.title, event.client, event.sector, event.format, event.venue, event.dateLabel, event.summary]
 				.filter(Boolean)
 				.join(' ')
@@ -68,7 +70,7 @@
 
 <Seo
 	title="Past Work"
-	description="Upcoming and delivered AI training programmes by AI Forum Bangladesh: capital markets, healthcare, banking and fintech, energy, education, and government, with recaps, photos, and press coverage."
+	description="Delivered AI training programmes by AI Forum Bangladesh across capital markets, healthcare, banking and FinTech, energy, research, and development, with recaps, photos, and press coverage."
 	path="/events/"
 	ogImage="hero/events"
 />
@@ -83,63 +85,11 @@
 	<a href="{base}/corporate-training/" class="btn btn-primary">Train your team</a>
 </PageIntro>
 
-<!-- ============ UPCOMING ============ -->
-<section class="bg-paper py-20 lg:py-24">
-	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead number="01" eyebrow="Upcoming" title="What’s next" />
-		{#if upcomingEvents.length > 0}
-			<div class="mt-12 grid gap-6 md:grid-cols-2">
-				{#each upcomingEvents as event (event.slug)}
-					<Reveal>
-						<article class="rounded-xl border border-ink-900/10 bg-white p-7">
-							{#if event.dateLabel}
-								<p class="eyebrow">{event.dateLabel}</p>
-							{/if}
-							<h3 class="mt-2 font-display text-xl font-bold">{event.title}</h3>
-							<p class="mt-2 text-sm leading-relaxed text-slate-600">{event.summary}</p>
-						</article>
-					</Reveal>
-				{/each}
-			</div>
-		{:else}
-			<Reveal>
-				<div class="mt-12 flex flex-col items-start gap-5 rounded-xl border border-dashed border-ink-900/20 bg-white/70 p-8 sm:flex-row sm:items-center sm:justify-between">
-					<div>
-						<h3 class="font-display text-lg font-bold">Looking for a future programme?</h3>
-						<p class="mt-1.5 max-w-xl text-sm leading-relaxed text-slate-600">
-							Institutional training is scoped throughout the year. Tell us about the audience and the work the session should address.
-						</p>
-					</div>
-					<a href="{base}/corporate-training/" class="btn btn-electric shrink-0">Discuss training</a>
-				</div>
-			</Reveal>
-		{/if}
-
-		<!-- Sector chips -->
-		<div class="mt-14">
-			<p class="font-display text-xs font-semibold tracking-widest text-slate-500 uppercase">
-				Training by sector
-			</p>
-			<div class="mt-4 flex flex-wrap gap-3">
-				{#each sectors as sector (sector.slug)}
-					<a
-						href="{base}/our-work/ai-academy/#sectors"
-						class="inline-flex items-center gap-2.5 rounded-full border border-ink-900/10 bg-white px-4 py-2 text-xs font-semibold text-ink-900 transition-all duration-300 hover:border-electric-600/40 hover:text-electric-600 hover:shadow-sm"
-					>
-						<Icons name={sector.slug} class="h-4 w-4 text-electric-600/80" />
-						{sector.name}
-					</a>
-				{/each}
-			</div>
-		</div>
-	</div>
-</section>
-
 <!-- ============ PAST PROGRAMMES ============ -->
-<section class="border-t border-ink-900/8 bg-white py-20 lg:py-28">
+<section class="bg-white py-20 lg:py-28">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
-			number="02"
+			number="01"
 			eyebrow="Delivered"
 			title="Past programmes and recaps"
 			lede="Browse programme highlights, photo galleries, official updates, and media coverage."
@@ -153,7 +103,9 @@
 					placeholder="Search programmes, organisations, or sectors"
 					class="w-full rounded-lg border border-ink-900/12 bg-white px-4 py-3 pr-10 text-sm text-ink-900 outline-none transition-colors placeholder:text-slate-400 focus:border-electric-600 focus:ring-2 focus:ring-electric-600/15"
 				/>
-				<span class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400" aria-hidden="true">⌕</span>
+				<span class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400" aria-hidden="true">
+					<Icons name="search" class="h-4 w-4" />
+				</span>
 			</label>
 			<label class="flex shrink-0 items-center gap-3 text-sm font-semibold text-slate-600">
 				<span>Sort</span>
@@ -164,13 +116,33 @@
 				</select>
 			</label>
 		</div>
-		<p class="mt-4 text-xs font-medium text-slate-500">{filteredPastEvents.length} {filteredPastEvents.length === 1 ? 'programme' : 'programmes'}</p>
+		<!-- Sector filters -->
+		<div class="mt-5 flex flex-wrap items-center gap-2.5">
+			<button
+				type="button"
+				class="rounded-full border px-4 py-2 text-xs font-semibold transition-all duration-300 {sectorFilter === null ? 'border-electric-600 bg-electric-600 text-white shadow-sm' : 'border-ink-900/10 bg-white text-ink-900 hover:border-electric-600/40 hover:text-electric-600'}"
+				aria-pressed={sectorFilter === null}
+				onclick={() => (sectorFilter = null)}
+			>
+				All sectors
+			</button>
+			{#each eventSectors as sector (sector)}
+				<button
+					type="button"
+					class="rounded-full border px-4 py-2 text-xs font-semibold transition-all duration-300 {sectorFilter === sector ? 'border-electric-600 bg-electric-600 text-white shadow-sm' : 'border-ink-900/10 bg-white text-ink-900 hover:border-electric-600/40 hover:text-electric-600'}"
+					aria-pressed={sectorFilter === sector}
+					onclick={() => (sectorFilter = sectorFilter === sector ? null : sector)}
+				>
+					{sector}
+				</button>
+			{/each}
+		</div>
+		<p class="mt-4 text-xs font-medium text-slate-500" aria-live="polite">{filteredPastEvents.length} {filteredPastEvents.length === 1 ? 'programme' : 'programmes'}</p>
 		<div class="mt-14 space-y-12">
 			{#each filteredPastEvents as event, i (event.slug)}
 				<Reveal delay={Math.min(i, 2) * 80}>
 					<article
-						id={event.slug}
-						class="card-hover-trigger scroll-mt-24 overflow-hidden rounded-2xl border border-ink-900/10 bg-paper lg:grid lg:grid-cols-[1fr_1.1fr] shadow-card {i % 2 === 1 ? 'lg:[direction:rtl]' : ''}"
+						class="card-hover-trigger overflow-hidden rounded-2xl border border-ink-900/10 bg-paper lg:grid lg:grid-cols-[1fr_1.1fr] shadow-card {i % 2 === 1 ? 'lg:[direction:rtl]' : ''}"
 					>
 						{#if event.image}
 							<button
@@ -289,7 +261,7 @@
 				<div class="rounded-2xl border border-dashed border-ink-900/20 bg-paper p-10 text-center">
 					<p class="font-display text-xl font-bold text-ink-900">No programmes found</p>
 					<p class="mt-2 text-sm text-slate-600">Try a different organisation, sector, or programme name.</p>
-					<button type="button" class="mt-5 text-sm font-bold text-electric-600 hover:text-ink-900" onclick={() => (eventSearch = '')}>Clear search</button>
+					<button type="button" class="mt-5 text-sm font-bold text-electric-600 hover:text-ink-900" onclick={() => { eventSearch = ''; sectorFilter = null; }}>Clear filters</button>
 				</div>
 			{/if}
 		</div>
@@ -321,7 +293,7 @@
 					<p class="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">{selectedEvent.summary}</p>
 				</div>
 				<div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-					{#each galleryPhotos as photo, photoIndex (photo.src)}
+					{#each galleryPhotos.slice(0, 12) as photo, photoIndex (photo.src)}
 						<button
 							type="button"
 							class="group block cursor-zoom-in overflow-hidden rounded-lg bg-ink-100 focus:outline-2 focus:outline-offset-2 focus:outline-electric-600"
@@ -331,6 +303,16 @@
 							<img src={photo.src} alt={photo.alt} class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
 						</button>
 					{/each}
+				</div>
+				<div class="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-ink-900/8 pt-6">
+					{#if galleryPhotos.length > 12}
+						<p class="text-sm text-slate-600">Showing 12 of {galleryPhotos.length} photographs — the full gallery is on the recap page.</p>
+					{:else}
+						<p class="text-sm text-slate-600">Programme details, updates, and press coverage are on the recap page.</p>
+					{/if}
+					<a href="{base}/events/{selectedEvent.slug}/" class="btn btn-electric shrink-0">
+						Read the full recap <Icons name="arrow-right" class="h-4 w-4" />
+					</a>
 				</div>
 			</div>
 		</div>

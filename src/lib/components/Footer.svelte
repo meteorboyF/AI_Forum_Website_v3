@@ -21,12 +21,13 @@
 				{ href: '/our-work/ai-academy/', label: 'AI Academy' },
 				{ href: '/our-work/innovation-ecosystem/', label: 'Innovation Ecosystem' },
 				{ href: '/our-work/career-care/', label: 'Career Care' },
+				{ href: '/corporate-training/', label: 'Corporate training' }
 			]
 		},
 		{
-			heading: 'Delivered Work',
+			heading: 'Work with us',
 			links: [
-				{ href: '/events/', label: 'Past programmes' },
+				{ href: '/events/', label: 'Past work' },
 				{ href: '/corporate-training/', label: 'Train your team' }
 			]
 		},

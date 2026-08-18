@@ -4,10 +4,11 @@
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
 	import { img } from '$lib/img';
-	import { sectors } from '$lib/data/courses';
+	import { sectors, courses, courseCategories } from '$lib/data/courses';
 	import { caseStudyEvents } from '$lib/data/events';
 	import { trainingClients } from '$lib/data/partners';
 	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
+	import StatusTag from '$lib/components/StatusTag.svelte';
 	import Icons from '$lib/components/Icons.svelte';
 
 	const eventBySlug = new Map(caseStudyEvents.map((e) => [e.slug, e]));
@@ -27,7 +28,8 @@
 
 	<div class="relative z-10 mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<div class="max-w-4xl">
-			<p class="eyebrow mb-5">Our work · AI Academy</p>
+			<a href="{base}/our-work/" class="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-white/75 transition-colors hover:text-white">← All programmes</a>
+			<p class="eyebrow mb-5">Programmes · AI Academy</p>
 			<h1 class="font-display text-[clamp(2.6rem,6.5vw,5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
 				<span class="line-mask"><span>AI training shaped around</span></span>
 				<span class="line-mask" style="--line-delay: 140ms"><span class="text-aqua-400">the work your team does.</span></span>
@@ -38,7 +40,7 @@
 			</p>
 			<div class="mt-9 flex flex-wrap gap-4">
 				<a href="{base}/corporate-training/" class="btn btn-primary">Train your team</a>
-				<a href="{base}/events/" class="btn btn-ghost-dark">See past deliveries</a>
+				<a href="{base}/events/" class="btn btn-ghost-dark">See past work</a>
 			</div>
 		</div>
 
@@ -69,7 +71,7 @@
 </section>
 
 <!-- ============ SECTOR-SPECIFIC TRAINING ============ -->
-<section class="bg-paper py-24 lg:py-32 bg-jamdani-light" id="sectors">
+<section class="scroll-mt-24 bg-paper py-24 lg:py-32 bg-jamdani-light" id="sectors">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="01"
@@ -103,11 +105,84 @@
 	</div>
 </section>
 
+<!-- ============ COURSE CATALOGUE ============ -->
+<section class="border-t border-ink-900/8 bg-white py-24 lg:py-32">
+	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+		<SectionHead
+			number="02"
+			eyebrow="Course catalogue"
+			title="Courses you can book"
+			lede="Every course is delivered on request and scoped to the participating team in a short call — sector examples, tools, and depth are adjusted to the room."
+		/>
+		{#each courseCategories as category (category.key)}
+			<div class="mt-14">
+				<div class="flex items-baseline gap-4">
+					<h3 class="font-display text-xl font-bold text-ink-900 lg:text-2xl">{category.label}</h3>
+					<span class="hidden h-px flex-1 bg-ink-900/8 sm:block"></span>
+				</div>
+				<div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					{#each courses.filter((course) => course.category === category.key) as course (course.id)}
+						<article class="flex h-full flex-col overflow-hidden rounded-2xl border border-ink-900/10 bg-paper shadow-card">
+							<div class="relative">
+								<img
+									src={img(course.image)}
+									alt=""
+									class="aspect-[3/2] w-full object-cover"
+									width="700"
+									height="467"
+									loading="lazy"
+								/>
+								<span class="absolute top-4 left-4"><StatusTag status={course.status} /></span>
+							</div>
+							<div class="flex flex-1 flex-col p-6">
+								<h4 class="font-display text-lg leading-snug font-bold text-ink-900">{course.title}</h4>
+								<p class="mt-2 text-sm leading-relaxed text-slate-600">{course.description}</p>
+								{#if course.deliveredTo?.length}
+									<p class="mt-4 text-[0.7rem] font-bold tracking-widest text-slate-500 uppercase">Delivered to</p>
+									<div class="mt-2 flex flex-wrap gap-2">
+										{#each course.deliveredTo as org (org)}
+											<span class="rounded-md border border-ink-900/10 bg-white px-2.5 py-1 text-xs font-semibold text-ink-900">{org}</span>
+										{/each}
+									</div>
+								{/if}
+								{#if course.outline?.length}
+									<details class="group mt-4">
+										<summary class="inline-flex cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-electric-600 transition-colors hover:text-electric-700 [&::-webkit-details-marker]:hidden">
+											{course.outline.length}-module outline
+											<svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+												<path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z" clip-rule="evenodd" />
+											</svg>
+										</summary>
+										<ol class="mt-3 space-y-2.5 border-l-2 border-electric-100 pl-4">
+											{#each course.outline as mod (mod.module)}
+												<li class="text-xs leading-relaxed text-slate-600">
+													<span class="font-semibold text-ink-900">{mod.title}</span>
+													<span class="text-slate-400"> · {mod.topics.length} topics</span>
+												</li>
+											{/each}
+										</ol>
+									</details>
+								{/if}
+								<a
+									href="{base}/corporate-training/#proposal"
+									class="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-electric-600 transition-colors hover:text-electric-700"
+								>
+									Request this course <Icons name="arrow-right" class="h-4 w-4" />
+								</a>
+							</div>
+						</article>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
+</section>
+
 <!-- ============ CASE STUDIES ============ -->
 <section class="border-y border-ink-900/8 bg-white py-24 lg:py-32">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
-			number="02"
+			number="03"
 			eyebrow="Delivered programmes"
 			title="Programmes already delivered"
 			lede="Each summary links to the programme archive, including photographs and available press or partner coverage."

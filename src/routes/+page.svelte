@@ -14,7 +14,7 @@
 	import { stats } from '$lib/data/stats';
 	import { partners } from '$lib/data/partners';
 	import { press } from '$lib/data/press';
-	import { upcomingEvents, pastEvents, events } from '$lib/data/events';
+	import { pastEvents, events } from '$lib/data/events';
 	import { PROFESSIONALS_TRAINED } from '$lib/config';
 
 	const homePress = press.filter((p) => p.language === 'English').slice(0, 5);
@@ -107,11 +107,11 @@
 				{/if}
 			</p>
 			<div class="flex flex-wrap gap-4">
-				<a href="{base}/events/" class="btn btn-primary">
-					See Delivered Programmes
+				<a href="{base}/corporate-training/" class="btn btn-primary">
+					Train your team
 					<Icons name="arrow-right" class="h-4.5 w-4.5" strokeWidth={2.5} />
 				</a>
-				<a href="{base}/our-work/" class="btn btn-ghost-dark">Explore Programmes</a>
+				<a href="{base}/events/" class="btn btn-ghost-dark">See past work</a>
 			</div>
 		</div>
 			<p class="hero-support mt-8 border-t border-white/30 pt-4 text-xs tracking-wide text-white/85 uppercase">
@@ -266,7 +266,7 @@
 				From capital markets and public institutions to healthcare and university classrooms, every
 				programme begins with the people who will use the technology.
 			</p>
-			<a href="{base}/events/" class="btn btn-ghost-dark mt-9">See the delivered programmes</a>
+			<a href="{base}/events/" class="btn btn-ghost-dark mt-9">See past work</a>
 		</Reveal>
 	</div>
 </section>
@@ -330,37 +330,23 @@
 	</div>
 </section>
 
-<!-- ============ WHAT'S COMING UP ============ -->
+<!-- ============ LATEST PROGRAMME + ENQUIRIES ============ -->
 <section class="bg-paper py-24 lg:py-28">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
-		<SectionHead eyebrow="Programmes" title="Recent work and new enquiries" />
+		<SectionHead eyebrow="Programmes" title="The latest programme, and the next one" />
 		<div class="mt-12 grid gap-6 lg:grid-cols-2">
-			{#if upcomingEvents.length > 0}
-				{#each upcomingEvents as event (event.slug)}
-					<Reveal>
-						<article class="h-full rounded-xl border border-ink-900/10 bg-white p-7">
-							{#if event.dateLabel}
-								<p class="eyebrow">{event.dateLabel}</p>
-							{/if}
-							<h3 class="mt-2 font-display text-xl font-bold">{event.title}</h3>
-							<p class="mt-2 text-sm leading-relaxed text-slate-600">{event.summary}</p>
-						</article>
-					</Reveal>
-				{/each}
-			{:else}
-				<Reveal>
-					<div class="flex h-full flex-col md:flex-row items-center gap-6 rounded-2xl border border-dashed border-ink-900/20 bg-white/60 p-8 shadow-sm">
-						<img src="{base}/images/illustrations/empty-calendar.svg" alt="" class="h-28 w-28 shrink-0" loading="lazy" width="200" height="200" />
-						<div>
-							<h3 class="font-display text-xl font-bold">Planning training for your organisation?</h3>
-							<p class="mt-2 text-sm leading-relaxed text-slate-600">
-								Tell us about your team, sector, and the problem you want the programme to address.
-							</p>
-							<a href="{base}/corporate-training/" class="btn btn-electric mt-4 self-start !py-2 !px-4 text-sm">Discuss a programme</a>
-						</div>
+			<Reveal>
+				<div class="flex h-full flex-col md:flex-row items-center gap-6 rounded-2xl border border-dashed border-ink-900/20 bg-white/60 p-8 shadow-sm">
+					<img src="{base}/images/illustrations/empty-calendar.svg" alt="" class="h-28 w-28 shrink-0" loading="lazy" width="200" height="200" />
+					<div>
+						<h3 class="font-display text-xl font-bold">Planning training for your organisation?</h3>
+						<p class="mt-2 text-sm leading-relaxed text-slate-600">
+							Tell us about your team, sector, and the problem you want the programme to address.
+						</p>
+						<a href="{base}/corporate-training/" class="btn btn-electric btn-sm mt-4 self-start">Discuss a programme</a>
 					</div>
-				</Reveal>
-			{/if}
+				</div>
+			</Reveal>
 			{#if latestEvent}
 				<Reveal delay={120}>
 					<a href="{base}/events/{latestEvent.slug}/" class="group block h-full overflow-hidden rounded-xl border border-ink-900/10 bg-white">

@@ -36,7 +36,8 @@
 <section class="on-dark mesh-dark grain relative overflow-hidden text-white">
 	<div class="mx-auto grid min-h-[70svh] max-w-[88rem] items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:py-24">
 		<Reveal>
-			<p class="eyebrow mb-5">Our work · Career Care</p>
+			<a href="{base}/our-work/" class="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-white/75 transition-colors hover:text-white">← All programmes</a>
+			<p class="eyebrow mb-5">Programmes · Career Care</p>
 			<h1 class="font-display text-[clamp(2.8rem,7vw,6.5rem)] leading-[0.96] font-bold">Make the next move with better information.</h1>
 			<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/75">Career Care brings students and professionals into direct conversations about AI roles, research, further study, and the skills behind them.</p>
 			<a href="{base}/contact-us/" class="btn btn-primary mt-8">Ask about a career session</a>
