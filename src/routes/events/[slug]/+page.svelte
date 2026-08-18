@@ -37,7 +37,7 @@
 <Seo title={event.title} description={event.summary} path={`/events/${event.slug}/`} ogImage={event.image} />
 
 <section class="on-dark relative flex min-h-[68svh] items-end overflow-hidden text-white">
-	{#if event.image}<img src={img(event.image)} alt={event.imageAlt ?? event.title} class="absolute inset-0 h-full w-full object-cover" width="1920" height="1280" fetchpriority="high" />{/if}
+	{#if event.image}<img src={img(event.image)} srcset="{img(event.image + '-sm')} 800w, {img(event.image)} 1600w" sizes="100vw" alt={event.imageAlt ?? event.title} class="absolute inset-0 h-full w-full object-cover" width="1920" height="1280" fetchpriority="high" />{/if}
 	<div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/75 to-ink-950/25"></div>
 	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
 		<Reveal>
@@ -103,5 +103,32 @@
 {/if}
 
 {#if data.coverage.length || event.links.length}
-	<section class="bg-paper py-16 lg:py-20"><div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12"><h2 class="font-display text-2xl font-bold">Coverage and official updates</h2><div class="mt-6 flex flex-wrap gap-3">{#each data.coverage as item}<a href={item.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">{item.publication} ↗</a>{/each}{#each event.links as link}<a href={link.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">{link.label} ↗</a>{/each}</div></div></section>
+	<section class="bg-paper py-16 lg:py-20">
+		<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
+			<h2 class="font-display text-2xl font-bold">Coverage and official updates</h2>
+			{#if data.coverage.length}
+				<div class="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+					{#each data.coverage as item (item.slug)}
+						<a
+							href={item.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group rounded-xl border border-ink-900/10 bg-white p-5 shadow-card transition-colors hover:border-electric-600/40"
+						>
+							<p class="wordmark text-base text-ink-900">{item.publication} <span class="text-slate-400">↗</span></p>
+							<p class="mt-1 text-sm leading-snug text-slate-600 group-hover:text-ink-900">{item.headline}</p>
+							<p class="mt-2 text-xs text-slate-500">{item.dateLabel ? `${item.dateLabel} · ` : ''}{item.language}</p>
+						</a>
+					{/each}
+				</div>
+			{/if}
+			{#if event.links.length}
+				<div class="mt-6 flex flex-wrap gap-3">
+					{#each event.links as link (link.url)}
+						<a href={link.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost-light">{link.label} ↗</a>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</section>
 {/if}

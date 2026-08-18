@@ -436,6 +436,4 @@
 	</div>
 </section>
 
-<div id="newsletter">
-	<NewsletterForm />
-</div>
+<NewsletterForm />

@@ -7,7 +7,6 @@
 	import { img } from '$lib/img';
 	import { advisors } from '$lib/data/advisors';
 	import { team, leadTrainer, values, milestones } from '$lib/data/team';
-	import Icons from '$lib/components/Icons.svelte';
 
 	let expanded = $state<Record<string, boolean>>({});
 	let activeMilestone = $state(0);

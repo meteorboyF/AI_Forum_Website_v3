@@ -176,7 +176,9 @@
 								disabled={!event.gallery}
 							>
 								<img
-									src={img(event.image)}
+									src={img(event.image + '-sm')}
+									srcset="{img(event.image + '-sm')} 700w, {img(event.image)} 1400w"
+									sizes="(min-width: 1024px) 45vw, 100vw"
 									alt={event.imageAlt ?? event.title}
 									class="image-zoom-img h-full max-h-96 w-full object-cover lg:absolute lg:inset-0 lg:max-h-none"
 									width="1400"

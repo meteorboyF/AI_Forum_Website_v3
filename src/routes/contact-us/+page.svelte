@@ -3,7 +3,6 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
 	import { CONTACT_EMAIL, FORMS_ENABLED, SOCIALS } from '$lib/config';
@@ -149,4 +148,3 @@
 	</div>
 </section>
 
-<NewsletterForm />

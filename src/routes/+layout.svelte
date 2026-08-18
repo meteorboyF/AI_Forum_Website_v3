@@ -9,6 +9,12 @@
 	let { children } = $props();
 </script>
 
+<svelte:head>
+	<!-- Reveal animations start hidden; without JS the IntersectionObserver
+	     never fires, so make everything visible from the start. -->
+	{@html '<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>'}
+</svelte:head>
+
 <a
 	href="#main"
 	class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:rounded-md focus:bg-electric-600 focus:px-4 focus:py-2 focus:text-white"

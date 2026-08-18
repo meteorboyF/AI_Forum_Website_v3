@@ -31,7 +31,7 @@
 	}
 	.legal-prose :global(p),
 	.legal-prose :global(li) {
-		color: var(--color-slate-450);
+		color: #64748b;
 		line-height: 1.75;
 		margin-bottom: 0.9rem;
 	}

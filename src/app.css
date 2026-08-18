@@ -41,7 +41,6 @@
 	--color-paper: #faf9f6;
 	--color-paper-deep: #f2f0ea;
 
-	--color-slate-450: #64748b;
 
 	--shadow-card: 0 1px 2px rgb(4 9 64 / 0.06), 0 8px 24px -8px rgb(4 9 64 / 0.12);
 	--shadow-card-lg: 0 2px 4px rgb(4 9 64 / 0.08), 0 20px 48px -12px rgb(4 9 64 / 0.22);
@@ -113,11 +112,6 @@ h4,
 	background: linear-gradient(180deg, var(--color-ink-950) 0%, var(--color-ink-900) 100%);
 }
 
-/* Light "paper" band */
-.mesh-light {
-	background: var(--color-paper);
-}
-
 /* ---------- photography grading ----------
 	 One consistent grade pulls mixed-source photos into a single
 	 art-directed set. .photo = subtle brand grade for content imagery;
@@ -165,27 +159,6 @@ h4,
 	background: linear-gradient(150deg, var(--color-electric-600), var(--color-ink-950) 70%);
 	mix-blend-mode: color;
 	opacity: 0.9;
-}
-
-/* Homepage photography stays in colour, with a restrained navy/cyan grade. */
-.photo-hero {
-	position: relative;
-	overflow: hidden;
-	background: var(--color-ink-950);
-}
-
-.photo-hero > img {
-	filter: saturate(0.86) contrast(1.08) brightness(0.76);
-	display: block;
-}
-
-.photo-hero::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	background: linear-gradient(120deg, rgb(4 9 64 / 0.32), rgb(6 182 212 / 0.08) 58%, transparent 82%);
-	mix-blend-mode: multiply;
 }
 
 /* Legibility scrim laid over hero/band photography */
@@ -520,17 +493,6 @@ h4,
 		position: absolute;
 		z-index: 0;
 	}
-}
-
-/* Seamless geometric divider border */
-.divider-jamdani {
-	height: 12px;
-	background-image: url('/images/brand/jamdani-pattern.svg');
-	background-repeat: repeat-x;
-	background-size: auto 12px;
-	opacity: 0.15;
-	border: none;
-	width: 100%;
 }
 
 /* ---------- Image zoom hover-card effects ---------- */
