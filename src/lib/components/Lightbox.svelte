@@ -13,6 +13,8 @@
 
 	let { photos, index = $bindable(), title, onclose }: Props = $props();
 
+	import { lockScroll } from '$lib/scrollLock';
+
 	const photo = $derived(photos[index]);
 	const prevIndex = $derived((index - 1 + photos.length) % photos.length);
 	const nextIndex = $derived((index + 1) % photos.length);
@@ -20,20 +22,25 @@
 	let closeButton: HTMLButtonElement | undefined = $state();
 	let pointerStartX: number | null = null;
 
-	// Lock page scroll while open; restore whatever was set before
-	// (the gallery modal underneath may have locked it already).
+	// Lock page scroll while open, focus the dialog, and hand focus
+	// back to whatever opened it when it closes.
 	$effect(() => {
-		const previous = document.body.style.overflow;
-		document.body.style.overflow = 'hidden';
+		const opener = document.activeElement as HTMLElement | null;
+		const unlock = lockScroll();
 		closeButton?.focus();
 		return () => {
-			document.body.style.overflow = previous;
+			unlock();
+			opener?.focus?.();
 		};
 	});
 
 	function onKeydown(keyEvent: KeyboardEvent) {
+		const target = keyEvent.target as HTMLElement | null;
+		if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return;
+		// The page-level Escape handler ignores the key while the
+		// lightbox is open (it checks lightboxIndex), so only the
+		// top-most layer closes per key press.
 		if (keyEvent.key === 'Escape') {
-			keyEvent.stopPropagation();
 			onclose();
 		} else if (keyEvent.key === 'ArrowLeft' && photos.length > 1) {
 			index = prevIndex;

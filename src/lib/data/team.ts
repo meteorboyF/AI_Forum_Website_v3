@@ -84,26 +84,36 @@ export const milestones = [
 	{
 		dateLabel: 'The beginning',
 		title: 'AI Forum Bangladesh founded',
-		detail: 'An independent organisation set up to bridge the gap between Bangladesh’s AI talent and real opportunity.'
-	},
-	{
-		dateLabel: '2024',
-		title: 'Innovation programmes across Bangladesh',
-		detail: 'Innovation programmes delivered with universities and communities across Bangladesh.'
+		detail: 'An independent organisation set up to bridge the gap between Bangladesh’s AI talent and real opportunity.',
+		photo: 'hero/about',
+		photoAlt: 'Participants collaborating at an AI Forum Bangladesh event'
 	},
 	{
 		dateLabel: 'Early growth',
 		title: 'First corporate training clients',
-		detail: 'Professional AI training delivered for organisations including the Dhaka Stock Exchange and LankaBangla Securities.'
+		detail: 'Professional AI training delivered for organisations including the Dhaka Stock Exchange and LankaBangla Securities.',
+		photo: 'events/galleries/ogsb/3',
+		photoAlt: 'Doctors at OGSB Hospital and IRCH during an AI training session'
 	},
 	{
-		dateLabel: 'October 2025',
-		title: 'National press coverage',
-		detail: 'The LankaBangla Securities capital markets programme was covered by more than eight national news outlets.'
+		dateLabel: '2024',
+		title: 'Innovation programmes across Bangladesh',
+		detail: 'Roadshows and collaborative sessions delivered with universities and student communities in several divisions.',
+		photo: 'events/galleries/aims-lab/1',
+		photoAlt: 'Researchers working together during an AI Forum Bangladesh programme'
 	},
 	{
 		dateLabel: 'October 2025',
 		title: 'First international delivery',
-		detail: 'AI Essentials for Healthcare Professionals delivered in Pakistan with PILL, IRIIC, and UIU.'
+		detail: 'AI Essentials for Healthcare Professionals delivered in Pakistan with PILL, IRIIC, and UIU.',
+		photo: 'events/galleries/pill/1',
+		photoAlt: 'Healthcare professionals in Pakistan attending the AI Essentials programme'
+	},
+	{
+		dateLabel: 'October 2025',
+		title: 'National press coverage',
+		detail: 'The LankaBangla Securities capital markets programme was covered by nine national news outlets.',
+		photo: 'events/galleries/lankabangla/1',
+		photoAlt: 'Capital market professionals during the AI Essentials programme covered by the press'
 	}
 ];

@@ -12,13 +12,6 @@
 	let expanded = $state<Record<string, boolean>>({});
 	let activeMilestone = $state(0);
 	let activeValue = $state(0);
-	const journeyPhotos = [
-		'hero/about',
-		'events/galleries/aims-lab/1',
-		'events/galleries/ogsb/3',
-		'events/galleries/lankabangla/1',
-		'events/galleries/pill/1'
-	];
 
 	const valueIcons: Record<string, string> = {
 		people: 'M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6-1.13a4 4 0 1 0-4-6.9M16 3.13a4 4 0 0 1 0 7.75',
@@ -89,13 +82,13 @@
 		<Reveal>
 			<div class="mt-5 grid overflow-hidden rounded-2xl border border-ink-900/8 bg-white shadow-card lg:grid-cols-[0.9fr_1.1fr]">
 				<div class="photo min-h-64 bg-ink-950">
-					<img src={img(journeyPhotos[activeMilestone])} alt="AI Forum Bangladesh journey milestone" class="h-full w-full object-cover" width="1200" height="800" loading="lazy" />
+					<img src={img(milestones[activeMilestone].photo)} alt={milestones[activeMilestone].photoAlt} class="h-full w-full object-cover" width="1200" height="800" loading="lazy" />
 				</div>
-				<div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+				<div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12" aria-live="polite">
 					<p class="font-display text-xs font-bold tracking-widest text-electric-600 uppercase">{milestones[activeMilestone].dateLabel}</p>
 					<h4 class="mt-3 font-display text-3xl leading-tight font-bold tracking-[-0.025em] text-ink-900">{milestones[activeMilestone].title}</h4>
 					<p class="mt-5 max-w-xl text-base leading-relaxed text-slate-600">{milestones[activeMilestone].detail}</p>
-					<p class="mt-8 text-xs font-bold tracking-widest text-slate-400 uppercase">Milestone {String(activeMilestone + 1).padStart(2, '0')} of {String(milestones.length).padStart(2, '0')}</p>
+					<p class="mt-8 text-xs font-bold tracking-widest text-slate-500 uppercase">Milestone {String(activeMilestone + 1).padStart(2, '0')} of {String(milestones.length).padStart(2, '0')}</p>
 				</div>
 			</div>
 		</Reveal>
@@ -113,7 +106,7 @@
 		/>
 		<div class="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
 			<Reveal>
-				<div class="sticky top-24 overflow-hidden rounded-2xl bg-ink-950 p-8 text-white shadow-card lg:p-10">
+				<div class="sticky top-24 overflow-hidden rounded-2xl bg-ink-950 p-8 text-white shadow-card lg:p-10" aria-live="polite">
 					<div class="flex h-14 w-14 items-center justify-center rounded-xl bg-aqua-400 text-ink-950">
 						<svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={valueIcons[values[activeValue].icon]} /></svg>
 					</div>
@@ -148,7 +141,7 @@
 			<div class="mx-auto max-w-sm">
 				{#if leadTrainer.image}
 					<div class="photo rounded-2xl shadow-card-lg">
-						<img src={img(leadTrainer.image)} alt={leadTrainer.name} class="w-full rounded-2xl" width="640" height="640" loading="lazy" />
+						<img src={img(leadTrainer.image)} alt="Portrait of {leadTrainer.name}" class="w-full rounded-2xl" width="640" height="640" loading="lazy" />
 					</div>
 				{:else}
 					<div class="flex aspect-square w-full flex-col items-center justify-center rounded-2xl border border-dashed border-aqua-400/25 bg-ink-950/40 p-8 text-center bg-jamdani-dark shadow-card-lg">
@@ -254,13 +247,14 @@
 								<p class="mt-0.5 font-display text-xs font-bold tracking-widest text-electric-600 uppercase">
 									{member.role}
 								</p>
-								<p class="mt-2.5 text-xs leading-relaxed text-slate-500 {expanded[member.name] ? '' : 'line-clamp-3'}">
+								<p id={`bio-${member.name.replace(/\s+/g, '-')}`} class="mt-2.5 text-xs leading-relaxed text-slate-500 {expanded[member.name] ? '' : 'line-clamp-3'}">
 									{member.bio}
 								</p>
 							</div>
 							<button
 								class="mt-3 self-start text-xs font-bold tracking-wider text-slate-500 uppercase transition-colors hover:text-electric-600"
 								aria-expanded={!!expanded[member.name]}
+								aria-controls={`bio-${member.name.replace(/\s+/g, '-')}`}
 								onclick={() => (expanded[member.name] = !expanded[member.name])}
 							>
 								{expanded[member.name] ? 'Show less' : 'Read bio'}

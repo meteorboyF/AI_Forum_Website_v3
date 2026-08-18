@@ -21,7 +21,11 @@
 		if (!name.trim()) errors.name = 'Please tell us your name.';
 		if (!isValidEmail(email)) errors.email = 'Please enter a valid email address.';
 		if (!message.trim()) errors.message = 'Please write a message.';
-		if (Object.keys(errors).length > 0) return;
+		if (Object.keys(errors).length > 0) {
+			const first = ['name', 'email', 'message'].find((k) => errors[k]);
+			document.getElementById(`c-${first === 'message' ? 'message' : first}`)?.focus();
+			return;
+		}
 
 		status = 'submitting';
 		const ok = await submitForm('Website contact message', { name, email, message, form: 'contact' }, honeypot);
@@ -100,26 +104,28 @@
 					</p>
 				</div>
 			{:else}
-				<form class="rounded-xl border border-ink-900/10 bg-white p-7 shadow-card" onsubmit={submit} novalidate>
+				<form class="rounded-xl border border-ink-900/10 bg-white p-7 shadow-card" onsubmit={submit} aria-labelledby="contact-form-title" novalidate>
+					<h2 id="contact-form-title" class="font-display text-2xl font-bold text-ink-900">Send us a message</h2>
+					<p class="mt-1.5 mb-6 text-sm text-slate-600">All fields are required.</p>
 					<div class="grid gap-5 sm:grid-cols-2">
 						<div>
 							<label for="c-name" class="mb-1.5 block text-sm font-semibold">Your name</label>
-							<input id="c-name" class="field" type="text" maxlength="120" autocomplete="name" bind:value={name}
+							<input id="c-name" class="field" type="text" maxlength="120" autocomplete="name" required aria-required="true" bind:value={name}
 								aria-invalid={errors.name ? 'true' : undefined} aria-describedby={errors.name ? 'c-name-err' : undefined} />
-							{#if errors.name}<p id="c-name-err" class="mt-1 text-xs font-medium text-red-600">{errors.name}</p>{/if}
+							{#if errors.name}<p id="c-name-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.name}</p>{/if}
 						</div>
 						<div>
 							<label for="c-email" class="mb-1.5 block text-sm font-semibold">Email</label>
-							<input id="c-email" class="field" type="email" maxlength="254" autocomplete="email" bind:value={email}
+							<input id="c-email" class="field" type="email" maxlength="254" autocomplete="email" required aria-required="true" bind:value={email}
 								aria-invalid={errors.email ? 'true' : undefined} aria-describedby={errors.email ? 'c-email-err' : undefined} />
-							{#if errors.email}<p id="c-email-err" class="mt-1 text-xs font-medium text-red-600">{errors.email}</p>{/if}
+							{#if errors.email}<p id="c-email-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.email}</p>{/if}
 						</div>
 					</div>
 					<div class="mt-5">
 						<label for="c-message" class="mb-1.5 block text-sm font-semibold">Message</label>
-						<textarea id="c-message" class="field min-h-36" maxlength="3000" bind:value={message}
+						<textarea id="c-message" class="field min-h-36" maxlength="3000" required aria-required="true" bind:value={message}
 							aria-invalid={errors.message ? 'true' : undefined} aria-describedby={errors.message ? 'c-msg-err' : undefined}></textarea>
-						{#if errors.message}<p id="c-msg-err" class="mt-1 text-xs font-medium text-red-600">{errors.message}</p>{/if}
+						{#if errors.message}<p id="c-msg-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.message}</p>{/if}
 					</div>
 					<input type="text" name="_gotcha" inert tabindex="-1" autocomplete="off" bind:value={honeypot}
 						class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />

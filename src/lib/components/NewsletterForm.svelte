@@ -14,6 +14,7 @@
 		emailError = '';
 		if (!isValidEmail(email)) {
 			emailError = 'Please enter a valid email address.';
+			document.getElementById('newsletter-email')?.focus();
 			return;
 		}
 		status = 'submitting';
@@ -30,14 +31,19 @@
 
 <section class="border-t border-ink-900/8 bg-paper relative overflow-hidden py-16 sm:py-24">
 	<div class="mx-auto max-w-xl px-5 text-center">
-		<h2 class="font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">Programme updates</h2>
-		<p class="mt-4 text-slate-600">
-			Follow new programme dates, delivered-work notes, and announcements from AI Forum Bangladesh.
-		</p>
-
 		{#if !FORMS_ENABLED}
+			<h2 class="font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">Stay in touch</h2>
+			<p class="mt-4 text-slate-600">
+				New programme dates and announcements are posted first on our Facebook page — or write to the
+				team directly and we will keep you informed.
+			</p>
 			<a href="{base}/contact-us/" class="btn btn-electric mt-8">Contact the team</a>
-		{:else if status === 'success'}
+		{:else}
+			<h2 class="font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">Programme updates</h2>
+			<p class="mt-4 text-slate-600">
+				Follow new programme dates, delivered-work notes, and announcements from AI Forum Bangladesh.
+			</p>
+			{#if status === 'success'}
 			<div
 				class="mt-8 flex items-center justify-center gap-3 rounded-lg border border-aqua-400/40 bg-aqua-100/60 px-5 py-4 text-left"
 				role="status"
@@ -82,7 +88,7 @@
 					</button>
 				</div>
 				{#if emailError}
-					<p id="newsletter-email-error" class="mt-2 text-left text-sm font-medium text-red-600">
+					<p id="newsletter-email-error" class="mt-2 text-left text-sm font-medium text-red-600" role="alert">
 						{emailError}
 					</p>
 				{/if}
@@ -97,6 +103,7 @@
 					<a href="{base}/privacy/" class="link-sweep font-medium text-ink-900">privacy policy</a>.
 				</p>
 			</form>
+			{/if}
 		{/if}
 	</div>
 </section>

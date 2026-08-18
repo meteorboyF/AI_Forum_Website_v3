@@ -35,4 +35,4 @@
 	}
 </script>
 
-<span use:run aria-label="{value}{suffix}">{display.toLocaleString('en-GB')}{suffix}</span>
+<span use:run>{display.toLocaleString('en-GB')}{suffix}</span>

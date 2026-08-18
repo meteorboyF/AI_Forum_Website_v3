@@ -10,6 +10,7 @@
 	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
 	import Icons from '$lib/components/Icons.svelte';
 	import { weightShift } from '$lib/actions/weightShift';
+	import { prefersReducedMotion } from '$lib/motion';
 	import { img } from '$lib/img';
 	import { stats } from '$lib/data/stats';
 	import { partners } from '$lib/data/partners';
@@ -26,12 +27,36 @@
 		{ image: 'events/galleries/sonali-intellect/12', alt: 'Banking and FinTech professionals taking part in an AI Forum Bangladesh session', caption: 'AI Essentials · Banking and FinTech professionals' }
 	];
 	let activeHeroSlide = $state(0);
+	let heroPaused = $state(false);
+	let rotation: ReturnType<typeof setInterval> | undefined;
 
-	onMount(() => {
-		const rotation = window.setInterval(() => {
+	function stopRotation() {
+		if (rotation !== undefined) clearInterval(rotation);
+		rotation = undefined;
+	}
+
+	function startRotation() {
+		stopRotation();
+		if (prefersReducedMotion() || heroPaused) return;
+		rotation = setInterval(() => {
 			activeHeroSlide = (activeHeroSlide + 1) % heroSlides.length;
 		}, 6500);
-		return () => window.clearInterval(rotation);
+	}
+
+	function selectSlide(index: number) {
+		activeHeroSlide = index;
+		// restart the timer so a chosen slide is not replaced a second later
+		startRotation();
+	}
+
+	function togglePause() {
+		heroPaused = !heroPaused;
+		startRotation();
+	}
+
+	onMount(() => {
+		startRotation();
+		return stopRotation;
 	});
 
 	const programmes = [
@@ -114,14 +139,27 @@
 				<a href="{base}/events/" class="btn btn-ghost-dark">See past work</a>
 			</div>
 		</div>
-			<p class="hero-support mt-8 border-t border-white/30 pt-4 text-xs tracking-wide text-white/85 uppercase">
+			<p class="hero-support mt-8 border-t border-white/30 pt-4 text-xs tracking-wide text-white/85 uppercase" aria-live="polite">
 			{heroSlides[activeHeroSlide].caption}
 		</p>
 	</div>
 
 	<div class="absolute right-5 bottom-5 z-20 flex items-center gap-2 sm:right-8 lg:right-12">
+		<button
+			type="button"
+			class="grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-ink-950/35 text-white backdrop-blur-sm transition-all hover:border-aqua-300 hover:bg-electric-600"
+			onclick={togglePause}
+			aria-label={heroPaused ? 'Resume the photo slideshow' : 'Pause the photo slideshow'}
+			aria-pressed={heroPaused}
+		>
+			{#if heroPaused}
+				<svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" /></svg>
+			{:else}
+				<svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.5 2h3v12h-3zM9.5 2h3v12h-3z" /></svg>
+			{/if}
+		</button>
 		{#each heroSlides as slide, index (slide.image)}
-			<button type="button" class="grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-ink-950/35 text-xs font-bold text-white backdrop-blur-sm transition-all hover:border-aqua-300 hover:bg-electric-600 {index === activeHeroSlide ? 'border-aqua-300 bg-electric-600' : ''}" onclick={() => (activeHeroSlide = index)} aria-label={`Show hero photo ${index + 1}: ${slide.caption}`} aria-pressed={index === activeHeroSlide}>
+			<button type="button" class="grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-ink-950/35 text-xs font-bold text-white backdrop-blur-sm transition-all hover:border-aqua-300 hover:bg-electric-600 {index === activeHeroSlide ? 'border-aqua-300 bg-electric-600' : ''}" onclick={() => selectSlide(index)} aria-label={`Show hero photo ${index + 1}: ${slide.caption}`} aria-pressed={index === activeHeroSlide}>
 				{String(index + 1).padStart(2, '0')}
 			</button>
 		{/each}
@@ -299,7 +337,7 @@
 						<span class="font-display text-lg leading-snug font-medium text-white/85 group-hover:text-white lg:text-xl">
 							{item.headline}
 						</span>
-						<span class="text-xs font-bold tracking-widest text-white/45 uppercase group-hover:text-aqua-400">
+						<span class="text-xs font-bold tracking-widest text-white/65 uppercase group-hover:text-aqua-400">
 							Read ↗
 						</span>
 					</a>
@@ -391,7 +429,7 @@
 						<p class="eyebrow">{story.sector}</p>
 						<h3 class="mt-3 font-display text-xl font-bold leading-snug text-ink-900">{story.title}</h3>
 						{#if story.client}
-							<p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{story.client}</p>
+							<p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-600">{story.client}</p>
 						{/if}
 						<p class="mt-4 flex-1 text-sm leading-relaxed text-slate-600">{story.summary}</p>
 						<div class="mt-6 flex flex-wrap gap-2">

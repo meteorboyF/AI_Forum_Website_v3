@@ -71,7 +71,7 @@
 </section>
 
 <!-- ============ SECTOR-SPECIFIC TRAINING ============ -->
-<section class="scroll-mt-24 bg-paper py-24 lg:py-32 bg-jamdani-light" id="sectors">
+<section class="scroll-mt-24 bg-paper py-24 lg:py-32 bg-jamdani-light outline-none" id="sectors" tabindex="-1">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead
 			number="01"
@@ -222,9 +222,9 @@
 <section class="border-t border-ink-900/8 bg-white py-16 lg:py-20">
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<div>
-			<p class="text-center font-display text-sm font-semibold tracking-widest text-slate-500 uppercase">
+			<h2 class="text-center font-display text-sm font-semibold tracking-widest text-slate-500 uppercase">
 				Organisations trained by the Academy
-			</p>
+			</h2>
 			<div class="mt-6 flex flex-wrap items-center justify-center gap-4">
 				{#each trainingClients as client (client.name)}
 					<PartnerLogo partner={client} compact />

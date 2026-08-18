@@ -51,7 +51,12 @@
 		if (!organisation.trim()) errors.organisation = 'Please tell us your organisation.';
 		if (!isValidEmail(email)) errors.email = 'Please enter a valid email address.';
 		if (!message.trim()) errors.message = 'A sentence or two about your team helps us respond well.';
-		if (Object.keys(errors).length > 0) return;
+		if (Object.keys(errors).length > 0) {
+			const idByKey: Record<string, string> = { name: 'ct-name', organisation: 'ct-org', email: 'ct-email', message: 'ct-message' };
+			const first = ['name', 'organisation', 'email', 'message'].find((k) => errors[k]);
+			if (first) document.getElementById(idByKey[first])?.focus();
+			return;
+		}
 
 		status = 'submitting';
 		const ok = await submitForm(
@@ -161,7 +166,7 @@
 </section>
 
 <!-- ============ PROPOSAL FORM ============ -->
-<section class="scroll-mt-24 bg-paper py-24 lg:py-32" id="proposal">
+<section class="scroll-mt-24 bg-paper py-24 lg:py-32 outline-none" id="proposal" tabindex="-1">
 	<div class="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-12">
 		<Reveal>
 			<SectionHead
@@ -195,30 +200,32 @@
 					</p>
 				</div>
 			{:else}
-				<form class="rounded-2xl border border-ink-900/10 bg-white p-8 shadow-card" onsubmit={submit} novalidate>
+				<form class="rounded-2xl border border-ink-900/10 bg-white p-8 shadow-card" onsubmit={submit} aria-labelledby="proposal-form-title" novalidate>
+					<h3 id="proposal-form-title" class="font-display text-2xl font-bold text-ink-900">Request a proposal</h3>
+					<p class="mt-1.5 mb-6 text-sm text-slate-600">All fields are required except the sector.</p>
 					<div class="grid gap-5 sm:grid-cols-2">
 						<div>
 							<label for="ct-name" class="mb-1.5 block text-sm font-semibold">Your name</label>
-							<input id="ct-name" class="field" type="text" maxlength="120" autocomplete="name" bind:value={name}
+							<input id="ct-name" class="field" type="text" maxlength="120" autocomplete="name" required aria-required="true" bind:value={name}
 								aria-invalid={errors.name ? 'true' : undefined} aria-describedby={errors.name ? 'ct-name-err' : undefined} />
-							{#if errors.name}<p id="ct-name-err" class="mt-1 text-xs font-medium text-red-600">{errors.name}</p>{/if}
+							{#if errors.name}<p id="ct-name-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.name}</p>{/if}
 						</div>
 						<div>
 							<label for="ct-org" class="mb-1.5 block text-sm font-semibold">Organisation</label>
-							<input id="ct-org" class="field" type="text" maxlength="160" autocomplete="organization" bind:value={organisation}
+							<input id="ct-org" class="field" type="text" maxlength="160" autocomplete="organization" required aria-required="true" bind:value={organisation}
 								aria-invalid={errors.organisation ? 'true' : undefined} aria-describedby={errors.organisation ? 'ct-org-err' : undefined} />
-							{#if errors.organisation}<p id="ct-org-err" class="mt-1 text-xs font-medium text-red-600">{errors.organisation}</p>{/if}
+							{#if errors.organisation}<p id="ct-org-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.organisation}</p>{/if}
 						</div>
 						<div>
 							<label for="ct-email" class="mb-1.5 block text-sm font-semibold">Work email</label>
-							<input id="ct-email" class="field" type="email" maxlength="254" autocomplete="email" bind:value={email}
+							<input id="ct-email" class="field" type="email" maxlength="254" autocomplete="email" required aria-required="true" bind:value={email}
 								aria-invalid={errors.email ? 'true' : undefined} aria-describedby={errors.email ? 'ct-email-err' : undefined} />
-							{#if errors.email}<p id="ct-email-err" class="mt-1 text-xs font-medium text-red-600">{errors.email}</p>{/if}
+							{#if errors.email}<p id="ct-email-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.email}</p>{/if}
 						</div>
 						<div>
 							<label for="ct-sector" class="mb-1.5 block text-sm font-semibold">Sector</label>
 							<select id="ct-sector" class="field" bind:value={sector}>
-								<option value="">Select a sector (optional)</option>
+								<option value="">Select a sector — optional</option>
 								{#each sectors as s (s.slug)}
 									<option value={s.name}>{s.name}</option>
 								{/each}
@@ -230,9 +237,9 @@
 						<label for="ct-message" class="mb-1.5 block text-sm font-semibold">
 							What would you like your team to be able to do?
 						</label>
-						<textarea id="ct-message" class="field min-h-32" maxlength="3000" bind:value={message}
+						<textarea id="ct-message" class="field min-h-32" maxlength="3000" required aria-required="true" bind:value={message}
 							aria-invalid={errors.message ? 'true' : undefined} aria-describedby={errors.message ? 'ct-msg-err' : undefined}></textarea>
-						{#if errors.message}<p id="ct-msg-err" class="mt-1 text-xs font-medium text-red-600">{errors.message}</p>{/if}
+						{#if errors.message}<p id="ct-msg-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.message}</p>{/if}
 					</div>
 					<!-- Honeypot -->
 					<input type="text" name="_gotcha" inert tabindex="-1" autocomplete="off" bind:value={honeypot}

@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/state';
 	import { brand } from '$lib/img';
+	import { lockScroll } from '$lib/scrollLock';
 
 	const ourWork = [
 		{ href: '/our-work/ai-academy/', label: 'AI Academy' },
@@ -39,11 +40,7 @@
 	// Lock page scroll while the mobile menu is open.
 	$effect(() => {
 		if (!mobileOpen) return;
-		const previous = document.body.style.overflow;
-		document.body.style.overflow = 'hidden';
-		return () => {
-			document.body.style.overflow = previous;
-		};
+		return lockScroll();
 	});
 
 	function onDropdownFocusOut(event: FocusEvent) {

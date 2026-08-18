@@ -10,8 +10,10 @@
 	import type { EventItem } from '$lib/data/types';
 	import Icons from '$lib/components/Icons.svelte';
 	import Lightbox from '$lib/components/Lightbox.svelte';
+	import { lockScroll } from '$lib/scrollLock';
 
 	let selectedEvent = $state<EventItem | null>(null);
+	let modalEl: HTMLDivElement | undefined = $state();
 	let lightboxIndex = $state<number | null>(null);
 	let galleryPhotos = $derived(
 		selectedEvent?.gallery
@@ -33,14 +35,34 @@
 		if (keyEvent.key === 'Escape' && selectedEvent && lightboxIndex === null) closeGallery();
 	}
 
+	// Lock scroll, focus the dialog, and restore focus to the card
+	// button that opened it when it closes.
 	$effect(() => {
 		if (!selectedEvent) return;
-		const previous = document.body.style.overflow;
-		document.body.style.overflow = 'hidden';
+		const opener = document.activeElement as HTMLElement | null;
+		const unlock = lockScroll();
+		modalEl?.querySelector<HTMLElement>('button[aria-label="Close photo gallery"]')?.focus();
 		return () => {
-			document.body.style.overflow = previous;
+			unlock();
+			opener?.focus?.();
 		};
 	});
+
+	// Keep Tab inside the dialog while it is open.
+	function trapTab(keyEvent: KeyboardEvent) {
+		if (keyEvent.key !== 'Tab' || !modalEl) return;
+		const focusables = [...modalEl.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')];
+		if (focusables.length === 0) return;
+		const first = focusables[0];
+		const last = focusables[focusables.length - 1];
+		if (keyEvent.shiftKey && document.activeElement === first) {
+			keyEvent.preventDefault();
+			last.focus();
+		} else if (!keyEvent.shiftKey && document.activeElement === last) {
+			keyEvent.preventDefault();
+			first.focus();
+		}
+	}
 	let eventSearch = $state('');
 	let eventSort = $state<'newest' | 'oldest' | 'az'>('newest');
 	let sectorFilter = $state<string | null>(null);
@@ -275,10 +297,13 @@
 		onclick={(event) => event.target === event.currentTarget && closeGallery()}
 	>
 		<div
+			bind:this={modalEl}
 			class="max-h-[92vh] w-full overflow-y-auto rounded-t-2xl bg-paper shadow-2xl sm:mx-auto sm:max-w-6xl sm:rounded-2xl"
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby="gallery-title"
+			tabindex="-1"
+			onkeydown={trapTab}
 		>
 			<div class="sticky top-0 z-10 flex items-start justify-between gap-6 border-b border-ink-900/10 bg-paper/95 px-6 py-5 backdrop-blur sm:px-9">
 				<div>
@@ -298,9 +323,9 @@
 							type="button"
 							class="group block cursor-zoom-in overflow-hidden rounded-lg bg-ink-100 focus:outline-2 focus:outline-offset-2 focus:outline-electric-600"
 							onclick={() => (lightboxIndex = photoIndex)}
-							aria-label={`View ${photo.alt} full screen`}
+							aria-label={`Open photograph ${photoIndex + 1} of ${galleryPhotos.length}`}
 						>
-							<img src={photo.src} alt={photo.alt} class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+							<img src={photo.src} alt="" class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
 						</button>
 					{/each}
 				</div>

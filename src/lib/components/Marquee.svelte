@@ -10,7 +10,10 @@
 	let { children, speed = 36 }: Props = $props();
 </script>
 
-<div class="marquee" style:--speed="{speed}s">
+<!-- Focusable so keyboard users can pause the motion, matching the hover
+     behaviour (WCAG 2.2.2); the tabindex is deliberate. -->
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<div class="marquee" style:--speed="{speed}s" tabindex="0" role="marquee" aria-label="Partner logos; the strip pauses while hovered or focused">
 	<div class="marquee-track">
 		{@render children()}
 	</div>
@@ -36,7 +39,9 @@
 		justify-content: space-around;
 		animation: scroll var(--speed) linear infinite;
 	}
-	.marquee:hover .marquee-track {
+	.marquee:hover .marquee-track,
+	.marquee:focus-within .marquee-track,
+	.marquee:focus .marquee-track {
 		animation-play-state: paused;
 	}
 	@keyframes scroll {

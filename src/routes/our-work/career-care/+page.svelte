@@ -59,7 +59,7 @@
 				<Reveal delay={index * 100}>
 					<article class="h-full rounded-lg border border-ink-900/10 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-electric-600/30 hover:shadow-card">
 						<Icons name={topic.icon} class="h-7 w-7 text-electric-600" />
-						<h2 class="mt-6 font-display text-xl font-bold">{topic.title}</h2>
+						<h3 class="mt-6 font-display text-xl font-bold">{topic.title}</h3>
 						<p class="mt-3 leading-relaxed text-slate-600">{topic.description}</p>
 					</article>
 				</Reveal>

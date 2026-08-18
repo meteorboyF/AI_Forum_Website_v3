@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tick } from 'svelte';
 	import { base } from '$app/paths';
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
@@ -21,6 +22,16 @@
 			: []
 	);
 	const visiblePhotos = $derived(showAllPhotos ? galleryPhotos : galleryPhotos.slice(0, PREVIEW_COUNT));
+
+	let galleryGrid: HTMLElement | undefined = $state();
+
+	async function showAll() {
+		showAllPhotos = true;
+		// The "Show all" button unmounts; keep keyboard users anchored by
+		// moving focus to the first newly revealed photograph.
+		await tick();
+		galleryGrid?.querySelectorAll<HTMLElement>('button')[PREVIEW_COUNT]?.focus();
+	}
 </script>
 
 <Seo title={event.title} description={event.summary} path={`/events/${event.slug}/`} ogImage={event.image} />
@@ -64,22 +75,22 @@
 	<section class="border-y border-ink-900/8 bg-white py-16 lg:py-24">
 		<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 			<Reveal><p class="eyebrow">Photo archive</p><h2 class="mt-3 font-display text-3xl font-bold">Inside the programme</h2><p class="mt-3 text-slate-600">{event.gallery.count} photographs from the delivered session.</p></Reveal>
-			<div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+			<div class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4" bind:this={galleryGrid}>
 				{#each visiblePhotos as photo, index (photo.src)}
 					<Reveal delay={(index % 4) * 60}>
 						<button
 							type="button"
 							class="image-zoom-container block w-full cursor-zoom-in overflow-hidden rounded-lg focus:outline-2 focus:outline-offset-2 focus:outline-electric-600"
 							onclick={() => (lightboxIndex = index)}
-							aria-label={`View ${photo.alt} full screen`}
+							aria-label={`Open photograph ${index + 1} of ${galleryPhotos.length}`}
 						>
-							<img src={photo.src} alt={photo.alt} class="image-zoom-img aspect-[4/3] w-full object-cover" width="700" height="525" loading="lazy" />
+							<img src={photo.src} alt="" class="image-zoom-img aspect-[4/3] w-full object-cover" width="700" height="525" loading="lazy" />
 						</button>
 					</Reveal>
 				{/each}
 			</div>
 			{#if event.gallery.count > PREVIEW_COUNT && !showAllPhotos}
-				<button type="button" class="btn btn-electric mt-8" onclick={() => (showAllPhotos = true)}>
+				<button type="button" class="btn btn-electric mt-8" onclick={showAll}>
 					Show all {event.gallery.count} photographs
 				</button>
 			{/if}
