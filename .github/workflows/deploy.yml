@@ -34,6 +34,7 @@ jobs:
       - name: Build (project-page base path)
         env:
           BASE_PATH: /${{ github.event.repository.name }}
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
         run: npm run build
 
       - name: Check for dead links

@@ -14,7 +14,7 @@ supply it.**
 
 | Item | Where | What to do |
 |---|---|---|
-| Web3Forms access key | `src/lib/config.ts` → `WEB3FORMS_ACCESS_KEY` | Create a free key at web3forms.com pointing at the org inbox, replace the placeholder, and **enable domain restriction** in the Web3Forms dashboard. Until set, forms show their error state (they never pretend to succeed). |
+| Web3Forms access key | GitHub repo secret `WEB3FORMS_ACCESS_KEY` | Create a free key at web3forms.com pointing at the org inbox, add it as a repository secret named `WEB3FORMS_ACCESS_KEY` (Settings → Secrets and variables → Actions), and **enable domain restriction** in the Web3Forms dashboard. The deploy workflow injects it at build time. Until set, forms render a "email us directly" mailto card instead of the form. |
 
 ## Numbers
 

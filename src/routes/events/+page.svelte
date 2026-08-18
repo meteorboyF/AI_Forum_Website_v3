@@ -216,10 +216,10 @@
 							<h3 class="mt-4 font-display text-2xl leading-tight font-bold tracking-[-0.015em] text-balance lg:text-3xl text-ink-900 text-underline-reveal">
 								{event.title}
 							</h3>
-							{#if event.client}
+							{#if event.client || event.venue}
 								<p class="mt-2.5 font-display text-xs font-bold tracking-wide text-slate-400 inline-flex items-center gap-1.5 uppercase">
 									<Icons name="map-pin" class="h-3.5 w-3.5" strokeWidth={2} />
-									{event.client}{event.venue ? ` · ${event.venue}` : ''}
+									{[event.client, event.venue].filter(Boolean).join(' · ')}
 								</p>
 							{/if}
 							<p class="mt-5 text-sm sm:text-base leading-relaxed text-slate-600">{event.summary}</p>

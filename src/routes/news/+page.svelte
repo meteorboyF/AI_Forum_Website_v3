@@ -10,6 +10,10 @@
 	import Icons from '$lib/components/Icons.svelte';
 
 	const eventBySlug = new Map(events.map((e) => [e.slug, e]));
+	const sortedPress = [...press].sort((a, b) => b.sortKey - a.sortKey);
+	const pressCollageAlt =
+		eventBySlug.get('ai-for-business-excellence')?.imageAlt ??
+		'Newspaper clippings covering the AI for Business Excellence seminar';
 </script>
 
 <Seo
@@ -27,7 +31,7 @@
 	<div class="relative z-10 mx-auto w-full max-w-[88rem] px-5 sm:px-8 lg:px-12 lg:pb-4">
 		<p class="eyebrow mb-5">News & Media</p>
 		<h1 class="max-w-5xl font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.98] font-bold tracking-[-0.03em] text-balance">
-			<span class="line-mask"><span>What the national press says</span></span>
+			<span class="line-mask"><span>Covered by the national press</span></span>
 		</h1>
 		<p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/85">
 			A chronological archive of coverage in Bangladeshi newspapers and business media. Every item
@@ -48,7 +52,7 @@
 			<div class="card-hover-trigger image-zoom-container rounded-2xl border border-ink-900/10 shadow-card">
 				<img
 					src={img('events/business-excellence-press')}
-					alt="Collage of newspaper clippings covering the AI for Business Excellence seminar"
+					alt={pressCollageAlt}
 					class="image-zoom-img w-full rounded-2xl"
 					width="1400"
 					height="1050"
@@ -75,7 +79,7 @@
 	<div class="mx-auto max-w-[88rem] px-5 sm:px-8 lg:px-12">
 		<SectionHead number="02" eyebrow="Archive" title="All coverage, newest first" />
 		<ol class="mt-12">
-			{#each press as item, i (item.slug)}
+			{#each sortedPress as item, i (item.slug)}
 				<li>
 					<Reveal delay={Math.min(i, 3) * 60}>
 						<a

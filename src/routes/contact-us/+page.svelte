@@ -95,7 +95,7 @@
 				<div class="rounded-xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
 					<h3 class="text-xl font-bold text-ink-900">Message sent</h3>
 					<p class="mt-2 leading-relaxed text-slate-600">
-						Thanks, {name.split(' ')[0]}. Your message is in our inbox and we will reply to
+						Thanks, {name.trim().split(/\s+/)[0]}. Your message is in our inbox and we will reply to
 						{email} as soon as we can.
 					</p>
 				</div>
@@ -121,7 +121,7 @@
 							aria-invalid={errors.message ? 'true' : undefined} aria-describedby={errors.message ? 'c-msg-err' : undefined}></textarea>
 						{#if errors.message}<p id="c-msg-err" class="mt-1 text-xs font-medium text-red-600">{errors.message}</p>{/if}
 					</div>
-					<input type="text" name="website" tabindex="-1" autocomplete="off" bind:value={honeypot}
+					<input type="text" name="_gotcha" inert tabindex="-1" autocomplete="off" bind:value={honeypot}
 						class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
 					<button type="submit" class="btn btn-electric mt-6 w-full" disabled={status === 'submitting'}>
 						{status === 'submitting' ? 'Sending…' : 'Send message'}

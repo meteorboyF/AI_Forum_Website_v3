@@ -25,12 +25,16 @@ export const SOCIALS = {
 } as const;
 
 /**
- * Web3Forms access key. This key is public-by-design (it routes
- * submissions to an inbox; it grants no account access). Restrict it to
- * the production domain in the Web3Forms dashboard: Settings -> Domain
- * restriction. See CONTENT-TODO.md.
+ * Web3Forms access key, injected at build time from the
+ * VITE_WEB3FORMS_ACCESS_KEY environment variable (set as a repository
+ * secret consumed by deploy.yml). The key is public-by-design (it
+ * routes submissions to an inbox; it grants no account access), but
+ * restrict it to the production domain in the Web3Forms dashboard:
+ * Settings -> Domain restriction. While unset, forms render a mailto
+ * fallback instead. See CONTENT-TODO.md.
  */
-export const WEB3FORMS_ACCESS_KEY = '{{WEB3FORMS_ACCESS_KEY}}';
-export const FORMS_ENABLED = !WEB3FORMS_ACCESS_KEY.includes('WEB3FORMS_ACCESS_KEY');
+export const WEB3FORMS_ACCESS_KEY: string =
+	(import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined) ?? '';
+export const FORMS_ENABLED = WEB3FORMS_ACCESS_KEY.length > 0;
 
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';

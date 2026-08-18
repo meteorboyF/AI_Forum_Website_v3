@@ -69,7 +69,8 @@
 					<!-- Honeypot: hidden from real users, bots fill it in -->
 					<input
 						type="text"
-						name="website"
+						name="_gotcha"
+						inert
 						tabindex="-1"
 						autocomplete="off"
 						bind:value={honeypot}

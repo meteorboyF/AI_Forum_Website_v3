@@ -88,6 +88,8 @@ export interface PressItem {
 	headline: string;
 	/** Omit when unconfirmed; the UI drops the date clause */
 	dateLabel?: string;
+	/** YYYYMMDD (day 00 when only the month is known); used to sort newest first */
+	sortKey: number;
 	url: string;
 	language: 'English' | 'Bangla';
 	/** Event slug this coverage relates to */

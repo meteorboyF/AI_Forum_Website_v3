@@ -190,7 +190,7 @@
 						Request received
 					</h3>
 					<p class="mt-3 leading-relaxed text-slate-600">
-						Thank you, {name.split(' ')[0]}. We will review what you have told us about
+						Thank you, {name.trim().split(/\s+/)[0]}. We will review what you have told us about
 						{organisation} and come back to you with a scoping call slot and a first outline.
 					</p>
 				</div>
@@ -235,7 +235,7 @@
 						{#if errors.message}<p id="ct-msg-err" class="mt-1 text-xs font-medium text-red-600">{errors.message}</p>{/if}
 					</div>
 					<!-- Honeypot -->
-					<input type="text" name="website" tabindex="-1" autocomplete="off" bind:value={honeypot}
+					<input type="text" name="_gotcha" inert tabindex="-1" autocomplete="off" bind:value={honeypot}
 						class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
 					<button type="submit" class="btn btn-electric mt-6 w-full" disabled={status === 'submitting'}>
 						{status === 'submitting' ? 'Sending…' : 'Send proposal request'}

@@ -29,7 +29,9 @@
 	--color-aqua-600: #0891b2;
 	--color-aqua-500: #06b6d4;
 	--color-aqua-400: #22d3ee;
+	--color-aqua-300: #67e8f9;
 	--color-aqua-100: #cffafe;
+	--color-aqua-50: #ecfeff;
 
 	--color-gold-600: #d97706;
 	--color-gold-500: #f59e0b;
@@ -496,18 +498,21 @@ h4,
 	opacity: 0.08;
 }
 
-/* Ensure z-index layers on Jamdani backgrounds */
-.bg-jamdani-dark > *,
-.bg-jamdani-light > * {
-	position: relative;
-	z-index: 10;
-}
+/* Ensure z-index layers on Jamdani backgrounds. Layered as components
+   so positioning utilities (absolute, z-*) on children still win. */
+@layer components {
+	.bg-jamdani-dark > *,
+	.bg-jamdani-light > * {
+		position: relative;
+		z-index: 10;
+	}
 
-/* Full-bleed images remain background layers inside patterned sections. */
-.bg-jamdani-dark > img,
-.bg-jamdani-light > img {
-	position: absolute;
-	z-index: 0;
+	/* Full-bleed images remain background layers inside patterned sections. */
+	.bg-jamdani-dark > img,
+	.bg-jamdani-light > img {
+		position: absolute;
+		z-index: 0;
+	}
 }
 
 /* Seamless geometric divider border */

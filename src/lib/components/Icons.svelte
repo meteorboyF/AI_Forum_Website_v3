@@ -30,14 +30,14 @@
 		<!-- Stethoscope/heart/medical cross in flat editorial line style -->
 		<path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z" />
 		<path d="M12 8v6M9 11h6" />
-	{:else if name === 'energy'}
+	{:else if name === 'energy' || name === 'energy-infrastructure'}
 		<!-- High-voltage bolt -->
 		<path d="M13 2L3 14h9l-1 8 10-12h-9z" />
 	{:else if name === 'education'}
 		<!-- Graduation cap + open book -->
 		<path d="M22 10v6M2 10l10-5 10 5-10 5z" />
 		<path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
-	{:else if name === 'government'}
+	{:else if name === 'government' || name === 'government-development'}
 		<!-- Dome building or columned courthouse -->
 		<path d="M12 2L2 7h20zM4 21h16M4 11v10M8 11v10M12 11v10M16 11v10M20 11v10" />
 	{:else if name === 'academy'}

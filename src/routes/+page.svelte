@@ -50,8 +50,8 @@
 			image: 'events/galleries/unicef/11',
 			imageAlt: 'Participants working together during an AI Forum Bangladesh programme',
 			desc: 'Roadshows and collaborative sessions that introduce applied AI to students and institutions.',
-			proof: 'See the programmes already delivered and the institutions that hosted them.',
-			latest: { label: 'See the Roadshow', href: '/our-work/innovation-ecosystem/' }
+			proof: 'Roadshows and innovation programmes delivered with universities and communities across Bangladesh.',
+			latest: { label: 'Explore the programme', href: '/our-work/innovation-ecosystem/' }
 		},
 		{
 			title: 'Career Care',
@@ -60,7 +60,7 @@
 			imageAlt: 'Students and mentors during an AI Forum Bangladesh session',
 			desc: 'Mentoring and practical career sessions for people preparing to work and study in AI.',
 			proof: 'Advice grounded in technical study, research, and the realities of entering the field.',
-			latest: { label: 'See career support', href: '/our-work/career-care/' }
+			latest: { label: 'Explore the programme', href: '/our-work/career-care/' }
 		}
 	];
 </script>
@@ -137,13 +137,20 @@
 
 <!-- ============ IMPACT: documented numbers only ============ -->
 <section class="bg-paper" aria-label="Impact in numbers">
-	<div class="mx-auto grid grid-cols-2 gap-y-12 px-5 py-16 sm:px-8 lg:grid-cols-4 lg:py-20 lg:px-12 border-b border-ink-900/8">
+	<div class="mx-auto grid max-w-[88rem] grid-cols-2 gap-y-12 border-b border-ink-900/8 px-5 py-16 sm:px-8 lg:py-20 lg:px-12 {stats.length >= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'}">
 		{#each stats as stat, i (stat.label)}
-			<Reveal delay={i * 90} class="border-l border-ink-900/10 pl-6 lg:pl-8 {i === 0 ? 'border-l-0 pl-0 lg:pl-0' : ''}">
-				<p class="font-display text-5xl font-bold tracking-[-0.03em] text-ink-900 lg:text-6xl font-mono">
+			<Reveal
+				delay={i * 90}
+				class={i === 0
+					? ''
+					: i % 2 === 0
+						? 'lg:border-l lg:border-ink-900/10 lg:pl-8'
+						: 'border-l border-ink-900/10 pl-6 lg:pl-8'}
+			>
+				<p class="font-display text-5xl font-bold tracking-[-0.03em] tabular-nums text-ink-900 lg:text-6xl">
 					<CountUp value={stat.value} suffix={stat.suffix ?? ''} />
 				</p>
-				<p class="mt-3 max-w-[16ch] text-sm leading-snug font-medium text-slate-500">{stat.label}</p>
+				<p class="mt-3 max-w-[16ch] text-sm leading-snug font-medium text-slate-600">{stat.label}</p>
 			</Reveal>
 		{/each}
 	</div>
@@ -162,8 +169,7 @@
 		<div class="mt-14 grid gap-8 lg:grid-cols-12">
 			<!-- Feature: AI Academy -->
 			<Reveal class="lg:col-span-7">
-				<a
-					href="{base}{programmes[0].href}"
+				<div
 					class="card-hover-trigger image-zoom-container relative block h-full min-h-[32rem] overflow-hidden rounded-2xl bg-ink-950 shadow-card"
 				>
 					<img
@@ -175,7 +181,10 @@
 						loading="lazy"
 					/>
 					<div class="absolute inset-0 z-10 bg-gradient-to-t from-ink-950/95 via-ink-950/30 to-transparent"></div>
-					<div class="absolute inset-x-0 bottom-0 z-20 p-8 text-white lg:p-10">
+					<!-- Whole-card link sits under the caption; the caption re-enables
+					     pointer events only for the nested "latest" link. -->
+					<a href="{base}{programmes[0].href}" class="absolute inset-0 z-20" aria-label="Explore the AI Academy"></a>
+					<div class="pointer-events-none absolute inset-x-0 bottom-0 z-30 p-8 text-white lg:p-10">
 						<div class="flex items-center gap-3">
 							<Icons name="academy" class="h-8 w-8 text-aqua-400" />
 							<p class="eyebrow !text-aqua-400">Flagship programme</p>
@@ -187,12 +196,15 @@
 						<p class="mt-4 max-w-lg border-l-2 border-aqua-400 pl-4 text-sm leading-relaxed text-white/75">
 							{programmes[0].proof}
 						</p>
-						<span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-aqua-400">
+						<a
+							href="{base}{programmes[0].latest.href}"
+							class="pointer-events-auto mt-5 inline-flex items-center gap-1 text-sm font-semibold text-aqua-400 transition-colors hover:text-aqua-300"
+						>
 							{programmes[0].latest.label}
 							<Icons name="arrow-right" class="h-4 w-4" />
-						</span>
+						</a>
 					</div>
-				</a>
+				</div>
 			</Reveal>
 
 			<!-- Two stacked -->
