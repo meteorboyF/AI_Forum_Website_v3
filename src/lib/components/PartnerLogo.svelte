@@ -12,17 +12,17 @@
 
 <div
 	class:compact
-	class="partner-logo flex shrink-0 items-center justify-center bg-white px-4"
+	class="partner-logo flex shrink-0 items-center justify-center overflow-hidden bg-white"
 	title={partner.name}
 >
 	{#if partner.logo}
 		<img
 			src={`${base}/images/brand/partners/${partner.logo}`}
 			alt={partner.name}
-			class="max-h-full max-w-full object-contain"
+			class="h-full w-full object-contain"
 			loading="lazy"
-			width="176"
-			height="72"
+			width="512"
+			height="512"
 		/>
 	{:else}
 		<span class="font-display text-base font-bold text-ink-800">{partner.lockup}</span>
@@ -31,15 +31,15 @@
 
 <style>
 	.partner-logo {
-		width: 11rem;
-		height: 4.5rem;
+		width: 7.5rem;
+		height: 7.5rem;
 		border: 1px solid rgb(15 23 42 / 0.08);
-		border-radius: 6px;
+		border-radius: 12px;
 	}
 
 	.partner-logo.compact {
-		width: 9rem;
-		height: 3.75rem;
-		padding: 0.625rem 0.875rem;
+		width: 5.5rem;
+		height: 5.5rem;
+		border-radius: 10px;
 	}
 </style>
