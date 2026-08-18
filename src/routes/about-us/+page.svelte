@@ -193,35 +193,37 @@
 		<div class="mt-14 grid gap-5 lg:grid-cols-2 lg:gap-7">
 			{#each advisors as advisor (advisor.name)}
 				<article
-					class="group h-full overflow-hidden rounded-lg border bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-electric-600/25 hover:shadow-card
+					class="card-hover-trigger flex h-full flex-col rounded-2xl border bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-electric-600/25 hover:shadow-card sm:p-7
 						{advisor.featured ? 'border-electric-600/25 ring-1 ring-electric-600/10' : 'border-ink-900/8'}"
 				>
-					<div class="grid h-full grid-cols-[8.5rem_minmax(0,1fr)] sm:grid-cols-[10.5rem_minmax(0,1fr)]">
-						<div class="relative min-h-full overflow-hidden bg-ink-100">
+					<div class="flex items-start gap-5 sm:gap-6">
+						<div class="image-zoom-container h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-ink-100 ring-1 ring-ink-900/8 sm:h-28 sm:w-28">
 							<img
 								src={img(advisor.image)}
 								alt="Portrait of {advisor.name}"
-								class="h-full min-h-[14rem] w-full object-cover"
-								width="640"
-								height="640"
+								class="image-zoom-img h-full w-full rounded-xl object-cover"
+								width="256"
+								height="256"
 								loading="lazy"
 							/>
-							{#if advisor.featured}
-								<span class="absolute bottom-3 left-3 rounded-full bg-ink-900/85 px-2.5 py-1 text-[0.58rem] font-bold tracking-[0.14em] text-white uppercase backdrop-blur-sm">Board lead</span>
-							{/if}
 						</div>
-						<div class="flex min-w-0 flex-col p-5 sm:p-6">
-							<p class="w-fit rounded-full bg-electric-50 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.08em] text-electric-700 uppercase">Advisory board</p>
-							<h3 class="mt-3 font-display text-xl leading-[1.05] font-bold tracking-[-0.02em] text-ink-900 sm:text-2xl">{advisor.name}</h3>
+						<div class="min-w-0">
+							<div class="flex flex-wrap items-center gap-2">
+								<p class="rounded-full bg-electric-50 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.08em] text-electric-700 uppercase">Advisory board</p>
+								{#if advisor.featured}
+									<p class="rounded-full bg-ink-900 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.14em] text-white uppercase">Board lead</p>
+								{/if}
+							</div>
+							<h3 class="mt-3 font-display text-xl leading-[1.05] font-bold tracking-[-0.02em] text-ink-900 sm:text-2xl text-underline-reveal">{advisor.name}</h3>
 							<p class="mt-2 text-sm leading-snug font-medium text-slate-500">{advisor.credential}</p>
-							{#if advisor.callout}
-								<p class="mt-4 rounded-lg bg-aqua-50 px-3 py-2 text-xs leading-relaxed font-semibold text-ink-900">
-									{advisor.callout}
-								</p>
-							{/if}
-							<p class="mt-4 border-t border-ink-900/8 pt-4 text-sm leading-relaxed text-slate-600">{advisor.bio}</p>
 						</div>
-						</div>
+					</div>
+					{#if advisor.callout}
+						<p class="mt-5 rounded-lg bg-aqua-50 px-3 py-2 text-xs leading-relaxed font-semibold text-ink-900">
+							{advisor.callout}
+						</p>
+					{/if}
+					<p class="mt-5 border-t border-ink-900/8 pt-4 text-sm leading-relaxed text-slate-600">{advisor.bio}</p>
 				</article>
 			{/each}
 		</div>
