@@ -10,8 +10,9 @@ export const leadTrainer = {
 	credentials: [
 		'Professor of Artificial Intelligence, United International University (UIU)',
 		'Vice President, AI, Innovation & Entrepreneurship, Washington University of Science and Technology (WUST), USA',
+		'Founder and Director, Advanced Intelligent Multidisciplinary Systems (AIMS) Lab, UIU',
 		'Founder and Director, Institute of Research, Innovation, Incubation and Commercialisation (IRIIC)',
-		'Co-founder, CMED Health'
+		'Founder, CMED Health'
 	],
 	summary:
 		'Professor Mamun leads the design and delivery of every AI Forum Bangladesh professional training programme, including engagements for the Dhaka Stock Exchange, LankaBangla Securities, Sonali Intellect, and healthcare institutions across the country and abroad.',
