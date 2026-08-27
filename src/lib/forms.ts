@@ -33,34 +33,47 @@ export async function sendEnquiry(options: {
 	const { subject, name, email, phone = '', fields, honeypot } = options;
 	if (honeypot) return true;
 
+	/** Body text: newlines are meaningful, so only trim and cap. */
 	const clean = (value: string) => value.trim().slice(0, 4000);
+	/**
+	 * Anything a template might drop into a mail header (name, subject,
+	 * phone, address) is flattened to one line. Header injection is not
+	 * reachable today — isValidEmail rejects whitespace and the subjects
+	 * are literals — but this keeps it unreachable if a template is ever
+	 * rewired to use these params as From/Subject.
+	 */
+	const cleanLine = (value: string) =>
+		clean(value)
+			.replace(/[\u0000-\u001F\u007F]+/g, ' ')
+			.trim();
 	const present = fields.filter(([, value]) => value.trim().length > 0);
 
 	const body = [
 		`${subject}`,
 		'',
-		`Name: ${clean(name)}`,
-		`Email: ${clean(email)}`,
-		...(phone.trim() ? [`Phone: ${clean(phone)}`] : []),
+		`Name: ${cleanLine(name)}`,
+		`Email: ${cleanLine(email)}`,
+		...(phone.trim() ? [`Phone: ${cleanLine(phone)}`] : []),
 		...present.map(([label, value]) => `${label}: ${clean(value)}`),
 		'',
 		'Sent from the AI Forum Bangladesh website.'
 	].join('\n');
 
 	const templateParams: Record<string, string> = {
-		subject,
-		title: subject,
-		from_name: clean(name),
-		from_email: clean(email),
-		reply_to: clean(email),
+		subject: cleanLine(subject),
+		title: cleanLine(subject),
+		from_name: cleanLine(name),
+		from_email: cleanLine(email),
+		reply_to: cleanLine(email),
 		to_email: CONTACT_EMAIL,
-		phone: clean(phone),
+		phone: cleanLine(phone),
 		message: body
 	};
 	for (const [label, value] of present) {
 		// e.g. "Work email" -> work_email, so templates can use {{work_email}}.
 		// Never let a field label overwrite a reserved param: a field called
 		// "Message" must not replace the composed body the template renders.
+		// `in` walks the prototype chain, so __proto__/constructor are skipped too.
 		const key = label.toLowerCase().replace(/[^a-z0-9]+/g, '_');
 		if (!(key in templateParams)) templateParams[key] = clean(value);
 	}
