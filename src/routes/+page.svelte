@@ -349,7 +349,7 @@
 		<Marquee speed={55}>
 			<div class="flex items-center gap-16 py-2">
 				{#each partners as partner (partner.name)}
-					<div class="opacity-80 transition-all duration-350 hover:scale-[1.03] hover:opacity-100">
+					<div class="opacity-90 transition-all duration-350 hover:scale-[1.03] hover:opacity-100">
 						<PartnerLogo {partner} />
 					</div>
 				{/each}
