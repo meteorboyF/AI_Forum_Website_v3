@@ -36,6 +36,33 @@ Security headers ship via `vercel.json` (Vercel) or `static/_headers`
 (Netlify). When moving to `aiforumbd.org`, update `SITE_URL` in
 `src/lib/config.ts` and the sitemap URL in `static/robots.txt`.
 
+### Docker (self-hosting)
+
+```bash
+docker compose up -d --build
+```
+
+Serves on `http://127.0.0.1:8080`; override with `HOST_PORT=9000 docker
+compose up -d`. The port is bound to loopback deliberately — put a
+TLS-terminating reverse proxy in front rather than exposing the
+container directly.
+
+The image is two-stage: Node builds the site, then
+`nginx-unprivileged` serves the prerendered files as uid 101. Nothing
+executes at runtime, so the container runs read-only with all
+capabilities dropped. Unlike GitHub Pages, nginx sets the security
+headers in `static/_headers` as real response headers, including
+`X-Frame-Options: DENY`.
+
+Caching is set per asset type: hashed bundles in `/_app/immutable/`
+for a year, images for a day, HTML always revalidated so a redeploy is
+visible immediately.
+
+Build arguments (all optional): `BASE_PATH` to serve under a sub-path,
+and `VITE_EMAILJS_SERVICE_ID` / `VITE_EMAILJS_TEMPLATE_ID` /
+`VITE_EMAILJS_PUBLIC_KEY` to send form mail through a different
+EmailJS account than the default in `src/lib/config.ts`.
+
 ## Where things live
 
 | Path | What |

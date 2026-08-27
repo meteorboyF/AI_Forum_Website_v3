@@ -1,0 +1,36 @@
+name: ai-forum-v3
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Empty: the container serves the site at the domain root. Only the
+        # GitHub Pages project site needs a sub-path.
+        BASE_PATH: "${BASE_PATH-}"
+        # Optional. Unset falls back to the defaults in src/lib/config.ts,
+        # which point at the AI Forum EmailJS account.
+        VITE_EMAILJS_SERVICE_ID: "${VITE_EMAILJS_SERVICE_ID-}"
+        VITE_EMAILJS_TEMPLATE_ID: "${VITE_EMAILJS_TEMPLATE_ID-}"
+        VITE_EMAILJS_PUBLIC_KEY: "${VITE_EMAILJS_PUBLIC_KEY-}"
+    image: ai-forum-v3:latest
+    container_name: ai-forum-v3
+    restart: unless-stopped
+    # Bound to loopback: put a TLS-terminating reverse proxy in front of it
+    # rather than exposing the container to the network directly.
+    ports:
+      - "127.0.0.1:${HOST_PORT:-8080}:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
