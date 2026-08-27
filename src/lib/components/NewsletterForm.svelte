@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
+	import { sendEnquiry, isValidEmail, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
 	import { FORMS_ENABLED } from '$lib/config';
 
@@ -18,7 +18,13 @@
 			return;
 		}
 		status = 'submitting';
-		const ok = await submitForm('Newsletter signup', { email, form: 'newsletter' }, honeypot);
+		const ok = await sendEnquiry({
+			subject: 'Programme updates signup',
+			name: 'Website subscriber',
+			email,
+			fields: [['Request', 'Add this address to programme updates']],
+			honeypot
+		});
 		status = ok ? 'success' : 'error';
 		if (ok) {
 			toast('success', 'Thanks for subscribing. You are on the list.');

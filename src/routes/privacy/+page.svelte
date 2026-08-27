@@ -46,10 +46,10 @@
 
 	<h2>How form data is processed</h2>
 	<p>
-		Form submissions are delivered to our inbox through Web3Forms, a form processing service. Your
+		Form submissions are delivered to our inbox through EmailJS, a form processing service. Your
 		submission passes through their infrastructure in order to reach us; it is not used by them for
 		any other purpose. See the
-		<a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms privacy policy</a>
+		<a href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">EmailJS privacy policy</a>
 		for details of their handling. When forms are unavailable, enquiries arrive by ordinary email
 		instead and no third-party processor is involved.
 	</p>

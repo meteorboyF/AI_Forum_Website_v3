@@ -33,7 +33,7 @@ const config = {
 				'style-src': ['self', 'unsafe-inline'],
 				'img-src': ['self', 'data:'],
 				'font-src': ['self'],
-				'connect-src': ['self', 'https://api.web3forms.com'],
+				'connect-src': ['self', 'https://api.emailjs.com'],
 				'form-action': ['self', 'https://api.web3forms.com'],
 				'object-src': ['none'],
 				'base-uri': ['self']

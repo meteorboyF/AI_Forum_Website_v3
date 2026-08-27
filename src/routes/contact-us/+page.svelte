@@ -3,31 +3,55 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
+	import { sendEnquiry, isValidEmail, isValidPhone, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
 	import { CONTACT_EMAIL, FORMS_ENABLED, SOCIALS } from '$lib/config';
 
 	let name = $state('');
 	let email = $state('');
+	let phone = $state('');
 	let message = $state('');
 	let honeypot = $state('');
 	let status = $state<FormStatus>('idle');
 	let errors = $state<Record<string, string>>({});
+
+	function resetForm() {
+		name = '';
+		email = '';
+		phone = '';
+		message = '';
+		errors = {};
+		status = 'idle';
+	}
 
 	async function submit(e: SubmitEvent) {
 		e.preventDefault();
 		errors = {};
 		if (!name.trim()) errors.name = 'Please tell us your name.';
 		if (!isValidEmail(email)) errors.email = 'Please enter a valid email address.';
+		if (!isValidPhone(phone)) errors.phone = 'Please enter a valid phone number, or leave it blank.';
 		if (!message.trim()) errors.message = 'Please write a message.';
 		if (Object.keys(errors).length > 0) {
-			const first = ['name', 'email', 'message'].find((k) => errors[k]);
-			document.getElementById(`c-${first === 'message' ? 'message' : first}`)?.focus();
+			const idByKey: Record<string, string> = {
+				name: 'c-name',
+				email: 'c-email',
+				phone: 'c-phone',
+				message: 'c-message'
+			};
+			const first = ['name', 'email', 'phone', 'message'].find((k) => errors[k]);
+			if (first) document.getElementById(idByKey[first])?.focus();
 			return;
 		}
 
 		status = 'submitting';
-		const ok = await submitForm('Website contact message', { name, email, message, form: 'contact' }, honeypot);
+		const ok = await sendEnquiry({
+			subject: 'Website contact message',
+			name,
+			email,
+			phone,
+			fields: [['Message', message]],
+			honeypot
+		});
 		status = ok ? 'success' : 'error';
 		if (ok) toast('success', 'Message sent. We will reply by email.');
 		else toast('error', 'Sending failed. Please try again or email us directly.');
@@ -95,33 +119,42 @@
 					<a href="mailto:{CONTACT_EMAIL}?subject=Enquiry%20for%20AI%20Forum%20Bangladesh" class="btn btn-electric mt-7">Write to {CONTACT_EMAIL}</a>
 				</div>
 			{:else if status === 'success'}
-				<div class="rounded-xl border border-aqua-400/40 bg-aqua-100/50 p-8" role="status">
-					<h3 class="text-xl font-bold text-ink-900">Message sent</h3>
+				<div class="rounded-2xl border border-aqua-400/40 bg-aqua-100/50 p-8 shadow-card" role="status">
+					<h2 class="font-display text-2xl font-bold text-ink-900">Message sent</h2>
 					<p class="mt-2 leading-relaxed text-slate-600">
 						Thanks, {name.trim().split(/\s+/)[0]}. Your message is in our inbox and we will reply to
 						{email} as soon as we can.
 					</p>
+					<button type="button" class="btn btn-ghost-light btn-sm mt-6" onclick={resetForm}>
+						Send another message
+					</button>
 				</div>
 			{:else}
-				<form class="rounded-xl border border-ink-900/10 bg-white p-7 shadow-card" onsubmit={submit} aria-labelledby="contact-form-title" novalidate>
+				<form class="rounded-2xl border border-ink-900/10 bg-white p-7 shadow-card" onsubmit={submit} aria-labelledby="contact-form-title" novalidate>
 					<h2 id="contact-form-title" class="font-display text-2xl font-bold text-ink-900">Send us a message</h2>
-					<p class="mt-1.5 mb-6 text-sm text-slate-600">All fields are required.</p>
+					<p class="mt-1.5 mb-6 text-sm text-slate-600">Fields marked * are required.</p>
 					<div class="grid gap-5 sm:grid-cols-2">
 						<div>
-							<label for="c-name" class="mb-1.5 block text-sm font-semibold">Your name</label>
+							<label for="c-name" class="mb-1.5 block text-sm font-semibold">Your name *</label>
 							<input id="c-name" class="field" type="text" maxlength="120" autocomplete="name" required aria-required="true" bind:value={name}
 								aria-invalid={errors.name ? 'true' : undefined} aria-describedby={errors.name ? 'c-name-err' : undefined} />
 							{#if errors.name}<p id="c-name-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.name}</p>{/if}
 						</div>
 						<div>
-							<label for="c-email" class="mb-1.5 block text-sm font-semibold">Email</label>
+							<label for="c-email" class="mb-1.5 block text-sm font-semibold">Email *</label>
 							<input id="c-email" class="field" type="email" maxlength="254" autocomplete="email" required aria-required="true" bind:value={email}
 								aria-invalid={errors.email ? 'true' : undefined} aria-describedby={errors.email ? 'c-email-err' : undefined} />
 							{#if errors.email}<p id="c-email-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.email}</p>{/if}
 						</div>
 					</div>
 					<div class="mt-5">
-						<label for="c-message" class="mb-1.5 block text-sm font-semibold">Message</label>
+						<label for="c-phone" class="mb-1.5 block text-sm font-semibold">Phone number</label>
+						<input id="c-phone" class="field" type="tel" maxlength="32" autocomplete="tel" placeholder="01912 123456" bind:value={phone}
+							aria-invalid={errors.phone ? 'true' : undefined} aria-describedby={errors.phone ? 'c-phone-err' : undefined} />
+						{#if errors.phone}<p id="c-phone-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.phone}</p>{/if}
+					</div>
+					<div class="mt-5">
+						<label for="c-message" class="mb-1.5 block text-sm font-semibold">Message *</label>
 						<textarea id="c-message" class="field min-h-36" maxlength="3000" required aria-required="true" bind:value={message}
 							aria-invalid={errors.message ? 'true' : undefined} aria-describedby={errors.message ? 'c-msg-err' : undefined}></textarea>
 						{#if errors.message}<p id="c-msg-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.message}</p>{/if}

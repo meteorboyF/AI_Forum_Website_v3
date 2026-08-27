@@ -7,7 +7,7 @@
 	import { sectors } from '$lib/data/courses';
 	import { trainingClients } from '$lib/data/partners';
 	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
-	import { submitForm, isValidEmail, type FormStatus } from '$lib/forms';
+	import { sendEnquiry, isValidEmail, isValidPhone, type FormStatus } from '$lib/forms';
 	import { toast } from '$lib/toast';
 	import { CONTACT_EMAIL, FORMS_ENABLED } from '$lib/config';
 	import Icons from '$lib/components/Icons.svelte';
@@ -38,11 +38,25 @@
 	let name = $state('');
 	let organisation = $state('');
 	let email = $state('');
+	let phone = $state('');
 	let sector = $state('');
+	let teamSize = $state('');
 	let message = $state('');
 	let honeypot = $state('');
 	let status = $state<FormStatus>('idle');
 	let errors = $state<Record<string, string>>({});
+
+	function resetForm() {
+		name = '';
+		organisation = '';
+		email = '';
+		phone = '';
+		sector = '';
+		teamSize = '';
+		message = '';
+		errors = {};
+		status = 'idle';
+	}
 
 	async function submit(e: SubmitEvent) {
 		e.preventDefault();
@@ -50,20 +64,35 @@
 		if (!name.trim()) errors.name = 'Please tell us your name.';
 		if (!organisation.trim()) errors.organisation = 'Please tell us your organisation.';
 		if (!isValidEmail(email)) errors.email = 'Please enter a valid email address.';
+		if (!isValidPhone(phone)) errors.phone = 'Please enter a valid phone number, or leave it blank.';
 		if (!message.trim()) errors.message = 'A sentence or two about your team helps us respond well.';
 		if (Object.keys(errors).length > 0) {
-			const idByKey: Record<string, string> = { name: 'ct-name', organisation: 'ct-org', email: 'ct-email', message: 'ct-message' };
-			const first = ['name', 'organisation', 'email', 'message'].find((k) => errors[k]);
+			const idByKey: Record<string, string> = {
+				name: 'ct-name',
+				organisation: 'ct-org',
+				email: 'ct-email',
+				phone: 'ct-phone',
+				message: 'ct-message'
+			};
+			const first = ['name', 'organisation', 'email', 'phone', 'message'].find((k) => errors[k]);
 			if (first) document.getElementById(idByKey[first])?.focus();
 			return;
 		}
 
 		status = 'submitting';
-		const ok = await submitForm(
-			'Training proposal request',
-			{ name, organisation, email, sector, message, form: 'corporate-training' },
+		const ok = await sendEnquiry({
+			subject: 'Training request from the website',
+			name,
+			email,
+			phone,
+			fields: [
+				['Organisation', organisation],
+				['Sector', sector],
+				['Approximate team size', teamSize],
+				['What the team needs', message]
+			],
 			honeypot
-		);
+		});
 		status = ok ? 'success' : 'error';
 		if (ok) toast('success', 'Request received. We will come back to you shortly.');
 		else toast('error', 'Sending failed. Please try again or email us directly.');
@@ -192,38 +221,49 @@
 					<a href="mailto:{CONTACT_EMAIL}?subject=Training%20enquiry%20for%20AI%20Forum%20Bangladesh" class="btn btn-electric mt-7">Email the training team</a>
 				</div>
 			{:else if status === 'success'}
-				<div class="rounded-2xl border border-aqua-400/40 bg-aqua-100/50 p-8 shadow-sm" role="status">
+				{@const firstName = name.trim().split(/\s+/)[0]}
+				{@const org = organisation.trim()}
+				<div class="rounded-2xl border border-aqua-400/40 bg-aqua-100/50 p-8 shadow-card" role="status">
 					<h3 class="text-xl font-bold text-ink-900 flex items-center gap-2">
 						<Icons name="check" class="h-6 w-6 text-aqua-600" />
 						Request received
 					</h3>
 					<p class="mt-3 leading-relaxed text-slate-600">
-						Thank you, {name.trim().split(/\s+/)[0]}. We will review what you have told us about
-						{organisation} and come back to you with a scoping call slot and a first outline.
+						Thank you, {firstName}. We will review what you have told us about
+						{org} and come back to you with a scoping call slot and a first outline.
 					</p>
+					<button type="button" class="btn btn-ghost-light btn-sm mt-6" onclick={resetForm}>
+						Send another request
+					</button>
 				</div>
 			{:else}
 				<form class="rounded-2xl border border-ink-900/10 bg-white p-8 shadow-card" onsubmit={submit} aria-labelledby="proposal-form-title" novalidate>
 					<h3 id="proposal-form-title" class="font-display text-2xl font-bold text-ink-900">Request a proposal</h3>
-					<p class="mt-1.5 mb-6 text-sm text-slate-600">All fields are required except the sector.</p>
+					<p class="mt-1.5 mb-6 text-sm text-slate-600">Fields marked * are required.</p>
 					<div class="grid gap-5 sm:grid-cols-2">
 						<div>
-							<label for="ct-name" class="mb-1.5 block text-sm font-semibold">Your name</label>
+							<label for="ct-name" class="mb-1.5 block text-sm font-semibold">Your name *</label>
 							<input id="ct-name" class="field" type="text" maxlength="120" autocomplete="name" required aria-required="true" bind:value={name}
 								aria-invalid={errors.name ? 'true' : undefined} aria-describedby={errors.name ? 'ct-name-err' : undefined} />
 							{#if errors.name}<p id="ct-name-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.name}</p>{/if}
 						</div>
 						<div>
-							<label for="ct-org" class="mb-1.5 block text-sm font-semibold">Organisation</label>
+							<label for="ct-org" class="mb-1.5 block text-sm font-semibold">Organisation *</label>
 							<input id="ct-org" class="field" type="text" maxlength="160" autocomplete="organization" required aria-required="true" bind:value={organisation}
 								aria-invalid={errors.organisation ? 'true' : undefined} aria-describedby={errors.organisation ? 'ct-org-err' : undefined} />
 							{#if errors.organisation}<p id="ct-org-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.organisation}</p>{/if}
 						</div>
 						<div>
-							<label for="ct-email" class="mb-1.5 block text-sm font-semibold">Work email</label>
+							<label for="ct-email" class="mb-1.5 block text-sm font-semibold">Work email *</label>
 							<input id="ct-email" class="field" type="email" maxlength="254" autocomplete="email" required aria-required="true" bind:value={email}
 								aria-invalid={errors.email ? 'true' : undefined} aria-describedby={errors.email ? 'ct-email-err' : undefined} />
 							{#if errors.email}<p id="ct-email-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.email}</p>{/if}
+						</div>
+						<div>
+							<label for="ct-phone" class="mb-1.5 block text-sm font-semibold">Phone number</label>
+							<input id="ct-phone" class="field" type="tel" maxlength="32" autocomplete="tel" placeholder="01912 123456" bind:value={phone}
+								aria-invalid={errors.phone ? 'true' : undefined} aria-describedby={errors.phone ? 'ct-phone-err' : undefined} />
+							{#if errors.phone}<p id="ct-phone-err" class="mt-1 text-xs font-medium text-red-600" role="alert">{errors.phone}</p>{/if}
 						</div>
 						<div>
 							<label for="ct-sector" class="mb-1.5 block text-sm font-semibold">Sector</label>
@@ -235,10 +275,20 @@
 								<option value="Other">Other</option>
 							</select>
 						</div>
+						<div>
+							<label for="ct-size" class="mb-1.5 block text-sm font-semibold">Approximate team size</label>
+							<select id="ct-size" class="field" bind:value={teamSize}>
+								<option value="">Select a size — optional</option>
+								<option value="Up to 15">Up to 15</option>
+								<option value="15–30">15–30</option>
+								<option value="30–60">30–60</option>
+								<option value="More than 60">More than 60</option>
+							</select>
+						</div>
 					</div>
 					<div class="mt-5">
 						<label for="ct-message" class="mb-1.5 block text-sm font-semibold">
-							What would you like your team to be able to do?
+							What would you like your team to be able to do? *
 						</label>
 						<textarea id="ct-message" class="field min-h-32" maxlength="3000" required aria-required="true" bind:value={message}
 							aria-invalid={errors.message ? 'true' : undefined} aria-describedby={errors.message ? 'ct-msg-err' : undefined}></textarea>
