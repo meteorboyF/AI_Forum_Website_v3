@@ -3,7 +3,6 @@
 	import Reveal from '$lib/components/Reveal.svelte';
 	import PageIntro from '$lib/components/PageIntro.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { img } from '$lib/img';
 	import { advisors } from '$lib/data/advisors';
 	import { team, leadTrainer, values, milestones } from '$lib/data/team';
@@ -259,5 +258,3 @@
 		</div>
 	</div>
 </section>
-
-<NewsletterForm />

@@ -20,12 +20,8 @@
 	<h2>What we collect</h2>
 	<ul>
 		<li>
-			<strong>Contact and training requests:</strong> the name, email address, organisation, and
-			message you provide, used solely to respond to your enquiry.
-		</li>
-		<li>
-			<strong>Programme-update signups:</strong> your email address, used solely to tell you about
-			new programmes and announcements. Every such email includes a way to opt out.
+			<strong>Contact and training requests:</strong> the name, email address, organisation, phone
+			number, and message you provide, used solely to respond to your enquiry.
 		</li>
 	</ul>
 

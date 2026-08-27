@@ -10,6 +10,15 @@ invented. If it is not documented in the newsletter, the Links doc,
 the redesign brief, or the old site's data, it is omitted until you
 supply it.**
 
+## Programme updates signup (currently hidden)
+
+The "Programme updates" email signup is switched off across the site.
+`src/lib/components/NewsletterForm.svelte` is kept intact but is no
+longer imported anywhere. To bring it back, add `<NewsletterForm />`
+at the foot of `src/routes/+page.svelte`, `about-us`, and `news`, and
+restore the signup bullet under "What we collect" in
+`src/routes/privacy/+page.svelte`.
+
 ## Forms
 
 Contact, training-request, and programme-update forms are delivered by

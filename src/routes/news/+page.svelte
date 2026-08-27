@@ -3,7 +3,6 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Reveal from '$lib/components/Reveal.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import { img } from '$lib/img';
 	import { press, publications } from '$lib/data/press';
 	import { events } from '$lib/data/events';
@@ -120,5 +119,3 @@
 		</p>
 	</div>
 </section>
-
-<NewsletterForm />

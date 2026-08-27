@@ -6,7 +6,6 @@
 	import CountUp from '$lib/components/CountUp.svelte';
 	import Marquee from '$lib/components/Marquee.svelte';
 	import SectionHead from '$lib/components/SectionHead.svelte';
-	import NewsletterForm from '$lib/components/NewsletterForm.svelte';
 	import PartnerLogo from '$lib/components/PartnerLogo.svelte';
 	import Icons from '$lib/components/Icons.svelte';
 	import { weightShift } from '$lib/actions/weightShift';
@@ -435,5 +434,3 @@
 		</div>
 	</div>
 </section>
-
-<NewsletterForm />
